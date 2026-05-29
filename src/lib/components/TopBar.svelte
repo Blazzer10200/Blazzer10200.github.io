@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	type NavLink = {
 		href: string;
 		label: string;
@@ -24,6 +26,55 @@
 		],
 		showStatus = false
 	}: Props = $props();
+
+	let progress = $state(0);
+	let activeHash = $state('');
+
+	onMount(() => {
+		let raf = 0;
+		const onScroll = () => {
+			if (raf) return;
+			raf = requestAnimationFrame(() => {
+				raf = 0;
+				const doc = document.documentElement;
+				const max = doc.scrollHeight - doc.clientHeight;
+				progress = max > 0 ? Math.min(1, doc.scrollTop / max) : 0;
+			});
+		};
+		onScroll();
+		window.addEventListener('scroll', onScroll, { passive: true });
+
+		// scroll-spy: highlight the nav link for the section currently in view
+		const hashLinks = links.filter((l) => l.href.startsWith('#'));
+		const targets = hashLinks
+			.map((l) => document.getElementById(l.href.slice(1)))
+			.filter((el): el is HTMLElement => !!el);
+
+		let spy: IntersectionObserver | undefined;
+		if (targets.length) {
+			const visible = new Set<string>();
+			spy = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((e) => {
+						const id = '#' + e.target.id;
+						if (e.isIntersecting) visible.add(id);
+						else visible.delete(id);
+					});
+					// pick the first hash link (top-to-bottom) that is currently visible
+					const next = hashLinks.find((l) => visible.has(l.href));
+					if (next) activeHash = next.href;
+				},
+				{ rootMargin: '-45% 0px -50% 0px' }
+			);
+			targets.forEach((t) => spy!.observe(t));
+		}
+
+		return () => {
+			window.removeEventListener('scroll', onScroll);
+			if (raf) cancelAnimationFrame(raf);
+			spy?.disconnect();
+		};
+	});
 </script>
 
 <header class="topbar">
@@ -39,6 +90,7 @@
 				<a
 					href={link.href}
 					class:back={link.primary}
+					class:active={activeHash === link.href}
 					target={link.external ? '_blank' : null}
 					rel={link.external ? 'noopener' : null}
 				>
@@ -53,6 +105,7 @@
 			{/if}
 		</nav>
 	</div>
+	<div class="scroll-progress" style="transform: scaleX({progress})" aria-hidden="true"></div>
 </header>
 
 <style>
@@ -64,6 +117,23 @@
 		backdrop-filter: saturate(140%) blur(10px);
 		-webkit-backdrop-filter: saturate(140%) blur(10px);
 		border-bottom: 1px solid var(--line);
+	}
+	.scroll-progress {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -1px;
+		height: 2px;
+		transform-origin: 0 50%;
+		transform: scaleX(0);
+		background: linear-gradient(90deg, var(--accent-2), var(--accent));
+		box-shadow: 0 0 8px var(--accent-glow);
+		will-change: transform;
+	}
+	@media print {
+		.scroll-progress {
+			display: none !important;
+		}
 	}
 	.topbar-inner {
 		max-width: 1240px;
@@ -125,6 +195,27 @@
 	}
 	.nav :global(a:hover) {
 		color: var(--text);
+	}
+	.nav :global(a:not(.back)) {
+		position: relative;
+	}
+	.nav :global(a:not(.back))::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -6px;
+		height: 1px;
+		background: var(--accent);
+		transform: scaleX(0);
+		transform-origin: 0 50%;
+		transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+	}
+	.nav :global(a.active) {
+		color: var(--text);
+	}
+	.nav :global(a.active)::after {
+		transform: scaleX(1);
 	}
 	.status {
 		display: inline-flex;

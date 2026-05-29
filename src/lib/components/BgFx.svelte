@@ -10,6 +10,30 @@
 		grid.className = 'hy-grid';
 		host.classList.add('on', 'bg-hybrid');
 		host.append(aurora, grid);
+
+		// Pointer parallax on the grid layer — adds depth against the static aurora.
+		const fine = window.matchMedia('(pointer: fine)').matches;
+		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (!fine || reduced) return;
+
+		let raf = 0;
+		let tx = 0;
+		let ty = 0;
+		const onMove = (e: PointerEvent) => {
+			tx = (e.clientX / window.innerWidth - 0.5) * 22;
+			ty = (e.clientY / window.innerHeight - 0.5) * 22;
+			if (raf) return;
+			raf = requestAnimationFrame(() => {
+				raf = 0;
+				grid.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+			});
+		};
+		window.addEventListener('pointermove', onMove, { passive: true });
+
+		return () => {
+			window.removeEventListener('pointermove', onMove);
+			if (raf) cancelAnimationFrame(raf);
+		};
 	});
 </script>
 
@@ -73,6 +97,8 @@
 			transparent 100%
 		);
 		mix-blend-mode: screen;
+		transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+		will-change: transform;
 	}
 	@keyframes hyAurora {
 		0% {
