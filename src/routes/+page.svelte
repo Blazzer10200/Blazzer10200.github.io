@@ -1,37 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { base } from '$app/paths';
 	import TopBar from '$lib/components/TopBar.svelte';
 	import SectionRail from '$lib/components/SectionRail.svelte';
 	import TerminalPanel from '$lib/components/TerminalPanel.svelte';
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
-
-	let hero: HTMLElement;
-
-	onMount(() => {
-		// Pointer-follow spotlight — only on precise pointers, respects reduced-motion
-		const fine = window.matchMedia('(pointer: fine)').matches;
-		const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-		if (!fine || reduced || !hero) return;
-
-		const onMove = (e: PointerEvent) => {
-			const r = hero.getBoundingClientRect();
-			hero.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
-			hero.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
-		};
-		const enter = () => hero.classList.add('spotlight-on');
-		const leave = () => hero.classList.remove('spotlight-on');
-
-		hero.addEventListener('pointermove', onMove);
-		hero.addEventListener('pointerenter', enter);
-		hero.addEventListener('pointerleave', leave);
-
-		return () => {
-			hero.removeEventListener('pointermove', onMove);
-			hero.removeEventListener('pointerenter', enter);
-			hero.removeEventListener('pointerleave', leave);
-		};
-	});
 
 	const exfilLog = [
 		{ ts: '[boot ]', text: 'exfil v1.0.0 · .NET 8 · PerMonitorV2' },
@@ -77,8 +49,7 @@
 	</header>
 
 	<!-- Hero -->
-	<section class="hero reveal" bind:this={hero}>
-		<div class="hero-glow" aria-hidden="true"></div>
+	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Software Developer</span>
 			<span class="pill">Open to work</span>
@@ -377,34 +348,6 @@
 	/* ── hero ── */
 	.hero {
 		padding: 96px 0 88px;
-		position: relative;
-		--mx: 50%;
-		--my: 40%;
-	}
-	.hero > :global(*:not(.hero-glow)) {
-		position: relative;
-		z-index: 1;
-	}
-	.hero-glow {
-		position: absolute;
-		inset: -40px -40px 0;
-		z-index: 0;
-		pointer-events: none;
-		opacity: 0;
-		transition: opacity 0.4s ease;
-		background: radial-gradient(
-			340px 340px at var(--mx) var(--my),
-			var(--accent-glow),
-			transparent 70%
-		);
-	}
-	.hero:global(.spotlight-on) .hero-glow {
-		opacity: 1;
-	}
-	@media print {
-		.hero-glow {
-			display: none !important;
-		}
 	}
 	.hero-eyebrow {
 		color: var(--dim);
