@@ -27,23 +27,9 @@
 		showStatus = false
 	}: Props = $props();
 
-	let progress = $state(0);
 	let activeHash = $state('');
 
 	onMount(() => {
-		let raf = 0;
-		const onScroll = () => {
-			if (raf) return;
-			raf = requestAnimationFrame(() => {
-				raf = 0;
-				const doc = document.documentElement;
-				const max = doc.scrollHeight - doc.clientHeight;
-				progress = max > 0 ? Math.min(1, doc.scrollTop / max) : 0;
-			});
-		};
-		onScroll();
-		window.addEventListener('scroll', onScroll, { passive: true });
-
 		// scroll-spy: highlight the nav link for the section currently in view
 		const hashLinks = links.filter((l) => l.href.startsWith('#'));
 		const targets = hashLinks
@@ -70,8 +56,6 @@
 		}
 
 		return () => {
-			window.removeEventListener('scroll', onScroll);
-			if (raf) cancelAnimationFrame(raf);
 			spy?.disconnect();
 		};
 	});
@@ -105,7 +89,6 @@
 			{/if}
 		</nav>
 	</div>
-	<div class="scroll-progress" style="transform: scaleX({progress})" aria-hidden="true"></div>
 </header>
 
 <style>
@@ -117,23 +100,6 @@
 		backdrop-filter: saturate(140%) blur(10px);
 		-webkit-backdrop-filter: saturate(140%) blur(10px);
 		border-bottom: 1px solid var(--line);
-	}
-	.scroll-progress {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: -1px;
-		height: 2px;
-		transform-origin: 0 50%;
-		transform: scaleX(0);
-		background: linear-gradient(90deg, var(--accent-2), var(--accent));
-		box-shadow: 0 0 8px var(--accent-glow);
-		will-change: transform;
-	}
-	@media print {
-		.scroll-progress {
-			display: none !important;
-		}
 	}
 	.topbar-inner {
 		max-width: 1240px;
