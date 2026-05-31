@@ -17,7 +17,7 @@
 
 	let {
 		variant = 'resume',
-		brandRole = 'Software Developer',
+		brandRole = 'Systems & Desktop Developer',
 		links = [
 			{ href: '#featured', label: 'Work' },
 			{ href: '#experience', label: 'Experience' },

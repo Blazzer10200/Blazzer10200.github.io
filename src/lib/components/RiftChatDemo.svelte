@@ -1,102 +1,211 @@
 <script lang="ts">
-	// Self-contained recreation of Rift's in-app AI assistant turn.
-	// No backend — a scripted playback that streams a believable agent turn:
-	// numbered tool-calls on a status rail, then a streamed answer. Loops on Replay.
+	// Self-contained recreation of Rift's in-app AI assistant.
+	// No backend — scripted playback. The visitor picks a question; that turn plays:
+	// thinking → numbered tool-rail → streamed answer → the real one-line diff.
+	// Each scenario maps to a genuine bug/decision from building Rift.
 
 	type Run = { t: string; k?: 'code' | 'bold' };
-	type Tool = { label: string; detail: string; kind: 'read' | 'git' | 'search' | 'edit'; dur: string };
+	type Kind = 'read' | 'git' | 'search' | 'edit';
+	type Tool = { label: string; detail: string; kind: Kind; dur: string };
+	type DiffLine = { s: 'add' | 'del' | 'ctx'; t: string };
+	type Scenario = {
+		id: string;
+		q: string; // short label on the picker
+		prompt: string; // what shows in the user bubble
+		thinking: string;
+		tools: Tool[]; // last one is always the Edit
+		answer: Run[];
+		diff: { file: string; lines: DiffLine[] };
+		telem: string;
+	};
 
-	const userPrompt = 'A few resources upload to the server as 0-byte files. Can you find why?';
-
-	const tools: Tool[] = [
-		{ label: 'Read', detail: 'src-tauri/src/sftp/transfer.rs', kind: 'read', dur: '0.4s' },
-		{ label: 'git_diff', detail: 'HEAD~6 — transfer.rs', kind: 'git', dur: '0.3s' },
-		{ label: 'Grep', detail: 'SETSTAT · 4 matches', kind: 'search', dur: '0.2s' },
-		{ label: 'Edit', detail: 'transfer.rs:214 — apply fix', kind: 'edit', dur: '0.5s' }
+	const scenarios: Scenario[] = [
+		{
+			id: 'zerobyte',
+			q: 'Why do uploads land as 0 bytes?',
+			prompt: 'A few resources upload to the server as 0-byte files. Can you find why?',
+			thinking: 'tracing the upload path…',
+			tools: [
+				{ label: 'Read', detail: 'src-tauri/src/sftp/transfer.rs', kind: 'read', dur: '0.4s' },
+				{ label: 'git_diff', detail: 'HEAD~6 — transfer.rs', kind: 'git', dur: '0.3s' },
+				{ label: 'Grep', detail: 'SETSTAT · 4 matches', kind: 'search', dur: '0.2s' },
+				{ label: 'Edit', detail: 'transfer.rs:214 — apply fix', kind: 'edit', dur: '0.5s' }
+			],
+			answer: [
+				{ t: 'Found it. Every upload finishes with a ' },
+				{ t: 'SETSTAT', k: 'code' },
+				{ t: ' call built from ' },
+				{ t: 'FileAttributes::default()', k: 'code' },
+				{ t: ' — and the default carries ' },
+				{ t: 'size = 0', k: 'bold' },
+				{ t: ', so the server truncates the file the instant it lands. The atomic ' },
+				{ t: '.rift-tmp', k: 'code' },
+				{ t: ' rename then promotes the zeroed copy over the good one.\n\nFix: use ' },
+				{ t: 'FileAttributes::empty()', k: 'code' },
+				{ t: ' so SETSTAT only sends the perms I actually set. Applied at ' },
+				{ t: 'transfer.rs:214', k: 'code' },
+				{ t: ' and added a live-server regression test so it can never come back.' }
+			],
+			diff: {
+				file: 'src-tauri/src/sftp/transfer.rs',
+				lines: [
+					{ s: 'ctx', t: '// finalize perms after the atomic rename' },
+					{ s: 'del', t: 'let attrs = FileAttributes::default();' },
+					{ s: 'add', t: 'let attrs = FileAttributes::empty();' },
+					{ s: 'ctx', t: 'attrs.set_permissions(mode);' }
+				]
+			},
+			telem: '4 tools · 1.2k tokens · $0.04 · 8.1s'
+		},
+		{
+			id: 'gitsafe',
+			q: 'Is the git tool safe to expose?',
+			prompt: 'The assistant can run git on my behalf. Is that safe to expose?',
+			thinking: 'auditing the git tool surface…',
+			tools: [
+				{ label: 'Read', detail: 'src-tauri/src/assistant/git_local.rs', kind: 'read', dur: '0.5s' },
+				{ label: 'Grep', detail: 'Command::new · 3 matches', kind: 'search', dur: '0.2s' },
+				{ label: 'Read', detail: 'assistant/mcp_server.rs — trust gate', kind: 'read', dur: '0.3s' },
+				{ label: 'Edit', detail: 'git_local.rs:40 — validate_ref', kind: 'edit', dur: '0.6s' }
+			],
+			answer: [
+				{ t: 'Safe, and on purpose. The tools never shell out — every call is ' },
+				{ t: 'Command::new("git").args', k: 'code' },
+				{ t: ', never ' },
+				{ t: 'sh -c', k: 'code' },
+				{ t: ', so there is no string for an argument to break out of. Refs and branches go through a strict allowlist, so a ' },
+				{ t: '--upload-pack=', k: 'code' },
+				{ t: " flag can't be smuggled in; path traversal is rejected, message size is capped, and " },
+				{ t: 'force', k: 'bold' },
+				{ t: ' is refused outright. Trust is gated twice — server-side and in the tool allowlist. Defense in depth.' }
+			],
+			diff: {
+				file: 'src-tauri/src/assistant/git_local.rs',
+				lines: [
+					{ s: 'ctx', t: '// refs/remotes/branches — strict allowlist, no leading dash' },
+					{ s: 'del', t: 'Command::new("sh").arg("-c").arg(format!("git push {branch}"))' },
+					{ s: 'add', t: 'let safe = validate_ref("branch", branch)?; // ^[A-Za-z0-9._/-]{1,200}$' },
+					{ s: 'add', t: 'Command::new("git").args(["push", remote, &safe])' }
+				]
+			},
+			telem: '4 tools · 1.4k tokens · $0.05 · 9.3s'
+		},
+		{
+			id: 'uihang',
+			q: 'Why did the UI hang for 2 min?',
+			prompt: 'Starting a dev server freezes the UI in "streaming" for two minutes. Why?',
+			thinking: 'following the turn-completion path…',
+			tools: [
+				{ label: 'Read', detail: 'src-tauri/src/assistant/mod.rs', kind: 'read', dur: '0.5s' },
+				{ label: 'Grep', detail: 'child.wait · 2 matches', kind: 'search', dur: '0.2s' },
+				{ label: 'git_diff', detail: 'HEAD~3 — mod.rs', kind: 'git', dur: '0.3s' },
+				{ label: 'Edit', detail: 'mod.rs:2810 — result_seen flag', kind: 'edit', dur: '0.6s' }
+			],
+			answer: [
+				{ t: 'The turn was waiting on the wrong thing. Completion was gated on the ' },
+				{ t: 'claude', k: 'code' },
+				{ t: ' process exiting — but a backgrounded child keeps it alive for its whole lifetime, so the wait never returned.\n\nFix: fire "done" the instant the result frame arrives with an ' },
+				{ t: 'AtomicBool', k: 'code' },
+				{ t: ', then kill only the parent PID with a grace period so the detached process ' },
+				{ t: 'survives', k: 'bold' },
+				{ t: '. Turn-end is instant now, and background tasks keep running.' }
+			],
+			diff: {
+				file: 'src-tauri/src/assistant/mod.rs',
+				lines: [
+					{ s: 'ctx', t: '// done when the result frame lands — not when claude exits' },
+					{ s: 'del', t: 'let status = child.wait().await?; // a bg child holds claude alive' },
+					{ s: 'add', t: 'let result_seen = Arc::new(AtomicBool::new(false)); // set on result frame' },
+					{ s: 'add', t: "// …then start_kill() only claude's PID; detached process survives" }
+				]
+			},
+			telem: '4 tools · 1.3k tokens · $0.05 · 8.7s'
+		}
 	];
 
-	// The streamed answer, as styled runs (plain / code / bold).
-	const answer: Run[] = [
-		{ t: 'Found it. Every upload finishes with a ' },
-		{ t: 'SETSTAT', k: 'code' },
-		{ t: ' call built from ' },
-		{ t: 'FileAttributes::default()', k: 'code' },
-		{ t: ' — and the default carries ' },
-		{ t: 'size = 0', k: 'bold' },
-		{ t: ', so the server truncates the file the instant it lands. The atomic ' },
-		{ t: '.rift-tmp', k: 'code' },
-		{ t: ' rename then promotes the zeroed copy over the good one.\n\nFix: use ' },
-		{ t: 'FileAttributes::empty()', k: 'code' },
-		{ t: ' so SETSTAT only sends the perms I actually set. Applied at ' },
-		{ t: 'transfer.rs:214', k: 'code' },
-		{ t: ' and added a live-server regression test so it can never come back.' }
-	];
-
-	const totalChars = answer.reduce((n, r) => n + r.t.length, 0);
+	const signOf = { add: '+', del: '-', ctx: ' ' } as const;
 
 	// ── playback state ──
-	let phase = $state<'idle' | 'thinking' | 'tools' | 'streaming' | 'done'>('idle');
-	let toolsShown = $state(0); // how many tool rows are visible
-	let toolsDone = $state(0); // how many have flipped to "done"
-	let streamed = $state(0); // chars of answer revealed
+	let active = $state(0); // which scenario
+	let phase = $state<'idle' | 'thinking' | 'tools' | 'streaming' | 'diff' | 'done'>('idle');
+	let toolsShown = $state(0);
+	let toolsDone = $state(0);
+	let streamed = $state(0);
+	let diffShown = $state(false);
 	let runId = 0;
+
+	const sc = $derived(scenarios[active]);
 
 	const reduceMotion =
 		typeof window !== 'undefined' &&
 		window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
+	const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 	function reset() {
 		phase = 'idle';
 		toolsShown = 0;
 		toolsDone = 0;
 		streamed = 0;
+		diffShown = false;
 	}
 
-	const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+	function pick(i: number) {
+		active = i;
+		play();
+	}
 
 	async function play() {
 		const my = ++runId;
 		const alive = () => my === runId;
+		const s = scenarios[active];
+		const chars = s.answer.reduce((n, r) => n + r.t.length, 0);
 		reset();
 
 		if (reduceMotion) {
-			toolsShown = tools.length;
-			toolsDone = tools.length;
-			streamed = totalChars;
+			toolsShown = s.tools.length;
+			toolsDone = s.tools.length;
+			streamed = chars;
+			diffShown = true;
 			phase = 'done';
 			return;
 		}
 
-		await sleep(450);
+		await sleep(420);
 		if (!alive()) return;
 		phase = 'thinking';
-		await sleep(900);
+		await sleep(850);
 		if (!alive()) return;
 
+		// run every tool except the trailing Edit
 		phase = 'tools';
-		for (let i = 0; i < tools.length - 1; i++) {
+		for (let i = 0; i < s.tools.length - 1; i++) {
 			toolsShown = i + 1;
-			await sleep(parseFloat(tools[i].dur) * 700 + 250);
+			await sleep(parseFloat(s.tools[i].dur) * 700 + 230);
 			if (!alive()) return;
 			toolsDone = i + 1;
-			await sleep(160);
+			await sleep(150);
 			if (!alive()) return;
 		}
 
 		// stream the answer
 		phase = 'streaming';
-		while (streamed < totalChars) {
-			streamed = Math.min(totalChars, streamed + 2);
+		while (streamed < chars) {
+			streamed = Math.min(chars, streamed + 2);
 			await sleep(14);
 			if (!alive()) return;
 		}
 
-		// the fix-it Edit tool lands after the explanation
-		toolsShown = tools.length;
-		await sleep(500);
+		// the fix-it Edit lands, then the diff reveals
+		toolsShown = s.tools.length;
+		await sleep(420);
 		if (!alive()) return;
-		toolsDone = tools.length;
-		await sleep(200);
+		toolsDone = s.tools.length;
+		await sleep(260);
+		if (!alive()) return;
+		phase = 'diff';
+		diffShown = true;
+		await sleep(120);
 		if (!alive()) return;
 		phase = 'done';
 	}
@@ -111,11 +220,12 @@
 	// chars of a given run to show, given the global streamed counter
 	function shown(idx: number): string {
 		let offset = 0;
-		for (let i = 0; i < idx; i++) offset += answer[i].t.length;
-		return answer[idx].t.slice(0, Math.max(0, streamed - offset));
+		for (let i = 0; i < idx; i++) offset += sc.answer[i].t.length;
+		return sc.answer[idx].t.slice(0, Math.max(0, streamed - offset));
 	}
 
 	const toolIcon = { read: '◇', git: '⎇', search: '⌕', edit: '✎' } as const;
+	const playing = $derived(phase !== 'done' && phase !== 'idle');
 </script>
 
 <div class="chat">
@@ -126,9 +236,21 @@
 	</div>
 
 	<div class="chat-body">
+		<!-- prompt picker — the visitor drives it -->
+		<div class="picker">
+			<span class="picker-lead">Ask Rift's assistant:</span>
+			<div class="picker-row">
+				{#each scenarios as s, i (s.id)}
+					<button class="pick" class:active={i === active} onclick={() => pick(i)}>
+						<span class="pa">▸</span>{s.q}
+					</button>
+				{/each}
+			</div>
+		</div>
+
 		<!-- user message -->
 		<div class="msg user">
-			<div class="bubble">{userPrompt}</div>
+			<div class="bubble">{sc.prompt}</div>
 		</div>
 
 		<!-- assistant turn -->
@@ -136,13 +258,13 @@
 			{#if phase === 'thinking'}
 				<div class="thinking">
 					<span class="td"></span><span class="td"></span><span class="td"></span>
-					<span class="tk">tracing the upload path…</span>
+					<span class="tk">{sc.thinking}</span>
 				</div>
 			{/if}
 
 			{#if toolsShown > 0}
 				<div class="rail">
-					{#each tools.slice(0, toolsShown) as tool, i (tool.label + i)}
+					{#each sc.tools.slice(0, toolsShown) as tool, i (tool.label + i)}
 						{@const done = i < toolsDone}
 						<div class="step" class:done class:pending={!done}>
 							<span class="num">{done ? '✓' : i + 1}</span>
@@ -157,12 +279,23 @@
 				</div>
 			{/if}
 
-			{#if phase === 'streaming' || phase === 'done'}
+			{#if phase === 'streaming' || phase === 'diff' || phase === 'done'}
 				<div class="answer">
-					{#each answer as run, i (i)}<span
+					{#each sc.answer as run, i (i)}<span
 							class:code={run.k === 'code'}
 							class:bold={run.k === 'bold'}>{shown(i)}</span
 						>{/each}{#if phase === 'streaming'}<span class="caret"></span>{/if}
+				</div>
+			{/if}
+
+			{#if diffShown}
+				<div class="diff">
+					<div class="diff-file">{sc.diff.file}</div>
+					{#each sc.diff.lines as ln, i (i)}
+						<div class="dl dl-{ln.s}">
+							<span class="dl-sign">{signOf[ln.s]}</span><span class="dl-t">{ln.t}</span>
+						</div>
+					{/each}
 				</div>
 			{/if}
 		</div>
@@ -170,11 +303,11 @@
 
 	<div class="chat-foot">
 		{#if phase === 'done'}
-			<span class="telem">4 tools · 1.2k tokens · $0.04 · 8.1s</span>
+			<span class="telem">{sc.telem}</span>
 		{:else}
 			<span class="telem live"><span class="lp"></span> working…</span>
 		{/if}
-		<button class="replay" onclick={() => play()} disabled={phase !== 'done'}>
+		<button class="replay" onclick={() => play()} disabled={playing}>
 			↻ Replay
 		</button>
 	</div>
@@ -249,6 +382,56 @@
 		flex-direction: column;
 		gap: 18px;
 		overflow: hidden;
+	}
+
+	/* prompt picker */
+	.picker {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding-bottom: 16px;
+		border-bottom: 1px solid var(--line);
+	}
+	.picker-lead {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 11px;
+		letter-spacing: 0.04em;
+		color: var(--dim);
+	}
+	.picker-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+	.pick {
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 13px;
+		color: var(--text-2);
+		background: var(--panel-2);
+		border: 1px solid var(--line-2);
+		padding: 7px 13px;
+		border-radius: 7px;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		transition:
+			color 0.15s,
+			border-color 0.15s,
+			background 0.15s;
+	}
+	.pick:hover {
+		color: var(--text);
+		border-color: rgba(120, 196, 255, 0.5);
+	}
+	.pick.active {
+		color: var(--accent);
+		border-color: var(--accent);
+		background: var(--accent-soft);
+	}
+	.pick .pa {
+		color: var(--accent);
+		font-size: 10px;
 	}
 
 	.msg.user {
@@ -439,6 +622,62 @@
 		}
 	}
 
+	/* diff reveal — the real one-line change */
+	.diff {
+		border: 1px solid var(--line);
+		border-radius: 5px;
+		overflow: hidden;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 12px;
+		animation: diffin 0.32s ease;
+	}
+	.diff-file {
+		padding: 6px 12px;
+		background: var(--panel-2);
+		border-bottom: 1px solid var(--line);
+		color: var(--dim);
+		font-size: 11px;
+	}
+	.dl {
+		display: flex;
+		gap: 8px;
+		padding: 2px 12px;
+		white-space: pre;
+		overflow-x: auto;
+	}
+	.dl-sign {
+		flex: 0 0 auto;
+		width: 8px;
+		color: var(--dim);
+	}
+	.dl-ctx {
+		color: var(--dim);
+	}
+	.dl-add {
+		background: rgba(122, 209, 154, 0.09);
+	}
+	.dl-add .dl-sign,
+	.dl-add .dl-t {
+		color: #7ad19a;
+	}
+	.dl-del {
+		background: rgba(232, 122, 122, 0.09);
+	}
+	.dl-del .dl-sign,
+	.dl-del .dl-t {
+		color: #e08a8a;
+	}
+	@keyframes diffin {
+		from {
+			opacity: 0;
+			transform: translateY(4px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
 	.chat-foot {
 		display: flex;
 		align-items: center;
@@ -490,7 +729,8 @@
 		.step.pending .num,
 		.caret,
 		.lp,
-		.step {
+		.step,
+		.diff {
 			animation: none;
 		}
 	}

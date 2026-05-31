@@ -5,7 +5,7 @@
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
 
 	const riftLog = [
-		{ ts: '[boot ]', text: 'rift v0.4.43 · tauri 2 · russh' },
+		{ ts: '[boot ]', text: 'rift v0.4.44 · tauri 2 · russh' },
 		{ ts: '[ssh  ]', text: 'connect endure-rp · key-auth ok', variant: 'ok' as const, dimTs: true },
 		{ ts: '[watch]', text: 'fsw armed · 1,204 files mirrored' },
 		{
@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-	<title>Braison Swilling — Software Developer</title>
+	<title>Braison Swilling — Systems &amp; Desktop Developer</title>
 </svelte:head>
 
 <TopBar />
@@ -43,22 +43,23 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			Software Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · blazzer10200.github.io · United States · Remote
+			Systems &amp; Desktop Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · blazzer10200.github.io · United States · Remote
 		</div>
 	</header>
 
 	<!-- Hero -->
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
-			<span>Software Developer</span>
+			<span>Systems &amp; desktop developer</span>
 			<span class="pill">Open to work</span>
 		</div>
 
 		<h1>I design and ship <em>desktop software, end to end.</em></h1>
 
 		<p class="hero-sub">
-			Self-taught developer who ships finished software. <strong>Rift</strong> — a Rust + Tauri
-			desktop app with live server sync and a built-in AI assistant — is what I'm building now.
+			Self-taught — I've been writing code since high school, from live game-server backends to
+			finished desktop software. <strong>Rift</strong> — a Rust + Tauri desktop app with live
+			server sync and a built-in AI assistant — is what I'm building now.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -76,7 +77,7 @@
 		<div class="hero-meta stagger">
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Currently building</div>
-				<div class="hero-meta-v accent">Rift v0.4.43</div>
+				<div class="hero-meta-v accent">Rift v0.4.44</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
@@ -219,10 +220,11 @@
 			>
 				{#snippet summary()}
 					<li>
-						Ran live FiveM/RedM servers for player communities. Windows + Linux admin,
-						MySQL, Lua.
+						<strong>Where I started writing code.</strong> Built and ran live FiveM/RedM
+						servers for real player communities — Lua scripting, MySQL, Windows + Linux admin,
+						and shipping fixes to an audience that noticed when something broke.
 					</li>
-					<li>Wound down in early 2025 to focus on building software.</li>
+					<li>Wound down in early 2025 to focus on building software full-time.</li>
 				{/snippet}
 			</ExperienceItem>
 

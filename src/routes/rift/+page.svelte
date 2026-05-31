@@ -43,6 +43,7 @@
 		{
 			n: '01',
 			title: 'I shipped an update that bricked every client',
+			lead: `Lost the signing key — so I rebuilt auto-update with no key in the critical path.`,
 			body: `A release lost its signing key, and the signed-updater plugin meant every installed copy was stranded — it would only accept updates signed by a key I no longer had. I tore the plugin out and rebuilt auto-update on the raw GitHub Releases API: poll the latest tag, semver-compare, stream the installer down with a progress bar, verify the hash, relaunch. No signing key in the critical path means that failure can't happen again.`,
 			kv: [
 				['Lesson', 'Own your update path'],
@@ -52,6 +53,7 @@
 		{
 			n: '02',
 			title: 'My AI can run git — so I attacked it first',
+			lead: `The assistant can run git, so I threat-modeled its tool inputs like a CVE before it shipped.`,
 			body: null,
 			html: `Once the assistant could call <code>git_commit</code> and <code>git_push</code>, the tool inputs became an attack surface. So I threat-modeled it after the 2026 MCP-git argument-injection CVEs: never shell out (<code>Command::new("git").args</code>, never <code>sh -c</code>), strict-allowlist refs and branches so a <code>--upload-pack=</code> flag can't be injected, reject path traversal, cap message size, and refuse <code>force</code> outright. Trust is gated server-side AND in the tool allowlist — defense in depth.`,
 			kv: [
@@ -62,6 +64,7 @@
 		{
 			n: '03',
 			title: 'Files were silently uploading as zero bytes',
+			lead: `A single FileAttributes::default() was truncating uploads to 0 bytes — caught by a real-server test.`,
 			body: null,
 			html: `Some uploads landed on the server as 0-byte files. The culprit was one line: the post-upload <code>SETSTAT</code> was built from <code>FileAttributes::default()</code>, and the default carries <code>size = 0</code> — so the server truncated the file the moment it arrived, and the atomic rename then promoted the zeroed copy. Switching to <code>::empty()</code> fixed it, and I wrote a regression test that runs against a real SSH server so it can never come back.`,
 			kv: [
@@ -72,6 +75,7 @@
 		{
 			n: '04',
 			title: 'The UI hung for two minutes on a background task',
+			lead: `Turn-end waited on the wrong process exiting — an atomic done-flag let background tasks survive.`,
 			body: null,
 			html: `Ask the assistant to start a dev server and the whole UI froze in "streaming" for minutes. Turn-completion was gated on the <code>claude</code> process exiting — but a backgrounded child keeps it alive for its entire lifetime, so the wait never returned. The fix was to fire "done" the instant the result frame arrives (an <code>AtomicBool</code> flag), then kill only the parent PID with a grace period so the detached process survives. Tracing it meant understanding how child processes inherit and hold pipe handles.`,
 			kv: [
@@ -122,7 +126,7 @@
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Case study</span>
-			<span class="pill">v0.4.43 · ~40 releases</span>
+			<span class="pill">v0.4.44 · ~40 releases</span>
 		</div>
 
 		<h1>A desktop cockpit with an AI assistant that <em>actually does the work.</em></h1>
@@ -133,9 +137,9 @@
 			it reads your workspace, runs git, and proposes edits through real tools.
 		</p>
 		<p class="hero-sub">
-			It runs on a <strong>pure-Rust backend</strong> behind a Svelte 5 interface, installs and
-			updates itself, and has grown to <strong>~56,000 lines</strong> across ~40 releases in six
-			weeks — every one shipped behind a green compiler, type-checker, and test suite.
+			It runs on a <strong>pure-Rust backend</strong> behind a Svelte 5 interface, and it installs
+			and updates itself — every release shipped behind a green compiler, type-checker, and test
+			suite.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -167,6 +171,26 @@
 		</div>
 	</section>
 
+	<!-- Stats band -->
+	<section class="stats reveal" aria-label="Rift at a glance">
+		<div class="stat">
+			<div class="stat-n">~56k</div>
+			<div class="stat-l">lines of Rust &amp; TypeScript</div>
+		</div>
+		<div class="stat">
+			<div class="stat-n">~40</div>
+			<div class="stat-l">tagged releases</div>
+		</div>
+		<div class="stat">
+			<div class="stat-n">154</div>
+			<div class="stat-l">tests · 115 Rust + 39 vitest</div>
+		</div>
+		<div class="stat">
+			<div class="stat-n">6 wk</div>
+			<div class="stat-l">solo, to a daily-driver</div>
+		</div>
+	</section>
+
 	<!-- 01 The problem -->
 	<section class="block reveal">
 		<SectionRail num="01 / 05" label="The problem" meta="Why this exists" />
@@ -182,6 +206,68 @@
 			atomically, so the server only ever sees complete files — and it tells you the moment local and
 			remote drift apart.
 		</p>
+
+		<figure class="diagram-wrap stagger">
+			<div class="diagram-scroll">
+				<svg
+					class="diagram"
+					viewBox="0 0 900 230"
+					role="img"
+					aria-label="Sync data path: a saved file flows from the local folder through a debounced batching watcher, into an atomic SFTP upload that writes to a .rift-tmp sidecar and renames into place, and onto the live server. A three-way drift scan continuously compares local and remote."
+				>
+					<defs>
+						<marker
+							id="arrow"
+							viewBox="0 0 10 10"
+							refX="8"
+							refY="5"
+							markerWidth="7"
+							markerHeight="7"
+							orient="auto-start-reverse"
+						>
+							<path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
+						</marker>
+					</defs>
+
+					<!-- nodes -->
+					<g class="node">
+						<rect x="6" y="58" width="170" height="70" rx="6" />
+						<text class="n-title" x="91" y="90">Local folder</text>
+						<text class="n-sub" x="91" y="110">you save a file</text>
+					</g>
+					<g class="node">
+						<rect x="246" y="58" width="170" height="70" rx="6" />
+						<text class="n-title" x="331" y="90">Watcher</text>
+						<text class="n-sub" x="331" y="110">debounce · batch</text>
+					</g>
+					<g class="node node-accent">
+						<rect x="486" y="58" width="170" height="70" rx="6" />
+						<text class="n-title" x="571" y="90">Atomic SFTP</text>
+						<text class="n-sub n-sub-accent" x="571" y="110">.rift-tmp → rename</text>
+					</g>
+					<g class="node">
+						<rect x="726" y="58" width="170" height="70" rx="6" />
+						<text class="n-title" x="811" y="90">Live server</text>
+						<text class="n-sub" x="811" y="110">never reads a partial file</text>
+					</g>
+
+					<!-- forward arrows -->
+					<line class="flow" x1="178" y1="93" x2="242" y2="93" marker-end="url(#arrow)" />
+					<line class="flow" x1="418" y1="93" x2="482" y2="93" marker-end="url(#arrow)" />
+					<line class="flow" x1="658" y1="93" x2="722" y2="93" marker-end="url(#arrow)" />
+
+					<!-- drift feedback arc: server ↔ local -->
+					<path
+						class="flow flow-dashed"
+						d="M811 130 C811 205 91 205 91 132"
+						fill="none"
+						marker-end="url(#arrow)"
+					/>
+					<text class="d-label" x="451" y="199">three-way drift scan · local ↔ remote</text>
+				</svg>
+			</div>
+			<figcaption>How one save reaches the server — watched, batched, written atomically, drift-checked.</figcaption>
+		</figure>
 	</section>
 
 	<!-- 02 Inside Rift -->
@@ -190,8 +276,8 @@
 		<h2>Sync, an assistant that can act, and a build that actually ships.</h2>
 		<p class="body">
 			Three things make Rift more than a file-sync tool. Below the pillars, the real centerpiece — a
-			recreation of the in-app AI assistant. It's running live in your browser: watch it work, then
-			hit Replay.
+			recreation of the in-app AI assistant. Pick one of the questions and watch it work, right in
+			your browser.
 		</p>
 
 		<div class="challenges stagger">
@@ -218,9 +304,10 @@
 
 		<h3 class="demo-lead">The assistant, live.</h3>
 		<p class="body">
-			This is a faithful recreation of a Rift assistant turn — a real question, the tool-calls it
-			makes on a numbered status rail, and the answer streaming in. (The actual app drives a live
-			Claude session; this runs entirely in your browser.)
+			Pick a question below and the assistant runs the turn — tool-calls on a numbered status rail,
+			the answer streaming in, and the real one-line diff it landed. Each one is an actual bug or
+			decision from building Rift. (The app drives a live Claude session; this runs entirely in your
+			browser.)
 		</p>
 		<RiftChatDemo />
 
@@ -232,6 +319,34 @@
 			<span class="chip">MCP server</span>
 			<span class="chip">Tokio async</span>
 			<span class="chip">NSIS installer</span>
+		</div>
+
+		<h3 class="demo-lead">And a lot more under the hood.</h3>
+		<div class="surface stagger">
+			<div class="feat">
+				<div class="feat-t">Three-way drift scanner</div>
+				<p>Shows exactly where local and remote have diverged — before you sync a thing.</p>
+			</div>
+			<div class="feat">
+				<div class="feat-t">In-app browser dock</div>
+				<p>A native child webview docked beside the assistant — real scroll, clicks, and address bar.</p>
+			</div>
+			<div class="feat">
+				<div class="feat-t">Voice input</div>
+				<p>On-device speech-to-text through a Whisper FFI binding — no audio leaves the machine.</p>
+			</div>
+			<div class="feat">
+				<div class="feat-t">Five permission modes</div>
+				<p>Live Allow/Deny tool prompts, answered mid-turn over the agent control protocol.</p>
+			</div>
+			<div class="feat">
+				<div class="feat-t">Prompt enhancer</div>
+				<p>A one-shot model pass that sharpens a rough draft into a clear instruction, streamed live.</p>
+			</div>
+			<div class="feat">
+				<div class="feat-t">Errors that explain themselves</div>
+				<p>A blocked SSH connect decodes to "a VPN is blocking the port," not a raw <code>WSAEACCES</code>.</p>
+			</div>
 		</div>
 	</section>
 
@@ -247,11 +362,14 @@
 
 		<div class="challenges stagger">
 			{#each corners as ch (ch.n)}
-				<article class="ch">
+				<article class="ch ch-corner">
 					<div class="ch-head">
 						<span class="ch-num">{ch.n}</span>
 						<span class="ch-title">{ch.title}</span>
 					</div>
+					{#if ch.lead}
+						<p class="ch-lead">{ch.lead}</p>
+					{/if}
 					{#if ch.html}
 						<p>{@html ch.html}</p>
 					{:else}
@@ -283,6 +401,18 @@
 			tools never shell out, why uploads go through a temp-and-rename. The AI made me faster. I made
 			the architecture.
 		</p>
+
+		<div class="skills">
+			<span class="skills-lead">What this demonstrates</span>
+			<div class="skills-row">
+				<span class="chip">Rust</span>
+				<span class="chip">Tokio async</span>
+				<span class="chip">SSH / SFTP internals</span>
+				<span class="chip">Systems security</span>
+				<span class="chip">Agent &amp; tool protocols</span>
+				<span class="chip">Windows distribution</span>
+			</div>
+		</div>
 	</section>
 
 	<!-- 05 What I'd do differently -->
@@ -477,6 +607,42 @@
 		color: var(--accent);
 	}
 
+	/* stats band */
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1px;
+		background: var(--line);
+		border: 1px solid var(--line);
+		margin-top: 8px;
+	}
+	@media (max-width: 720px) {
+		.stats {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+	.stat {
+		background: var(--panel);
+		padding: 26px 28px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.stat-n {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: clamp(30px, 4vw, 40px);
+		font-weight: 600;
+		color: var(--accent);
+		line-height: 1;
+		letter-spacing: -0.01em;
+	}
+	.stat-l {
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 13px;
+		color: var(--text-2);
+		line-height: 1.45;
+	}
+
 	/* content blocks */
 	.block {
 		padding: 64px 0 24px;
@@ -523,12 +689,145 @@
 		margin: 56px 0 14px;
 	}
 
+	/* architecture diagram */
+	.diagram-wrap {
+		margin: 36px 0 8px;
+	}
+	.diagram-scroll {
+		overflow-x: auto;
+		overflow-y: hidden;
+		padding-bottom: 4px;
+		border: 1px solid var(--line);
+		background: var(--panel);
+	}
+	.diagram {
+		display: block;
+		width: 100%;
+		min-width: 660px;
+		height: auto;
+		padding: 18px 20px;
+	}
+	.diagram .node rect {
+		fill: var(--bg-2);
+		stroke: var(--line-2);
+		stroke-width: 1;
+	}
+	.diagram .node-accent rect {
+		stroke: var(--accent);
+	}
+	.diagram text {
+		font-family: 'Inter', system-ui, sans-serif;
+		text-anchor: middle;
+	}
+	.diagram .n-title {
+		font-size: 15px;
+		font-weight: 500;
+		fill: var(--text);
+	}
+	.diagram .n-sub {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 11px;
+		fill: var(--text-2);
+	}
+	.diagram .n-sub-accent {
+		fill: var(--accent);
+	}
+	.diagram .flow {
+		stroke: var(--accent);
+		stroke-width: 1.5;
+	}
+	.diagram .flow-dashed {
+		stroke-dasharray: 4 4;
+		opacity: 0.7;
+	}
+	.diagram .d-label {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 11px;
+		fill: var(--dim);
+		letter-spacing: 0.04em;
+	}
+	.diagram-wrap figcaption {
+		margin-top: 12px;
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 13px;
+		color: var(--text-2);
+		line-height: 1.5;
+	}
+
 	/* chips */
 	.stack-row {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 6px;
 		margin: 28px 0 0;
+	}
+
+	/* under-the-hood feature grid — lighter than the pillars, so hierarchy holds */
+	.surface {
+		margin-top: 18px;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 14px;
+	}
+	@media (max-width: 880px) {
+		.surface {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+	@media (max-width: 560px) {
+		.surface {
+			grid-template-columns: 1fr;
+		}
+	}
+	.feat {
+		border: 1px solid var(--line);
+		padding: 16px 18px;
+		transition: border-color 0.15s;
+	}
+	.feat:hover {
+		border-color: rgba(120, 196, 255, 0.3);
+	}
+	.feat-t {
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--text);
+		margin-bottom: 6px;
+		letter-spacing: -0.01em;
+	}
+	.surface :global(p) {
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 13px;
+		color: var(--text-2);
+		line-height: 1.55;
+	}
+	.surface :global(p code) {
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 0.9em;
+		color: var(--text);
+		background: var(--panel);
+		padding: 1px 5px;
+		border: 1px solid var(--line-2);
+		border-radius: 3px;
+	}
+
+	/* skills strip */
+	.skills {
+		margin-top: 30px;
+	}
+	.skills-lead {
+		display: block;
+		font-family: 'JetBrains Mono', monospace;
+		font-size: 11px;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--dim);
+		margin-bottom: 12px;
+	}
+	.skills-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
 	}
 
 	/* challenges / pillars */
@@ -579,6 +878,20 @@
 		font-size: 14.5px;
 		color: var(--text-2);
 		line-height: 1.6;
+	}
+	/* corner cards: bold takeaway carries the skim, detail recedes */
+	.ch :global(p.ch-lead) {
+		font-size: 15.5px;
+		font-weight: 500;
+		color: var(--text);
+		line-height: 1.5;
+		margin-bottom: 10px;
+		padding-left: 12px;
+		border-left: 2px solid var(--accent);
+	}
+	.ch-corner :global(p:not(.ch-lead)) {
+		font-size: 14px;
+		color: var(--dim);
 	}
 	.ch :global(.kv) {
 		margin-top: 14px;
