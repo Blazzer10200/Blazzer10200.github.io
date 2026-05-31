@@ -1,40 +1,39 @@
 <script lang="ts">
-	import { base } from '$app/paths';
 	import TopBar from '$lib/components/TopBar.svelte';
 	import SectionRail from '$lib/components/SectionRail.svelte';
 	import TerminalPanel from '$lib/components/TerminalPanel.svelte';
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
 
-	const exfilLog = [
-		{ ts: '[boot ]', text: 'exfil v1.0.0 · .NET 8 · PerMonitorV2' },
-		{ ts: '[probe]', text: 'NVAPI present=true · QueryDisplayConfig ok' },
-		{ ts: '[hook ]', text: 'WM_DISPLAYCHANGE registered', variant: 'info' as const, dimTs: true },
-		{ ts: '[tray ]', text: 'idle · profile=desktop vibrance=50' },
+	const riftLog = [
+		{ ts: '[boot ]', text: 'rift v0.4.43 · tauri 2 · russh' },
+		{ ts: '[ssh  ]', text: 'connect endure-rp · key-auth ok', variant: 'ok' as const, dimTs: true },
+		{ ts: '[watch]', text: 'fsw armed · 1,204 files mirrored' },
 		{
-			ts: '[focus]',
-			text: 'EscapeFromTarkov.exe → apply(tarkov)',
+			ts: '[sync ]',
+			text: 'resources/core/main.lua → upload',
 			variant: 'ok' as const,
 			dimTs: true
 		},
-		{ ts: '[nvapi]', text: 'vibrance 50 → 78 ok', variant: 'ok' as const, dimTs: true },
+		{ ts: '[sync ]', text: 'atomic .rift-tmp → rename ok', variant: 'ok' as const, dimTs: true },
+		{ ts: '[drift]', text: 'scan clean · 0 divergent', dimTs: true },
 		{
-			ts: '[warn ]',
-			text: 'display hotplug · re-enumerate',
-			variant: 'warn' as const,
-			dimTs: true
-		},
-		{
-			ts: '[blur ]',
-			text: 'focus lost → restore(desktop)',
+			ts: '[ai   ]',
+			text: 'assistant: git_status → 3 changed',
 			variant: 'info' as const,
 			dimTs: true
 		},
-		{ ts: '[tray ]', text: 'idle · no leaks · sentinel=green' }
+		{
+			ts: '[ai   ]',
+			text: 'edit transfer.rs · awaiting review',
+			variant: 'warn' as const,
+			dimTs: true
+		},
+		{ ts: '[idle ]', text: 'watching · sentinel=green' }
 	];
 </script>
 
 <svelte:head>
-	<title>Braison Swilling — Windows Software Developer</title>
+	<title>Braison Swilling — Software Developer</title>
 </svelte:head>
 
 <TopBar />
@@ -44,7 +43,7 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			Windows Software Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · blazzer10200.github.io · United States · Remote
+			Software Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · blazzer10200.github.io · United States · Remote
 		</div>
 	</header>
 
@@ -55,42 +54,37 @@
 			<span class="pill">Open to work</span>
 		</div>
 
-		<h1>I design and ship <em>native Windows software.</em></h1>
+		<h1>I design and ship <em>desktop software, end to end.</em></h1>
 
 		<p class="hero-sub">
-			Self-taught developer who ships finished software. <strong>EXFIL</strong> — a Windows
-			tray utility public on GitHub — is the latest proof I finish what I start.
+			Self-taught developer who ships finished software. <strong>Rift</strong> — a Rust + Tauri
+			desktop app with live server sync and a built-in AI assistant — is what I'm building now.
 		</p>
 
 		<div class="hero-actions stagger">
-			<a class="btn primary" href="#contact">
-				<span class="ico">→</span> Get in touch
+			<a class="btn primary" href="/rift">
+				<span class="ico">→</span> Rift case study
 			</a>
 			<a class="btn" href="/exfil">
 				<span class="ico">→</span> EXFIL case study
 			</a>
-			<a
-				class="btn"
-				href="https://github.com/Blazzer10200/exfil-v1"
-				target="_blank"
-				rel="noopener"
-			>
-				<span class="ico">↗</span> View EXFIL on GitHub
+			<a class="btn" href="#contact">
+				<span class="ico">↓</span> Get in touch
 			</a>
 		</div>
 
 		<div class="hero-meta stagger">
 			<div class="hero-meta-cell">
-				<div class="hero-meta-k">Currently shipping</div>
-				<div class="hero-meta-v accent">EXFIL v1.0.0</div>
+				<div class="hero-meta-k">Currently building</div>
+				<div class="hero-meta-v accent">Rift v0.4.43</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
-				<div class="hero-meta-v">Native Windows tooling</div>
+				<div class="hero-meta-v">Desktop apps &amp; tooling</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Core stack</div>
-				<div class="hero-meta-v">C# · .NET 8 · TypeScript</div>
+				<div class="hero-meta-v">Rust · TypeScript · C#</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Based</div>
@@ -101,65 +95,55 @@
 
 	<!-- Featured -->
 	<section class="featured reveal" id="featured">
-		<SectionRail num="01 / 03" label="Featured project" meta="2025 — Public on GitHub" />
+		<SectionRail num="01 / 03" label="Featured project" meta="2026 — In active development" />
 
 		<div class="featured-grid stagger">
 			<div>
-				<h2>EXFIL — a Windows tray tool I <em>shipped end to end.</em></h2>
+				<h2>Rift — a Rust desktop app I <em>design and ship.</em></h2>
 				<p>
-					Bind a display-vibrance profile to any application. The tool swaps profiles
-					automatically as window focus changes — so editing apps stay color-accurate, games
-					look punchy, and the desktop sits at whatever you want. There's also a slim overlay
-					with live <strong>FPS, GPU / CPU / RAM load, and core temps</strong>.
+					A desktop cockpit for developers who run game servers. Rift keeps your local code and
+					the live server in lockstep over SSH — watching, batching, and uploading
+					<strong>atomically</strong> so the running server never reads a half-written file —
+					and a three-way drift scanner flags divergence before you sync.
 				</p>
 				<p>
-					Under the hood: NVAPI P/Invoke, <code>QueryDisplayConfig</code> for HDR awareness,
-					<code>SetWinEventHook</code> for focus, PerMonitorV2 DPI, monitor hotplug handling,
-					versioned settings migrations, and a sentinel that recovers cleanly from crashes.
-					Designed, built, and shipped to GitHub.
+					It ships with an AI assistant that doesn't just chat: it drives a live
+					<code>claude</code> session over a streaming protocol and exposes its own
+					<code>git</code> tools through an MCP server. Pure-Rust SSH/SFTP, an NSIS installer,
+					and a self-built auto-updater. ~56k lines, ~40 releases.
 				</p>
 
 				<div class="stack-row">
-					<span class="chip">C#</span>
-					<span class="chip">.NET 8</span>
-					<span class="chip">WinForms</span>
-					<span class="chip">NVAPI P/Invoke</span>
-					<span class="chip">Win32 API</span>
-					<span class="chip">HDR</span>
-					<span class="chip">DPI-aware</span>
+					<span class="chip">Rust</span>
+					<span class="chip">Tauri 2</span>
+					<span class="chip">Svelte 5</span>
+					<span class="chip">russh (SSH/SFTP)</span>
+					<span class="chip">MCP server</span>
+					<span class="chip">Tokio</span>
+					<span class="chip">NSIS</span>
 				</div>
 
 				<div class="featured-actions">
-					<a
-						class="link-quiet"
-						href="https://github.com/Blazzer10200/exfil-v1"
-						target="_blank"
-						rel="noopener">View on GitHub ↗</a
-					>
+					<a class="link-quiet" href="/rift">Read the case study ↗</a>
 				</div>
 			</div>
 
-			<TerminalPanel title="~/exfil/logs/session.log" lines={exfilLog} />
+			<TerminalPanel title="~/rift/logs/sync.log" lines={riftLog} />
 		</div>
 
-		<figure class="product-shot reveal">
-			<img
-				src="{base}/screenshots/exfil-osd.png"
-				alt="EXFIL on-screen overlay showing live FPS, GPU/CPU/RAM load, and core temperatures rendered over a running game"
-				loading="lazy"
-				decoding="async"
-			/>
-			<figcaption>EXFIL overlay — live FPS &amp; hardware telemetry over an active game</figcaption>
-		</figure>
-
 		<div class="screens stagger">
-			<a class="screens-cta" href="/exfil">
+			<a class="screens-cta" href="/rift">
 				<div class="screens-cta-body">
 					<div class="screens-cta-eyebrow">— Case study</div>
 					<div class="screens-cta-title">
-						See the dashboard, presets, OSD designer, and <em>the full build story.</em>
+						How I designed, hardened, and shipped Rift — <em>and a live AI assistant you can drive.</em>
 					</div>
-					<div class="screens-cta-meta">EXFIL · v1.0.0 · ~5 min read</div>
+					<div class="screens-cta-stats">
+						<span><strong>~56k</strong> lines</span>
+						<span><strong>~40</strong> releases</span>
+						<span><strong>154</strong> tests</span>
+						<span><strong>6</strong> weeks</span>
+					</div>
 				</div>
 				<span class="screens-cta-arrow" aria-hidden="true">→</span>
 			</a>
@@ -178,16 +162,18 @@
 			>
 				{#snippet summary()}
 					<li>
+						<strong>Building Rift</strong> — a Rust + Tauri desktop app with live SSH/SFTP
+						server sync and an embedded, tool-using AI assistant. ~56k lines, ~40 releases.
+						Designed and built end to end.
+					</li>
+					<li>
 						<strong>Designed and shipped EXFIL</strong>, a Windows tray tool with per-app
-						vibrance profiles and a live FPS / hardware-telemetry overlay. Public on GitHub.
+						vibrance profiles and a live hardware-telemetry overlay. C# / .NET 8, NVAPI
+						P/Invoke, Win32. Public on GitHub.
 					</li>
 					<li>
-						Owned EXFIL end to end — architecture, code, releases. C# / .NET 8, WinForms,
-						NVAPI P/Invoke, Win32.
-					</li>
-					<li>
-						Full-stack range alongside native Windows work — SvelteKit + TypeScript on the
-						front, Python + FastAPI on the back, MySQL and Linux VPS for deploy.
+						Full-stack range — SvelteKit + TypeScript on the front, Python + FastAPI and Rust
+						on the back, SSH / Linux for deploy.
 					</li>
 				{/snippet}
 			</ExperienceItem>
@@ -254,12 +240,12 @@
 
 		<div class="toolkit-grid stagger">
 			<div class="tk">
-				<div class="tk-head">Windows &amp; desktop</div>
+				<div class="tk-head">Desktop &amp; systems</div>
 				<ul>
+					<li>Rust</li>
+					<li>Tauri 2</li>
 					<li>C# / .NET 8</li>
-					<li>WinForms</li>
 					<li>Win32 / NVAPI</li>
-					<li>PowerShell</li>
 				</ul>
 			</div>
 			<div class="tk">
@@ -553,28 +539,6 @@
 		color: var(--text);
 	}
 
-	/* ── product screenshot ── */
-	.product-shot {
-		margin: 56px 0 0;
-		border: 1px solid var(--line-2);
-		background: var(--panel);
-		padding: 14px 14px 12px;
-	}
-	.product-shot img {
-		display: block;
-		width: 100%;
-		height: auto;
-		max-width: 100%;
-	}
-	.product-shot figcaption {
-		margin-top: 10px;
-		color: var(--dim);
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 11px;
-		letter-spacing: 0.08em;
-		text-align: center;
-	}
-
 	/* ── case-study CTA card ── */
 	.screens {
 		margin-top: 56px;
@@ -638,12 +602,20 @@
 		font-style: normal;
 		color: var(--accent);
 	}
-	.screens-cta-meta {
-		margin-top: 14px;
-		color: var(--dim);
+	.screens-cta-stats {
+		margin-top: 18px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
 		font-family: 'JetBrains Mono', monospace;
-		font-size: 11px;
-		letter-spacing: 0.08em;
+		font-size: 12px;
+		color: var(--dim);
+		letter-spacing: 0.04em;
+	}
+	.screens-cta-stats strong {
+		color: var(--accent);
+		font-weight: 600;
+		font-size: 14px;
 	}
 	.screens-cta-arrow {
 		color: var(--accent);
