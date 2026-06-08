@@ -30,6 +30,10 @@
 	--accent-glow: rgba(120, 196, 255, 0.22);
 	--warn:      #e6b26a;
 	--danger:    #e87a7a;
+	--ok:        #7ad19a;
+	--info:      #7ab8ff;
+	--purple:    #a78bfa;
+	--teal:      #9ad1c7;
 }
 
 * {

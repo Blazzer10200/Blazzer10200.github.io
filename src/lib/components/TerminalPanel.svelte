@@ -120,7 +120,7 @@
 		color: var(--warn);
 	}
 	.panel-body :global(.info) {
-		color: #9ad1c7;
+		color: var(--teal);
 	}
 	.panel-body :global(.log-line) {
 		opacity: 0;

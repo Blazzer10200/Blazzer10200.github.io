@@ -151,8 +151,8 @@
 	}
 
 	function pick(i: number) {
+		// the $effect below re-runs play() when `active` changes — no explicit call needed
 		active = i;
-		play();
 	}
 
 	async function play() {
@@ -346,13 +346,13 @@
 		background: var(--line-2);
 	}
 	.dots span:nth-child(1) {
-		background: #e87a7a;
+		background: var(--danger);
 	}
 	.dots span:nth-child(2) {
-		background: #e6b26a;
+		background: var(--warn);
 	}
 	.dots span:nth-child(3) {
-		background: #7ad19a;
+		background: var(--ok);
 	}
 	.chat-name {
 		color: var(--text-2);
@@ -371,8 +371,8 @@
 		width: 7px;
 		height: 7px;
 		border-radius: 50%;
-		background: #a78bfa;
-		box-shadow: 0 0 7px #a78bfa;
+		background: var(--purple);
+		box-shadow: 0 0 7px var(--purple);
 	}
 
 	.chat-body {
@@ -528,7 +528,7 @@
 		color: var(--dim);
 	}
 	.step.done .num {
-		color: #7ad19a;
+		color: var(--ok);
 		border-color: rgba(122, 209, 154, 0.5);
 		background: rgba(122, 209, 154, 0.1);
 	}
@@ -558,16 +558,16 @@
 		opacity: 0.8;
 	}
 	.chip-read .cg {
-		color: #7ab8ff;
+		color: var(--info);
 	}
 	.chip-git .cg {
-		color: #c79bff;
+		color: var(--purple);
 	}
 	.chip-search .cg {
-		color: #e6b26a;
+		color: var(--warn);
 	}
 	.chip-edit .cg {
-		color: #7ad19a;
+		color: var(--ok);
 	}
 	.clabel {
 		color: var(--text);
@@ -658,14 +658,14 @@
 	}
 	.dl-add .dl-sign,
 	.dl-add .dl-t {
-		color: #7ad19a;
+		color: var(--ok);
 	}
 	.dl-del {
 		background: rgba(232, 122, 122, 0.09);
 	}
 	.dl-del .dl-sign,
 	.dl-del .dl-t {
-		color: #e08a8a;
+		color: var(--danger);
 	}
 	@keyframes diffin {
 		from {

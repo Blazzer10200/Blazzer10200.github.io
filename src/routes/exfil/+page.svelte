@@ -588,13 +588,13 @@
 		background: var(--line-2);
 	}
 	.dots :global(span:nth-child(1)) {
-		background: #e87a7a;
+		background: var(--danger);
 	}
 	.dots :global(span:nth-child(2)) {
-		background: #e6b26a;
+		background: var(--warn);
 	}
 	.dots :global(span:nth-child(3)) {
-		background: #7ad19a;
+		background: var(--ok);
 	}
 	.shot-name {
 		color: var(--text-2);
