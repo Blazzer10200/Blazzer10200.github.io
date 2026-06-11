@@ -43,7 +43,7 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			Systems &amp; Desktop Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · blazzer10200.github.io · United States · Remote
+			Systems &amp; Desktop Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · blazzer10200.github.io · Little Rock, AR or Remote (US)
 		</div>
 	</header>
 
@@ -89,7 +89,7 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Based</div>
-				<div class="hero-meta-v">United States · Remote</div>
+				<div class="hero-meta-v">Little Rock area or Remote (US)</div>
 			</div>
 		</div>
 	</section>
@@ -166,7 +166,8 @@
 						<strong>Building Rift</strong> — a Rust + Tauri desktop cockpit for coding with
 						AI: an embedded tool-using assistant with workspace and git tools, an in-app
 						browser, and a Velopack self-updater. ~43k lines, 138 versions shipped. Designed
-						and built end to end.
+						and built end to end — nights and weekends alongside factory work through Jan 2026,
+						full-time since.
 					</li>
 					<li>
 						<strong>Designed and shipped EXFIL</strong>, a Windows tray tool with per-app
@@ -229,9 +230,7 @@
 			</ExperienceItem>
 
 			<ExperienceItem years="2023" role="High school diploma" org="Education">
-				{#snippet summary()}
-					<li>One intro programming class in 10th grade.</li>
-				{/snippet}
+				{#snippet summary()}{/snippet}
 			</ExperienceItem>
 		</div>
 	</section>
@@ -245,9 +244,9 @@
 				<div class="tk-head">Desktop &amp; systems</div>
 				<ul>
 					<li>Rust</li>
+					<li>C# / .NET 8</li>
 					<li>Tauri 2</li>
 					<li>MCP &amp; agent tooling</li>
-					<li>C# / .NET 8</li>
 					<li>Win32 / NVAPI</li>
 				</ul>
 			</div>
@@ -265,7 +264,7 @@
 				<ul>
 					<li>Python</li>
 					<li>FastAPI</li>
-					<li>MySQL</li>
+					<li>MySQL / SQL</li>
 					<li>REST APIs</li>
 				</ul>
 			</div>
@@ -285,8 +284,8 @@
 	<section class="contact reveal" id="contact">
 		<h3>If you're hiring, <em>I'd love to chat.</em></h3>
 		<p class="contact-sub">
-			I'm after a junior-to-mid systems or desktop engineering role — remote, US. If the work is
-			Rust, desktop apps, or agent tooling, even better.
+			I'm after a junior-to-mid systems or desktop engineering role — remote or Little Rock /
+			Central Arkansas. If the work is Rust or C#/.NET, desktop apps, or agent tooling, even better.
 		</p>
 
 		<div class="contact-grid stagger">
