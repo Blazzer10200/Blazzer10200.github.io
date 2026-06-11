@@ -1,39 +1,40 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import TopBar from '$lib/components/TopBar.svelte';
 	import SectionRail from '$lib/components/SectionRail.svelte';
-	import RiftChatDemo from '$lib/components/RiftChatDemo.svelte';
 
 	const navLinks = [
 		{ href: '/', label: '← Back to résumé', primary: true },
-		{ href: '#demo', label: 'Live demo ↓', external: false }
+		{ href: '#film', label: 'The film ↓', external: false }
 	];
 
 	const pillars = [
 		{
 			n: '01',
-			title: 'Live server sync',
-			body: `Rift watches a local folder and mirrors every change to a remote game server over SSH — debounced, batched, atomic. Uploads land in a .rift-tmp sidecar and rename into place, so a running server never reads a half-written file. A three-way drift scanner shows local↔remote divergence before you sync.`,
-			kv: [
-				['Surface', 'Pure-Rust SSH/SFTP (russh)'],
-				['Outcome', 'No more manual SCP']
-			]
-		},
-		{
-			n: '02',
-			title: 'An AI assistant that can act',
+			title: 'A real agent, native on the desktop',
 			body: null,
-			html: `The built-in assistant isn't a chat box bolted on — it drives a real <code>claude</code> session over a streaming JSON protocol and exposes its own tools through an <code>MCP server</code>. It can read your workspace, run git, and propose edits, with multi-tab conversations, live streaming, and token/cost telemetry.`,
+			html: `The assistant isn't a chat box bolted on — it drives a live <code>claude</code> session over a streaming JSON protocol and hands it workspace-scoped tools through Rift's own <code>MCP server</code>: read, grep, list, and the full local-git surface. Multi-tab conversations, mid-turn steering, five permission modes with live Allow/Deny prompts, and per-turn token/cost telemetry.`,
 			kv: [
-				['Surface', 'MCP server · stream-json'],
+				['Surface', 'Claude CLI · stream-json · MCP'],
 				['Outcome', 'Tool-using agent, in-app']
 			]
 		},
 		{
-			n: '03',
-			title: 'It actually ships',
-			body: `Rift installs from an NSIS installer and updates itself — I rebuilt the auto-updater on the raw GitHub Releases API after a signing-key loss bricked an earlier version. ~40 tagged releases in six weeks, each with a written changelog and a SHA-256 round-trip verify at publish.`,
+			n: '02',
+			title: 'An app the assistant can drive',
+			body: null,
+			html: `Rift is self-aware. Over a loopback bridge — NDJSON on <code>127.0.0.1</code>, one token per launch — the model can pop an interactive question card in the chat, open a dev-server preview in the docked browser, or toast the corner of the window when long work finishes. Every turn carries an environment snapshot: what the dock is showing, how hot your plan usage is running.`,
 			kv: [
-				['Surface', 'NSIS + self-update'],
+				['Surface', 'Loopback bridge · NDJSON'],
+				['Outcome', 'The model sees & drives the UI']
+			]
+		},
+		{
+			n: '03',
+			title: 'It ships itself',
+			body: `Push a version tag and CI builds, packs, and publishes to a public releases repo; installed copies pick it up with Velopack — check on launch, download with progress, swap and relaunch. 138 versions have gone out — through this pipeline and the updaters before it — each behind a green compiler, type-checker, and test suite.`,
+			kv: [
+				['Surface', 'Velopack · tag-driven CI'],
 				['Outcome', 'Real distribution']
 			]
 		}
@@ -42,16 +43,26 @@
 	const corners = [
 		{
 			n: '01',
-			title: 'I shipped an update that bricked every client',
-			lead: `Lost the signing key — so I rebuilt auto-update with no key in the critical path.`,
-			body: `A release lost its signing key, and the signed-updater plugin meant every installed copy was stranded — it would only accept updates signed by a key I no longer had. I tore the plugin out and rebuilt auto-update on the raw GitHub Releases API: poll the latest tag, semver-compare, stream the installer down with a progress bar, verify the hash, relaunch. No signing key in the critical path means that failure can't happen again.`,
+			title: 'I deleted the feature the app was named for',
+			lead: `Rift started as a game-server sync tool. I cut the entire sync half — a quarter of the codebase — when the assistant became the product.`,
+			body: `Rift began as an SSH/SFTP cockpit for game-server developers: file watcher, atomic uploads, drift scanner. Then the assistant outgrew it — I was opening Rift to code, not to sync. So I ripped out the half the app was named for: the SSH stack, the watcher, the drift scanner, every remote code path. ~13k lines, deleted on purpose. What's left is a product with one job, and every line serves it.`,
 			kv: [
-				['Lesson', 'Own your update path'],
-				['Outcome', 'Signing-key-free updater']
+				['Lesson', 'Sunk cost is not strategy'],
+				['Outcome', 'One product, one job']
 			]
 		},
 		{
 			n: '02',
+			title: 'I shipped an update that bricked every client',
+			lead: `Lost the signing key — so I rebuilt auto-update with no key in the critical path.`,
+			body: `A release lost its signing key, and the signed-updater plugin meant every installed copy was stranded — it would only accept updates signed by a key I no longer had. I tore the plugin out, rebuilt on the raw GitHub Releases API, then moved to Velopack with no mandatory key. The subtle part: the swap silently no-ops if any child process still holds the install dir, so the apply step reaps the per-turn MCP children before it exits. That failure mode can't strand anyone again.`,
+			kv: [
+				['Lesson', 'Own your update path'],
+				['Outcome', 'Velopack · key-free updates']
+			]
+		},
+		{
+			n: '03',
 			title: 'My AI can run git — so I attacked it first',
 			lead: `The assistant can run git, so I threat-modeled its tool inputs like a CVE before it shipped.`,
 			body: null,
@@ -62,25 +73,14 @@
 			]
 		},
 		{
-			n: '03',
-			title: 'Files were silently uploading as zero bytes',
-			lead: `A single FileAttributes::default() was truncating uploads to 0 bytes — caught by a real-server test.`,
-			body: null,
-			html: `Some uploads landed on the server as 0-byte files. The culprit was one line: the post-upload <code>SETSTAT</code> was built from <code>FileAttributes::default()</code>, and the default carries <code>size = 0</code> — so the server truncated the file the moment it arrived, and the atomic rename then promoted the zeroed copy. Switching to <code>::empty()</code> fixed it, and I wrote a regression test that runs against a real SSH server so it can never come back.`,
-			kv: [
-				['Lesson', 'Defaults aren’t neutral'],
-				['Outcome', 'Live-server regression test']
-			]
-		},
-		{
 			n: '04',
-			title: 'The UI hung for two minutes on a background task',
-			lead: `Turn-end waited on the wrong process exiting — an atomic done-flag let background tasks survive.`,
+			title: 'The model was being told to use a tool that didn’t exist',
+			lead: `A steering message pointed the AI at ask_user — a tool the big deletion had silently unregistered.`,
 			body: null,
-			html: `Ask the assistant to start a dev server and the whole UI froze in "streaming" for minutes. Turn-completion was gated on the <code>claude</code> process exiting — but a backgrounded child keeps it alive for its entire lifetime, so the wait never returned. The fix was to fire "done" the instant the result frame arrives (an <code>AtomicBool</code> flag), then kill only the parent PID with a grace period so the detached process survives. Tracing it meant understanding how child processes inherit and hold pipe handles.`,
+			html: `While auditing the tool surface I found a ghost: the deny-handler steered the model toward <code>ask_user</code>, the allowlist included it, the entire frontend card UI for it sat dormant — but the bridge that registered it had died in the sync deletion. The model was being coached to call a tool that wasn't there. I rebuilt the bridge minimal: NDJSON over loopback, a single per-launch token, and graceful degradation — if the bridge is down the tools unlist instead of erroring.`,
 			kv: [
-				['Lesson', 'Process lifetime ≠ task lifetime'],
-				['Outcome', 'Instant turn-end, bg survives']
+				['Lesson', 'Audit what you tell the model'],
+				['Outcome', 'ask_user · open_browser · notify, live']
 			]
 		}
 	];
@@ -93,8 +93,8 @@
 		},
 		{
 			n: '02',
-			title: 'Test against the real thing earlier',
-			body: `Mocks hid the zero-byte bug for weeks. Standing up a real SSH server to test against caught it and a class of others. I'd build that harness on day one next time.`
+			title: 'Delete faster',
+			body: `I knew the assistant was the product weeks before I cut the sync half. Sunk cost kept dead weight in the tree, and when the cut finally came, it left a ghost tool behind. Next time the call gets made the week the evidence lands.`
 		},
 		{
 			n: '03',
@@ -108,12 +108,12 @@
 	<title>Rift — Case study · Braison Swilling</title>
 	<meta
 		name="description"
-		content="Building Rift: a Rust + Tauri desktop dev cockpit with live SSH/SFTP server sync and an embedded, tool-using AI assistant."
+		content="Building Rift: a Rust + Tauri desktop cockpit for coding with AI — a tool-using assistant with workspace and git tools, an in-app browser, and a self-updating ship pipeline."
 	/>
 	<meta property="og:title" content="Rift — Case study · Braison Swilling" />
 	<meta
 		property="og:description"
-		content="Building Rift: a Rust + Tauri desktop dev cockpit with live SSH/SFTP server sync and an embedded, tool-using AI assistant."
+		content="Building Rift: a Rust + Tauri desktop cockpit for coding with AI — a tool-using assistant with workspace and git tools, an in-app browser, and a self-updating ship pipeline."
 	/>
 	<meta property="og:url" content="https://blazzer10200.github.io/rift" />
 	<meta name="twitter:title" content="Rift — Case study · Braison Swilling" />
@@ -126,25 +126,25 @@
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Case study</span>
-			<span class="pill">v0.4.44 · ~40 releases</span>
+			<span class="pill">v0.8.21 · 138 versions shipped</span>
 		</div>
 
 		<h1>A desktop cockpit with an AI assistant that <em>actually does the work.</em></h1>
 
 		<p class="hero-sub">
-			Rift is a desktop app for developers who run game servers. It keeps your local code and the
-			live server in lockstep over SSH, and it ships with an AI assistant that doesn't just chat —
-			it reads your workspace, runs git, and proposes edits through real tools.
+			Rift is a desktop app for coding with AI. A real tool-using Claude session runs against your
+			local workspace — it reads files, greps, runs git, and proposes diffs you review — inside a
+			native app with multi-tab chats, a docked browser, and live cost telemetry.
 		</p>
 		<p class="hero-sub">
-			It runs on a <strong>pure-Rust backend</strong> behind a Svelte 5 interface, and it installs
-			and updates itself — every release shipped behind a green compiler, type-checker, and test
-			suite.
+			It runs on a <strong>pure-Rust backend</strong> behind a Svelte 5 interface, drives its own
+			UI through a loopback bridge, and installs and updates itself — every release shipped behind
+			a green compiler, type-checker, and test suite.
 		</p>
 
 		<div class="hero-actions stagger">
-			<a class="btn primary" href="#demo">
-				<span class="ico">↓</span> Try the assistant
+			<a class="btn primary" href="#film">
+				<span class="ico">↓</span> Watch the film
 			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
@@ -162,11 +162,11 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Surface</div>
-				<div class="hero-meta-v">Desktop · sync + assistant</div>
+				<div class="hero-meta-v">Desktop · AI cockpit</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Status</div>
-				<div class="hero-meta-v accent">Daily-driven · alpha</div>
+				<div class="hero-meta-v accent">Daily-driven</div>
 			</div>
 		</div>
 	</section>
@@ -174,110 +174,71 @@
 	<!-- Stats band -->
 	<section class="stats reveal" aria-label="Rift at a glance">
 		<div class="stat">
-			<div class="stat-n">~56k</div>
-			<div class="stat-l">lines of Rust &amp; TypeScript</div>
+			<div class="stat-n">~43k</div>
+			<div class="stat-l">lines of Rust &amp; TypeScript, live today</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">~40</div>
-			<div class="stat-l">tagged releases</div>
+			<div class="stat-n">138</div>
+			<div class="stat-l">versions shipped</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">154</div>
-			<div class="stat-l">tests · 115 Rust + 39 vitest</div>
+			<div class="stat-n">219</div>
+			<div class="stat-l">tests · 97 Rust + 122 vitest</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">6 wk</div>
-			<div class="stat-l">solo, to a daily-driver</div>
+			<div class="stat-n">1</div>
+			<div class="stat-l">developer — designed, built, shipped</div>
 		</div>
 	</section>
 
-	<!-- 01 The problem -->
-	<section class="block reveal">
-		<SectionRail num="01 / 05" label="The problem" meta="Why this exists" />
-		<h2>Editing a live game server means a hundred tiny file transfers a day.</h2>
+	<!-- 01 The film -->
+	<section class="block reveal" id="film">
+		<SectionRail num="01 / 06" label="The film" meta="36 seconds" />
+		<h2>See it move.</h2>
 		<p class="body">
-			Game-server developers iterate against a remote machine: change a script locally, get it onto
-			the server, restart the resource, check it in-game. The usual loop is a manual SCP or a
-			drag-in-WinSCP every single time — slow, error-prone, and easy to forget a file. Worse, push a
-			half-written file and the running server can read it mid-save and crash.
-		</p>
-		<p class="body">
-			Rift collapses that loop. Point it at a folder, and it keeps the server in sync as you type —
-			atomically, so the server only ever sees complete files — and it tells you the moment local and
-			remote drift apart.
+			Five beats — sharpen the prompt, run a real agent, ship real changes, see every token, make
+			it yours. Thirty-six seconds, no narration needed.
 		</p>
 
-		<figure class="diagram-wrap stagger">
-			<div class="diagram-scroll">
-				<svg
-					class="diagram"
-					viewBox="0 0 900 230"
-					role="img"
-					aria-label="Sync data path: a saved file flows from the local folder through a debounced batching watcher, into an atomic SFTP upload that writes to a .rift-tmp sidecar and renames into place, and onto the live server. A three-way drift scan continuously compares local and remote."
-				>
-					<defs>
-						<marker
-							id="arrow"
-							viewBox="0 0 10 10"
-							refX="8"
-							refY="5"
-							markerWidth="7"
-							markerHeight="7"
-							orient="auto-start-reverse"
-						>
-							<path d="M0 0 L10 5 L0 10 z" fill="var(--accent)" />
-						</marker>
-					</defs>
-
-					<!-- nodes -->
-					<g class="node">
-						<rect x="6" y="58" width="170" height="70" rx="6" />
-						<text class="n-title" x="91" y="90">Local folder</text>
-						<text class="n-sub" x="91" y="110">you save a file</text>
-					</g>
-					<g class="node">
-						<rect x="246" y="58" width="170" height="70" rx="6" />
-						<text class="n-title" x="331" y="90">Watcher</text>
-						<text class="n-sub" x="331" y="110">debounce · batch</text>
-					</g>
-					<g class="node node-accent">
-						<rect x="486" y="58" width="170" height="70" rx="6" />
-						<text class="n-title" x="571" y="90">Atomic SFTP</text>
-						<text class="n-sub n-sub-accent" x="571" y="110">.rift-tmp → rename</text>
-					</g>
-					<g class="node">
-						<rect x="726" y="58" width="170" height="70" rx="6" />
-						<text class="n-title" x="811" y="90">Live server</text>
-						<text class="n-sub" x="811" y="110">never reads a partial file</text>
-					</g>
-
-					<!-- forward arrows -->
-					<line class="flow" x1="178" y1="93" x2="242" y2="93" marker-end="url(#arrow)" />
-					<line class="flow" x1="418" y1="93" x2="482" y2="93" marker-end="url(#arrow)" />
-					<line class="flow" x1="658" y1="93" x2="722" y2="93" marker-end="url(#arrow)" />
-
-					<!-- drift feedback arc: server ↔ local -->
-					<path
-						class="flow flow-dashed"
-						d="M811 130 C811 205 91 205 91 132"
-						fill="none"
-						marker-end="url(#arrow)"
-					/>
-					<text class="d-label" x="451" y="199">three-way drift scan · local ↔ remote</text>
-				</svg>
-			</div>
-			<figcaption>How one save reaches the server — watched, batched, written atomically, drift-checked.</figcaption>
+		<figure class="film-wrap stagger">
+			<video
+				class="film"
+				controls
+				preload="metadata"
+				playsinline
+				poster="{base}/videos/rift-film-poster.jpg"
+			>
+				<source src="{base}/videos/rift-film.mp4" type="video/mp4" />
+				Your browser doesn't play MP4 — the case study below covers everything in the film.
+			</video>
+			<figcaption>The film itself is code — composed and rendered programmatically with Remotion.</figcaption>
 		</figure>
 	</section>
 
-	<!-- 02 Inside Rift -->
-	<section class="block reveal" id="demo">
-		<SectionRail num="02 / 05" label="Inside Rift" meta="Three pillars" />
-		<h2>Sync, an assistant that can act, and a build that actually ships.</h2>
+	<!-- 02 The problem -->
+	<section class="block reveal">
+		<SectionRail num="02 / 06" label="The problem" meta="Why this exists" />
+		<h2>The best coding agent lives in a terminal. I wanted a cockpit.</h2>
 		<p class="body">
-			Three things make Rift more than a file-sync tool. Below the pillars, the real centerpiece — a
-			recreation of the in-app AI assistant. Pick one of the questions and watch it work, right in
-			your browser.
+			The agent I code with every day is a CLI — powerful, and a thin place to live. No tabs, no
+			diff-review surface, no browser for the thing you just built, no sense of what a turn costs
+			until the bill lands. The desktop options mostly wrap a web page around a chat box and call
+			it an app.
+		</p>
+		<p class="body">
+			Rift is the native version of that loop. Point it at a workspace and the assistant works with
+			the same tools you would — read, grep, git — while you review every diff it proposes. The preview opens in
+			a browser docked beside the chat, cost and plan usage sit on the rail, and your voice works
+			as well as your keyboard.
+		</p>
+	</section>
+
+	<!-- 03 Inside Rift -->
+	<section class="block reveal">
+		<SectionRail num="03 / 06" label="Inside Rift" meta="Three pillars" />
+		<h2>An agent that acts, an app it can drive, and a build that ships itself.</h2>
+		<p class="body">
+			Three things make Rift more than a chat window — the film above shows all three moving.
 		</p>
 
 		<div class="challenges stagger">
@@ -302,34 +263,25 @@
 			{/each}
 		</div>
 
-		<h3 class="demo-lead">The assistant, live.</h3>
-		<p class="body">
-			Pick a question below and the assistant runs the turn — tool-calls on a numbered status rail,
-			the answer streaming in, and the real one-line diff it landed. Each one is an actual bug or
-			decision from building Rift. (The app drives a live Claude session; this runs entirely in your
-			browser.)
-		</p>
-		<RiftChatDemo />
-
 		<div class="stack-row">
 			<span class="chip">Rust</span>
 			<span class="chip">Tauri 2</span>
 			<span class="chip">Svelte 5</span>
-			<span class="chip">russh (SSH/SFTP)</span>
 			<span class="chip">MCP server</span>
 			<span class="chip">Tokio async</span>
-			<span class="chip">NSIS installer</span>
+			<span class="chip">Velopack</span>
+			<span class="chip">Whisper FFI</span>
 		</div>
 
 		<h3 class="demo-lead">And a lot more under the hood.</h3>
 		<div class="surface stagger">
 			<div class="feat">
-				<div class="feat-t">Three-way drift scanner</div>
-				<p>Shows exactly where local and remote have diverged — before you sync a thing.</p>
+				<div class="feat-t">In-app browser dock</div>
+				<p>A native child webview docked beside the assistant — real scroll, clicks, and address bar. The model can open pages in it.</p>
 			</div>
 			<div class="feat">
-				<div class="feat-t">In-app browser dock</div>
-				<p>A native child webview docked beside the assistant — real scroll, clicks, and address bar.</p>
+				<div class="feat-t">Cost cockpit</div>
+				<p>Per-turn token and dollar telemetry, budget insights, and live plan-usage gauges — it knows how hot your 5-hour window runs.</p>
 			</div>
 			<div class="feat">
 				<div class="feat-t">Voice input</div>
@@ -340,24 +292,24 @@
 				<p>Live Allow/Deny tool prompts, answered mid-turn over the agent control protocol.</p>
 			</div>
 			<div class="feat">
-				<div class="feat-t">Prompt enhancer</div>
-				<p>A one-shot model pass that sharpens a rough draft into a clear instruction, streamed live.</p>
+				<div class="feat-t">Edit swarm</div>
+				<p>Parallel sub-agent edit batching with worktree isolation, behind its own safety layer.</p>
 			</div>
 			<div class="feat">
-				<div class="feat-t">Errors that explain themselves</div>
-				<p>A blocked SSH connect decodes to "a VPN is blocking the port," not a raw <code>WSAEACCES</code>.</p>
+				<div class="feat-t">Prompt enhancer</div>
+				<p>A one-shot model pass that sharpens a rough draft into a clear instruction, streamed live.</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- 03 The ugly corners -->
+	<!-- 04 The ugly corners -->
 	<section class="block reveal">
-		<SectionRail num="03 / 05" label="The ugly corners" meta="Where the work actually lived" />
+		<SectionRail num="04 / 06" label="The ugly corners" meta="Where the work actually lived" />
 		<h2>The pitch is three sentences. <em>These are the parts that made it real.</em></h2>
 		<p class="body">
-			A sync tool with a chat box is a weekend. Making it safe to run against a live server, hard to
-			misuse, and able to update itself without my help took the other six weeks. Four of the corners
-			the time actually went into:
+			A chat box in a webview is a weekend. An agent that's safe to hand real tools, an app the
+			model can drive but not hijack, and an updater that can't strand anyone — that's where the
+			months went. Four of the corners the time actually went into:
 		</p>
 
 		<div class="challenges stagger">
@@ -386,9 +338,9 @@
 		</div>
 	</section>
 
-	<!-- 04 How I built it -->
+	<!-- 05 How I built it -->
 	<section class="block reveal">
-		<SectionRail num="04 / 05" label="How I built it" meta="AI-assisted, not AI-written" />
+		<SectionRail num="05 / 06" label="How I built it" meta="AI-assisted, not AI-written" />
 		<h2>I designed Rift. <em>I read every diff.</em></h2>
 		<p class="body">
 			I'm self-taught, and I work fast by pairing with AI — but I make the calls. My loop: decide the
@@ -398,8 +350,8 @@
 		</p>
 		<p class="body">
 			That's why I can explain any decision in here: why the updater has no signing key, why the git
-			tools never shell out, why uploads go through a temp-and-rename. The AI made me faster. I made
-			the architecture.
+			tools never shell out, why the bridge trusts a per-launch token and not a port number. The AI
+			made me faster. I made the architecture.
 		</p>
 
 		<div class="skills">
@@ -407,7 +359,7 @@
 			<div class="skills-row">
 				<span class="chip">Rust</span>
 				<span class="chip">Tokio async</span>
-				<span class="chip">SSH / SFTP internals</span>
+				<span class="chip">Process orchestration</span>
 				<span class="chip">Systems security</span>
 				<span class="chip">Agent &amp; tool protocols</span>
 				<span class="chip">Windows distribution</span>
@@ -415,9 +367,9 @@
 		</div>
 	</section>
 
-	<!-- 05 What I'd do differently -->
+	<!-- 06 What I'd do differently -->
 	<section class="block reveal">
-		<SectionRail num="05 / 05" label="What I'd do differently" meta="Honest retro" />
+		<SectionRail num="06 / 06" label="What I'd do differently" meta="Honest retro" />
 		<h2>Three things I'd change if I started over.</h2>
 
 		<div class="lessons stagger">
@@ -689,64 +641,19 @@
 		margin: 56px 0 14px;
 	}
 
-	/* architecture diagram */
-	.diagram-wrap {
+	/* the film */
+	.film-wrap {
 		margin: 36px 0 8px;
 	}
-	.diagram-scroll {
-		overflow-x: auto;
-		overflow-y: hidden;
-		padding-bottom: 4px;
-		border: 1px solid var(--line);
-		background: var(--panel);
-	}
-	.diagram {
+	.film {
 		display: block;
 		width: 100%;
-		min-width: 660px;
 		height: auto;
-		padding: 18px 20px;
+		aspect-ratio: 16 / 9;
+		background: #000;
+		border: 1px solid var(--line-2);
 	}
-	.diagram .node rect {
-		fill: var(--bg-2);
-		stroke: var(--line-2);
-		stroke-width: 1;
-	}
-	.diagram .node-accent rect {
-		stroke: var(--accent);
-	}
-	.diagram text {
-		font-family: 'Inter', system-ui, sans-serif;
-		text-anchor: middle;
-	}
-	.diagram .n-title {
-		font-size: 15px;
-		font-weight: 500;
-		fill: var(--text);
-	}
-	.diagram .n-sub {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 11px;
-		fill: var(--text-2);
-	}
-	.diagram .n-sub-accent {
-		fill: var(--accent);
-	}
-	.diagram .flow {
-		stroke: var(--accent);
-		stroke-width: 1.5;
-	}
-	.diagram .flow-dashed {
-		stroke-dasharray: 4 4;
-		opacity: 0.7;
-	}
-	.diagram .d-label {
-		font-family: 'JetBrains Mono', monospace;
-		font-size: 11px;
-		fill: var(--dim);
-		letter-spacing: 0.04em;
-	}
-	.diagram-wrap figcaption {
+	.film-wrap figcaption {
 		margin-top: 12px;
 		font-family: 'Inter', system-ui, sans-serif;
 		font-size: 13px;

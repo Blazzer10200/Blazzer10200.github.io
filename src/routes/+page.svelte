@@ -5,29 +5,29 @@
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
 
 	const riftLog = [
-		{ ts: '[boot ]', text: 'rift v0.4.44 · tauri 2 · russh' },
-		{ ts: '[ssh  ]', text: 'connect endure-rp · key-auth ok', variant: 'ok' as const, dimTs: true },
-		{ ts: '[watch]', text: 'fsw armed · 1,204 files mirrored' },
+		{ ts: '[boot ]', text: 'rift v0.8.21 · tauri 2 · velopack' },
+		{ ts: '[mcp  ]', text: 'workspace tools up · git · ui bridge', variant: 'ok' as const, dimTs: true },
+		{ ts: '[ai   ]', text: 'turn start · streaming · review mode' },
 		{
-			ts: '[sync ]',
-			text: 'resources/core/main.lua → upload',
-			variant: 'ok' as const,
-			dimTs: true
-		},
-		{ ts: '[sync ]', text: 'atomic .rift-tmp → rename ok', variant: 'ok' as const, dimTs: true },
-		{ ts: '[drift]', text: 'scan clean · 0 divergent', dimTs: true },
-		{
-			ts: '[ai   ]',
-			text: 'assistant: git_status → 3 changed',
+			ts: '[tool ]',
+			text: 'grep bridge_enabled → 3 hits',
 			variant: 'info' as const,
 			dimTs: true
 		},
 		{
-			ts: '[ai   ]',
-			text: 'edit transfer.rs · awaiting review',
+			ts: '[tool ]',
+			text: 'edit mcp_server.rs · awaiting review',
 			variant: 'warn' as const,
 			dimTs: true
 		},
+		{ ts: '[git  ]', text: 'status → 3 changed · diff clean', variant: 'ok' as const, dimTs: true },
+		{
+			ts: '[ui   ]',
+			text: 'open_browser → localhost:5173 · docked',
+			variant: 'ok' as const,
+			dimTs: true
+		},
+		{ ts: '[cost ]', text: 'turn $0.04 · 5h window 28%', dimTs: true },
 		{ ts: '[idle ]', text: 'watching · sentinel=green' }
 	];
 </script>
@@ -57,9 +57,9 @@
 		<h1>I design and ship <em>desktop software, end to end.</em></h1>
 
 		<p class="hero-sub">
-			Self-taught — I've been writing code since high school, from live game-server backends to
-			finished desktop software. <strong>Rift</strong> — a Rust + Tauri desktop app with live
-			server sync and a built-in AI assistant — is what I'm building now.
+			I've been writing code since high school — self-taught, from live game-server backends to
+			finished desktop software. <strong>Rift</strong> — a Rust + Tauri desktop cockpit for coding
+			with AI, built around a tool-using assistant — is what I'm building now.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -77,7 +77,7 @@
 		<div class="hero-meta stagger">
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Currently building</div>
-				<div class="hero-meta-v accent">Rift v0.4.44</div>
+				<div class="hero-meta-v accent">Rift v0.8.21</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
@@ -102,26 +102,26 @@
 			<div>
 				<h2>Rift — a Rust desktop app I <em>design and ship.</em></h2>
 				<p>
-					A desktop cockpit for developers who run game servers. Rift keeps your local code and
-					the live server in lockstep over SSH — watching, batching, and uploading
-					<strong>atomically</strong> so the running server never reads a half-written file —
-					and a three-way drift scanner flags divergence before you sync.
+					A desktop cockpit for coding with AI. Rift runs a tool-using
+					<code>claude</code> session against your local workspace — reading files, running
+					git, proposing diffs — while <strong>you stay in the reviewer's seat</strong>.
+					Multi-tab chats, a docked browser, live cost telemetry.
 				</p>
 				<p>
-					It ships with an AI assistant that doesn't just chat: it drives a live
-					<code>claude</code> session over a streaming protocol and exposes its own
-					<code>git</code> tools through an MCP server. Pure-Rust SSH/SFTP, an NSIS installer,
-					and a self-built auto-updater. ~56k lines, ~40 releases.
+					The app is self-aware: over a loopback bridge the assistant drives Rift's own UI —
+					question cards in the chat, previews in the in-app browser, a toast when long work
+					lands. Pure-Rust backend, its own MCP server, on-device Whisper voice input, and a
+					Velopack self-updater.
 				</p>
 
 				<div class="stack-row">
 					<span class="chip">Rust</span>
 					<span class="chip">Tauri 2</span>
 					<span class="chip">Svelte 5</span>
-					<span class="chip">russh (SSH/SFTP)</span>
 					<span class="chip">MCP server</span>
 					<span class="chip">Tokio</span>
-					<span class="chip">NSIS</span>
+					<span class="chip">Velopack</span>
+					<span class="chip">Whisper FFI</span>
 				</div>
 
 				<div class="featured-actions">
@@ -129,7 +129,7 @@
 				</div>
 			</div>
 
-			<TerminalPanel title="~/rift/logs/sync.log" lines={riftLog} />
+			<TerminalPanel title="~/rift/logs/session.log" lines={riftLog} />
 		</div>
 
 		<div class="screens stagger">
@@ -137,13 +137,13 @@
 				<div class="screens-cta-body">
 					<div class="screens-cta-eyebrow">— Case study</div>
 					<div class="screens-cta-title">
-						How I designed, hardened, and shipped Rift — <em>and a live AI assistant you can drive.</em>
+						How I designed, hardened, and shipped Rift — <em>and the 36-second film of it working.</em>
 					</div>
 					<div class="screens-cta-stats">
-						<span><strong>~56k</strong> lines</span>
-						<span><strong>~40</strong> releases</span>
-						<span><strong>154</strong> tests</span>
-						<span><strong>6</strong> weeks</span>
+						<span><strong>~43k</strong> lines</span>
+						<span><strong>138</strong> versions</span>
+						<span><strong>219</strong> tests</span>
+						<span><strong>36s</strong> film</span>
 					</div>
 				</div>
 				<span class="screens-cta-arrow" aria-hidden="true">→</span>
@@ -163,9 +163,10 @@
 			>
 				{#snippet summary()}
 					<li>
-						<strong>Building Rift</strong> — a Rust + Tauri desktop app with live SSH/SFTP
-						server sync and an embedded, tool-using AI assistant. ~56k lines, ~40 releases.
-						Designed and built end to end.
+						<strong>Building Rift</strong> — a Rust + Tauri desktop cockpit for coding with
+						AI: an embedded tool-using assistant with workspace and git tools, an in-app
+						browser, and a Velopack self-updater. ~43k lines, 138 versions shipped. Designed
+						and built end to end.
 					</li>
 					<li>
 						<strong>Designed and shipped EXFIL</strong>, a Windows tray tool with per-app
@@ -187,9 +188,8 @@
 				{#snippet summary()}
 					<li>
 						Started in yard work and facility cleaning, promoted to the assembly line within
-						a few months.
+						a few months — until company-wide cuts ended the role in Jan 2026.
 					</li>
-					<li>Laid off Jan 2026 (company-wide cuts).</li>
 				{/snippet}
 			</ExperienceItem>
 
@@ -201,9 +201,9 @@
 				{#snippet summary()}
 					<li>
 						Operated heavy equipment and ran landfill ops on site at an active paper mill.
-						Roughly two years of steady attendance and clean execution.
+						Roughly two years of steady attendance and clean execution, until the contract
+						ended in March 2025.
 					</li>
-					<li>Laid off March 2025 when the contract ended.</li>
 				{/snippet}
 				{#snippet more()}
 					<li>
@@ -246,6 +246,7 @@
 				<ul>
 					<li>Rust</li>
 					<li>Tauri 2</li>
+					<li>MCP &amp; agent tooling</li>
 					<li>C# / .NET 8</li>
 					<li>Win32 / NVAPI</li>
 				</ul>
@@ -283,6 +284,10 @@
 	<!-- Contact -->
 	<section class="contact reveal" id="contact">
 		<h3>If you're hiring, <em>I'd love to chat.</em></h3>
+		<p class="contact-sub">
+			I'm after a junior-to-mid systems or desktop engineering role — remote, US. If the work is
+			Rust, desktop apps, or agent tooling, even better.
+		</p>
 
 		<div class="contact-grid stagger">
 			<a class="contact-cell" href="mailto:braison.swilling@outlook.com?subject=Hello%20Braison">
@@ -719,6 +724,15 @@
 	.contact h3 :global(em) {
 		font-style: normal;
 		color: var(--accent);
+	}
+	.contact-sub {
+		margin-top: 20px;
+		max-width: 620px;
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 16px;
+		line-height: 1.6;
+		color: var(--text-2);
+		text-wrap: pretty;
 	}
 	.contact-grid {
 		margin-top: 56px;

@@ -173,14 +173,6 @@
 			>
 				<span class="ico">↗</span> View on GitHub
 			</a>
-			<a
-				class="btn"
-				href="https://github.com/Blazzer10200/exfil-v1#readme"
-				target="_blank"
-				rel="noopener"
-			>
-				<span class="ico">↗</span> Read the README
-			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
 			</a>
@@ -306,7 +298,7 @@
 	<!-- 04 How I built it -->
 	<section class="block reveal">
 		<SectionRail num="04 / 05" label="How I built it" meta="AI-assisted, not AI-written" />
-		<h2>I designed EXFIL. <em>Claude Code did the typing.</em></h2>
+		<h2>I designed EXFIL. <em>I accepted every line.</em></h2>
 		<p class="body">
 			I'm self-taught, and I read code fluently — that's the part I'm not giving up. My loop on
 			EXFIL went like this: I'd decide on the next piece ("hotplug needs to re-enumerate and
@@ -339,8 +331,8 @@
 	<!-- CTA -->
 	<section class="cta reveal">
 		<h3>
-			If a developer who designs his own software, ships it, and reads every line
-			<em>sounds useful — let's talk.</em>
+			If you want software from someone who designs for the crash path first —
+			<em>let's talk.</em>
 		</h3>
 		<div class="cta-actions stagger">
 			<a class="btn primary" href="mailto:braison.swilling@outlook.com?subject=Hello%20Braison">
