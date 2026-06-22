@@ -5,30 +5,30 @@
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
 
 	const riftLog = [
-		{ ts: '[boot ]', text: 'rift v0.8.21 · tauri 2 · velopack' },
-		{ ts: '[mcp  ]', text: 'workspace tools up · git · ui bridge', variant: 'ok' as const, dimTs: true },
-		{ ts: '[ai   ]', text: 'turn start · streaming · review mode' },
+		{ ts: '[boot ]', text: 'rift v0.24.0 · ready' },
+		{ ts: '[ai   ]', text: 'opened your project · tools ready', variant: 'ok' as const, dimTs: true },
+		{ ts: '[ai   ]', text: 'new turn · thinking out loud as it goes' },
 		{
-			ts: '[tool ]',
-			text: 'grep bridge_enabled → 3 hits',
+			ts: '[read ]',
+			text: 'searched the code · 3 files to change',
 			variant: 'info' as const,
 			dimTs: true
 		},
 		{
-			ts: '[tool ]',
-			text: 'edit mcp_server.rs · awaiting review',
+			ts: '[edit ]',
+			text: 'drafted a change · waiting for you to approve',
 			variant: 'warn' as const,
 			dimTs: true
 		},
-		{ ts: '[git  ]', text: 'status → 3 changed · diff clean', variant: 'ok' as const, dimTs: true },
+		{ ts: '[git  ]', text: '3 files changed · ready to commit', variant: 'ok' as const, dimTs: true },
 		{
-			ts: '[ui   ]',
-			text: 'open_browser → localhost:5173 · docked',
+			ts: '[view ]',
+			text: 'opened your live preview in the browser',
 			variant: 'ok' as const,
 			dimTs: true
 		},
-		{ ts: '[cost ]', text: 'turn $0.04 · 5h window 28%', dimTs: true },
-		{ ts: '[idle ]', text: 'watching · sentinel=green' }
+		{ ts: '[cost ]', text: 'this turn cost $0.04 · plenty left today', dimTs: true },
+		{ ts: '[idle ]', text: 'standing by · all good' }
 	];
 </script>
 
@@ -54,12 +54,13 @@
 			<span class="pill">Open to work</span>
 		</div>
 
-		<h1>I design and ship <em>desktop software, end to end.</em></h1>
+		<h1>I design and build <em>desktop software that ships.</em></h1>
 
 		<p class="hero-sub">
-			I've been writing code since high school — self-taught, from live game-server backends to
-			finished desktop software. <strong>Rift</strong> — a Rust + Tauri desktop cockpit for coding
-			with AI, built around a tool-using assistant — is what I'm building now.
+			I've been writing code since high school — self-taught, working my way up from live
+			game-server backends to finished desktop software. Right now I'm building
+			<strong>Rift</strong>: a Rust desktop app for coding with AI. It's public, and you can
+			download it and run it today.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -77,7 +78,7 @@
 		<div class="hero-meta stagger">
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Currently building</div>
-				<div class="hero-meta-v accent">Rift v0.8.21</div>
+				<div class="hero-meta-v accent">Rift v0.24.0</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
@@ -100,31 +101,36 @@
 
 		<div class="featured-grid stagger">
 			<div>
-				<h2>Rift — a Rust desktop app I <em>design and ship.</em></h2>
+				<h2>Rift — a Rust desktop app for <em>coding with AI.</em></h2>
 				<p>
-					A desktop cockpit for coding with AI. Rift runs a tool-using
-					<code>claude</code> session against your local workspace — reading files, running
-					git, proposing diffs — while <strong>you stay in the reviewer's seat</strong>.
-					Multi-tab chats, a docked browser, live cost telemetry.
+					A desktop app for coding with AI. The assistant works inside your project — reading
+					your files, running git, and proposing changes — while
+					<strong>you stay in the reviewer's seat</strong> and approve every one. Several chats
+					at once, a built-in browser, and a running cost meter.
 				</p>
 				<p>
-					The app is self-aware: over a loopback bridge the assistant drives Rift's own UI —
-					question cards in the chat, previews in the in-app browser, a toast when long work
-					lands. Pure-Rust backend, its own MCP server, on-device Whisper voice input, and a
-					Velopack self-updater.
+					The app and the assistant work together: it can ask you a question right in the chat,
+					open a preview in the built-in browser, or nudge you when a long task finishes. Built
+					on Rust for speed and safety, with voice input that never leaves your machine and
+					updates that install themselves.
 				</p>
 
 				<div class="stack-row">
 					<span class="chip">Rust</span>
 					<span class="chip">Tauri 2</span>
 					<span class="chip">Svelte 5</span>
-					<span class="chip">MCP server</span>
-					<span class="chip">Tokio</span>
-					<span class="chip">Velopack</span>
-					<span class="chip">Whisper FFI</span>
+					<span class="chip">AI assistant</span>
+					<span class="chip">Voice input</span>
+					<span class="chip">Auto-updating</span>
 				</div>
 
 				<div class="featured-actions">
+					<a
+						class="link-quiet"
+						href="https://github.com/Blazzer10200/rift/releases/latest"
+						target="_blank"
+						rel="noopener">Download Rift ↓</a
+					>
 					<a class="link-quiet" href="/rift">Read the case study ↗</a>
 				</div>
 			</div>
@@ -137,13 +143,13 @@
 				<div class="screens-cta-body">
 					<div class="screens-cta-eyebrow">— Case study</div>
 					<div class="screens-cta-title">
-						How I designed, hardened, and shipped Rift — <em>and the 36-second film of it working.</em>
+						The full story of how I built Rift — <em>and the film of it working.</em>
 					</div>
 					<div class="screens-cta-stats">
-						<span><strong>~43k</strong> lines</span>
-						<span><strong>138</strong> versions</span>
-						<span><strong>219</strong> tests</span>
-						<span><strong>36s</strong> film</span>
+						<span><strong>v0.24</strong></span>
+						<span><strong>~44k</strong> lines</span>
+						<span><strong>286</strong> tests</span>
+						<span><strong>73s</strong> film</span>
 					</div>
 				</div>
 				<span class="screens-cta-arrow" aria-hidden="true">→</span>
@@ -163,16 +169,16 @@
 			>
 				{#snippet summary()}
 					<li>
-						<strong>Building Rift</strong> — a Rust + Tauri desktop cockpit for coding with
-						AI: an embedded tool-using assistant with workspace and git tools, an in-app
-						browser, and a Velopack self-updater. ~43k lines, 138 versions shipped. Designed
-						and built end to end — nights and weekends alongside factory work through Jan 2026,
-						full-time since.
+						<strong>Building Rift</strong> — a Rust + Tauri desktop app for coding with AI: a
+						built-in assistant that reads your code and runs git for you, a docked browser, and
+						updates that install themselves. ~44k lines, 286 tests, shipping public releases
+						(v0.24). Designed and built end to end — nights and weekends alongside factory work
+						through Jan 2026, full-time since.
 					</li>
 					<li>
-						<strong>Designed and shipped EXFIL</strong>, a Windows tray tool with per-app
-						vibrance profiles and a live hardware-telemetry overlay. C# / .NET 8, NVAPI
-						P/Invoke, Win32. Public on GitHub.
+						<strong>Built EXFIL</strong>, my first real project — a Windows tray tool that
+						retunes your display per app and overlays live FPS and hardware stats while you game.
+						C# / .NET 8. Rough early work I keep on the site on purpose, to show the jump to Rift.
 					</li>
 					<li>
 						Full-stack range — SvelteKit + TypeScript on the front, Python + FastAPI and Rust
@@ -202,7 +208,7 @@
 				{#snippet summary()}
 					<li>
 						Operated heavy equipment and ran landfill ops on site at an active paper mill.
-						Roughly two years of steady attendance and clean execution, until the contract
+						Showed up, did it right, kept it safe for roughly two years — until the contract
 						ended in March 2025.
 					</li>
 				{/snippet}
@@ -246,8 +252,8 @@
 					<li>Rust</li>
 					<li>C# / .NET 8</li>
 					<li>Tauri 2</li>
-					<li>MCP &amp; agent tooling</li>
-					<li>Win32 / NVAPI</li>
+					<li>AI / agent tooling</li>
+					<li>Windows APIs</li>
 				</ul>
 			</div>
 			<div class="tk">
@@ -749,7 +755,7 @@
 		grid-template-columns: 44px 1fr auto;
 		align-items: center;
 		gap: 18px;
-		padding: 22px 22px;
+		padding: 22px;
 		border: 1px solid var(--line-2);
 		background: var(--panel);
 		transition:

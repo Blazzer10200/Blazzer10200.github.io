@@ -9,6 +9,7 @@ Personal portfolio and résumé, built with SvelteKit and deployed as a static s
 | Route    | Source                              |
 |----------|-------------------------------------|
 | `/`      | `src/routes/+page.svelte`           |
+| `/rift`  | `src/routes/rift/+page.svelte`      |
 | `/exfil` | `src/routes/exfil/+page.svelte`     |
 
 ## Local dev

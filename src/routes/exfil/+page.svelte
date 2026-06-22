@@ -16,57 +16,55 @@
 		{
 			n: '01',
 			title: 'Per-app profile matching',
-			body: `EXFIL listens for foreground-window events, resolves the owning process to its executable path, and looks that path up against the profile list. Not by window title (users rename them), and not by polling (burns battery). Unknown apps fall back to the default instantly.`,
+			body: `EXFIL watches for whichever app you've clicked into and matches it by the actual program, not its window title (titles change), and without constantly polling (that drains your battery). Any app it doesn't recognize quietly falls back to your default look.`,
 			kv: [
-				['Surface', 'SetWinEventHook · process path'],
+				['How', 'Matches the real program, instantly'],
 				['Outcome', 'Unlimited app profiles']
 			]
 		},
 		{
 			n: '02',
 			title: 'Talking to the GPU',
-			body: `Digital vibrance isn't exposed in Windows — it's an NVIDIA driver feature. There's no .NET wrapper I trusted, so I wrote P/Invoke bindings against NVAPI directly. One native library, one function call, a lot of reading stale header files. Now I know how NVAPI actually behaves.`,
+			body: `The vibrance setting EXFIL controls isn't something Windows exposes — it's buried in NVIDIA's graphics driver, with no clean, trustworthy way to reach it. So I wrote that connection myself, from the ground up, working straight against the driver's own low-level interface. It taught me exactly how that layer behaves.`,
 			kv: [
-				['Surface', 'NVAPI P/Invoke'],
-				['Outcome', 'Clean, testable wrapper']
+				['How', 'Talks straight to the graphics driver'],
+				['Outcome', 'Reliable control of the display']
 			]
 		},
 		{
 			n: '03',
 			title: 'HDR changes the rules',
-			body: null,
-			html: `When a display is in HDR mode, the vibrance pipeline behaves differently — applying the wrong profile can look worse than doing nothing. So EXFIL asks Windows via <code>QueryDisplayConfig</code> whether HDR is active per output, and gates its behavior on that. No assumptions about the user's setup.`,
+			body: `When a screen is in HDR mode, the color math works differently — and applying the wrong profile can look worse than leaving it alone. So EXFIL checks with Windows whether each display is actually in HDR before it does anything, and adjusts accordingly. It never just assumes how your setup is configured.`,
 			kv: [
-				['Surface', 'QueryDisplayConfig'],
-				['Outcome', 'Per-output HDR awareness']
+				['How', 'Checks each screen before acting'],
+				['Outcome', 'Right on HDR and regular displays']
 			]
 		},
 		{
 			n: '04',
 			title: 'Monitors get unplugged mid-session',
-			body: null,
-			html: `People unplug monitors. People dock and undock laptops. Displays sleep and wake up looking different. EXFIL hooks <code>WM_DISPLAYCHANGE</code>, re-enumerates outputs, and re-applies whatever profile should be active — instead of sitting there with stale display handles.`,
+			body: `People unplug monitors. People dock and undock laptops. Screens sleep and wake up looking different. When that happens, EXFIL notices, takes stock of what's now connected, and re-applies the right profile — instead of sitting there confused, still pointed at a screen that's no longer there.`,
 			kv: [
-				['Surface', 'Win32 message pump'],
-				['Outcome', 'Hotplug-safe']
+				['How', 'Re-checks when your screens change'],
+				['Outcome', 'Handles unplugging and docking']
 			]
 		},
 		{
 			n: '05',
 			title: 'Settings that survive an upgrade',
-			body: `Every time I change how a setting is stored, I break everyone's config. So the settings file is schema-versioned: each version has a migration step, load-time validation is strict, and partial-failure on a migration rolls back cleanly. The config you saved six months ago still loads on the next build.`,
+			body: `Every time I change how settings are saved, I risk wiping out everyone's existing setup on the next update. So EXFIL knows how to read its older settings and quietly upgrade them — and if anything looks wrong while doing it, it backs out safely instead of corrupting your config. The settings you saved six months ago still load today.`,
 			kv: [
-				['Pattern', 'Versioned schema + migrations'],
-				['Outcome', 'Upgrade-safe']
+				['How', 'Upgrades your old settings for you'],
+				['Outcome', 'Updates never wipe your setup']
 			]
 		},
 		{
 			n: '06',
 			title: 'If I crash, your desktop is fine',
-			body: `The worst failure mode is the process dying with a high-vibrance profile applied — now the desktop looks oversaturated until the user figures out why. So there's a sentinel: on boot, EXFIL notices if the last session ended badly and restores the default profile before doing anything else. You never get stuck.`,
+			body: `The worst case is EXFIL crashing while a punchy game profile is still applied — leaving your whole desktop looking oversaturated with no obvious way to fix it. So on startup, it checks whether the last session ended badly and resets you to normal before doing anything else. You never get stuck with a wrong-looking screen.`,
 			kv: [
-				['Pattern', 'Crash-recovery sentinel'],
-				['Outcome', 'Safe by default']
+				['How', 'Resets to normal after a crash'],
+				['Outcome', 'You never get left stuck']
 			]
 		}
 	];
@@ -96,9 +94,9 @@
 		{
 			src: 'exfil-about.png',
 			name: 'exfil — about',
-			alt: 'EXFIL about page with build info, NVAPI status, and install notes',
+			alt: 'EXFIL about page with build info, driver status, and install notes',
 			capTitle: 'About.',
-			cap: 'Build, runtime, and NVAPI status all in one view. Bug-report copy, changelog, and source links live here too.'
+			cap: 'Build, runtime, and graphics-driver status all in one view. Bug-report copy, changelog, and source links live here too.'
 		}
 	];
 
@@ -106,7 +104,7 @@
 		{
 			n: '01',
 			title: 'Start with the crash path',
-			body: `The sentinel was added late. I'd design the "what happens if this dies at a bad moment" story on day one, not after I shipped and got nervous about it.`
+			body: `The crash-recovery safety net got added late. Next time I'd design the "what happens if this dies at a bad moment" story on day one, not after I shipped and got nervous about it.`
 		},
 		{
 			n: '02',
@@ -147,7 +145,7 @@
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Case study</span>
-			<span class="pill">Shipped · v1.0.0</span>
+			<span class="pill">My first real project · 2025</span>
 		</div>
 
 		<h1>The right app takes focus, the display <em>retunes itself.</em></h1>
@@ -163,6 +161,11 @@
 				>FPS, GPU / CPU / RAM load, and core temps</strong
 			> — so I can see what the rig is doing without a second tool open.
 		</p>
+		<p class="hero-sub">
+			This was my first real project — built early in 2025 while I was still learning. It's rough
+			around the edges and I keep it on my desktop, not in everyone's hands. I'm leaving it here on
+			purpose: put it next to Rift and you can see how far the work came in a year.
+		</p>
 
 		<div class="hero-actions stagger">
 			<a
@@ -171,7 +174,7 @@
 				target="_blank"
 				rel="noopener"
 			>
-				<span class="ico">↗</span> View on GitHub
+				<span class="ico">↗</span> Read the code on GitHub
 			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
@@ -193,7 +196,7 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Status</div>
-				<div class="hero-meta-v accent">Public on GitHub</div>
+				<div class="hero-meta-v accent">Where I started</div>
 			</div>
 		</div>
 	</section>
@@ -217,7 +220,7 @@
 
 	<!-- 02 What it looks like -->
 	<section class="block reveal">
-		<SectionRail num="02 / 05" label="Inside EXFIL" meta="v1.0.0 · Windows 11" />
+		<SectionRail num="02 / 05" label="Inside EXFIL" meta="C# · Windows 11" />
 		<h2>A tray icon, a settings window, and a slim overlay. Then you forget it exists.</h2>
 		<p class="body">
 			Three surfaces. The tray icon handles fast profile switching. The settings window is where
@@ -251,10 +254,10 @@
 			<span class="chip">C#</span>
 			<span class="chip">.NET 8</span>
 			<span class="chip">WinForms</span>
-			<span class="chip">NVAPI P/Invoke</span>
-			<span class="chip">Win32 API</span>
-			<span class="chip">HDR</span>
-			<span class="chip">DPI-aware</span>
+			<span class="chip">Graphics driver</span>
+			<span class="chip">Windows APIs</span>
+			<span class="chip">HDR-aware</span>
+			<span class="chip">Multi-monitor</span>
 		</div>
 	</section>
 
@@ -263,11 +266,11 @@
 		<SectionRail
 			num="03 / 05"
 			label="The ugly corners"
-			meta="Where the work actually lived"
+			meta="The part that took the months"
 		/>
-		<h2>The pitch is one sentence. <em>These are the parts that made it real.</em></h2>
+		<h2>Easy on my rig. <em>Hard on everyone else's.</em></h2>
 		<p class="body">
-			Shipping this on my own rig took a weekend. Shipping it so it doesn't break on someone
+			Shipping this on my own machine took a weekend. Shipping it so it doesn't break on someone
 			else's laptop — weird external monitor, HDR half-enabled, docked at a coffee shop — took a
 			lot longer. Here's where the time actually went.
 		</p>
@@ -279,11 +282,7 @@
 						<span class="ch-num">{ch.n}</span>
 						<span class="ch-title">{ch.title}</span>
 					</div>
-					{#if ch.html}
-						<p>{@html ch.html}</p>
-					{:else}
-						<p>{ch.body}</p>
-					{/if}
+					<p>{ch.body}</p>
 					<dl class="kv">
 						{#each ch.kv as [k, v] (k)}
 							<dt>{k}</dt>
@@ -298,24 +297,20 @@
 	<!-- 04 How I built it -->
 	<section class="block reveal">
 		<SectionRail num="04 / 05" label="How I built it" meta="AI-assisted, not AI-written" />
-		<h2>I designed EXFIL. <em>I accepted every line.</em></h2>
+		<h2>Built the way I build everything — I make the calls, the AI helps me move.</h2>
 		<p class="body">
-			I'm self-taught, and I read code fluently — that's the part I'm not giving up. My loop on
-			EXFIL went like this: I'd decide on the next piece ("hotplug needs to re-enumerate and
-			re-apply"), sketch the shape I wanted, and hand it to Claude Code. It produces a candidate.
-			I read every diff, push back when something is off, and only accept what I understand.
-		</p>
-		<p class="body">
-			That means I know what each part does and I can explain every design choice — why the
-			sentinel lives where it does, why the settings file is versioned, why HDR gates the apply.
-			The model made me faster. <strong>It didn't make the decisions.</strong>
+			I'd decide the next piece — say, "it needs to notice when a monitor gets unplugged and
+			re-apply the right profile" — sketch out how I wanted it to work, and hand that off. Then I'd
+			read through what came back and keep only what I understood. That's why I can still explain
+			every choice here: why it recovers the way it does after a crash, why your old settings survive
+			an update, why it checks for HDR first.
 		</p>
 	</section>
 
 	<!-- 05 What I'd do differently -->
 	<section class="block reveal">
 		<SectionRail num="05 / 05" label="What I'd do differently" meta="Honest retro" />
-		<h2>Three things I'd change if I started over.</h2>
+		<h2>What the next build would get right from day one.</h2>
 
 		<div class="lessons stagger">
 			{#each lessons as les (les.n)}
@@ -331,12 +326,11 @@
 	<!-- CTA -->
 	<section class="cta reveal">
 		<h3>
-			If you want software from someone who designs for the crash path first —
-			<em>let's talk.</em>
+			This is where it started. <em>See where it went.</em>
 		</h3>
 		<div class="cta-actions stagger">
-			<a class="btn primary" href="mailto:braison.swilling@outlook.com?subject=Hello%20Braison">
-				<span class="ico">→</span> Email me
+			<a class="btn primary" href="/rift">
+				<span class="ico">→</span> The Rift case study
 			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
@@ -637,33 +631,33 @@
 	.ch:hover {
 		border-color: rgba(120, 196, 255, 0.35);
 	}
-	.ch :global(.ch-head) {
+	.ch-head {
 		display: flex;
 		align-items: baseline;
 		gap: 12px;
 		margin-bottom: 12px;
 	}
-	.ch :global(.ch-num) {
+	.ch-num {
 		font-family: 'JetBrains Mono', monospace;
 		font-size: 11px;
 		color: var(--accent);
 		font-weight: 600;
 		letter-spacing: 0.04em;
 	}
-	.ch :global(.ch-title) {
+	.ch-title {
 		font-family: 'Inter', system-ui, sans-serif;
 		font-size: 17px;
 		font-weight: 500;
 		color: var(--text);
 		letter-spacing: -0.01em;
 	}
-	.ch :global(p) {
+	.ch p {
 		font-family: 'Inter', system-ui, sans-serif;
 		font-size: 14.5px;
 		color: var(--text-2);
 		line-height: 1.6;
 	}
-	.ch :global(.kv) {
+	.kv {
 		margin-top: 14px;
 		display: grid;
 		grid-template-columns: 92px 1fr;
@@ -672,12 +666,12 @@
 		border-top: 1px solid var(--line);
 		padding-top: 12px;
 	}
-	.ch :global(.kv dt) {
+	.kv dt {
 		color: var(--dim);
 		font-family: 'JetBrains Mono', monospace;
 		letter-spacing: 0.06em;
 	}
-	.ch :global(.kv dd) {
+	.kv dd {
 		color: var(--text);
 		font-family: 'Inter', system-ui, sans-serif;
 	}
@@ -719,7 +713,7 @@
 		margin-bottom: 10px;
 		letter-spacing: -0.01em;
 	}
-	.les :global(p) {
+	.les p {
 		font-family: 'Inter', system-ui, sans-serif;
 		font-size: 14px;
 		color: var(--text-2);
