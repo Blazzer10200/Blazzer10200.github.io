@@ -27,8 +27,7 @@
 			variant: 'ok' as const,
 			dimTs: true
 		},
-		{ ts: '[cost ]', text: 'this turn cost $0.04 · plenty left today', dimTs: true },
-		{ ts: '[idle ]', text: 'standing by · all good' }
+		{ ts: '[cost ]', text: 'this turn cost $0.04 · plenty left today', dimTs: true }
 	];
 </script>
 
@@ -43,7 +42,7 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			Systems &amp; Desktop Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · blazzer10200.github.io · Little Rock, AR or Remote (US)
+			Systems &amp; Desktop Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
 		</div>
 	</header>
 
@@ -59,8 +58,8 @@
 		<p class="hero-sub">
 			I've been writing code since high school — self-taught, working my way up from live
 			game-server backends to finished desktop software. Right now I'm building
-			<strong>Rift</strong>: a Rust desktop app for coding with AI. It's public, and you can
-			download it and run it today.
+			<strong>Rift</strong>: a Rust app that turns coding into a review-and-approve workflow.
+			It's public, and you can download it and run it today.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -72,6 +71,9 @@
 			</a>
 			<a class="btn" href="#contact">
 				<span class="ico">↓</span> Get in touch
+			</a>
+			<a class="btn" href="/resume.pdf" target="_blank" rel="noopener">
+				<span class="ico">↓</span> Download resume (PDF)
 			</a>
 		</div>
 
@@ -101,12 +103,12 @@
 
 		<div class="featured-grid stagger">
 			<div>
-				<h2>Rift — a Rust desktop app for <em>coding with AI.</em></h2>
+				<h2>Rift — a Rust desktop app for coding with AI.</h2>
 				<p>
-					A desktop app for coding with AI. The assistant works inside your project — reading
-					your files, running git, and proposing changes — while
-					<strong>you stay in the reviewer's seat</strong> and approve every one. Several chats
-					at once, a built-in browser, and a running cost meter.
+					<strong>You stay in the reviewer's seat.</strong> The assistant works inside your
+					project — reading your files, running git, and proposing changes — but nothing lands
+					until you approve it. Several chats at once, a built-in browser, and a running cost
+					meter.
 				</p>
 				<p>
 					The app and the assistant work together: it can ask you a question right in the chat,
@@ -143,13 +145,13 @@
 				<div class="screens-cta-body">
 					<div class="screens-cta-eyebrow">— Case study</div>
 					<div class="screens-cta-title">
-						The full story of how I built Rift — <em>and the film of it working.</em>
+						The full story of how I built Rift — and the film of it working.
 					</div>
 					<div class="screens-cta-stats">
 						<span><strong>v0.24</strong></span>
-						<span><strong>~44k</strong> lines</span>
+						<span><strong>weekly</strong> releases</span>
 						<span><strong>286</strong> tests</span>
-						<span><strong>73s</strong> film</span>
+						<span><strong>73-second</strong> demo</span>
 					</div>
 				</div>
 				<span class="screens-cta-arrow" aria-hidden="true">→</span>
@@ -169,16 +171,16 @@
 			>
 				{#snippet summary()}
 					<li>
-						<strong>Building Rift</strong> — a Rust + Tauri desktop app for coding with AI: a
-						built-in assistant that reads your code and runs git for you, a docked browser, and
-						updates that install themselves. ~44k lines, 286 tests, shipping public releases
+						<strong>Building Rift</strong> — a Rust + Tauri coding assistant you drive from the
+						reviewer's seat: it reads your code and runs git for you, a docked browser, and
+						updates that install themselves. 286 tests, shipping public releases
 						(v0.24). Designed and built end to end — nights and weekends alongside factory work
 						through Jan 2026, full-time since.
 					</li>
 					<li>
 						<strong>Built EXFIL</strong>, my first real project — a Windows tray tool that
 						retunes your display per app and overlays live FPS and hardware stats while you game.
-						C# / .NET 8. Rough early work I keep on the site on purpose, to show the jump to Rift.
+						C# / .NET 8. My first shipped tool — I keep it on the site to show the progression to Rift.
 					</li>
 					<li>
 						Full-stack range — SvelteKit + TypeScript on the front, Python + FastAPI and Rust
@@ -288,7 +290,7 @@
 
 	<!-- Contact -->
 	<section class="contact reveal" id="contact">
-		<h3>If you're hiring, <em>I'd love to chat.</em></h3>
+		<h3>If you're hiring, I'd love to chat.</h3>
 		<p class="contact-sub">
 			I'm after a junior-to-mid systems or desktop engineering role — remote or Little Rock /
 			Central Arkansas. If the work is Rust or C#/.NET, desktop apps, or agent tooling, even better.
@@ -332,6 +334,28 @@
 				<div class="contact-body">
 					<div class="contact-k">GitHub</div>
 					<div class="contact-v">github.com/Blazzer10200</div>
+				</div>
+				<span class="contact-arrow">↗</span>
+			</a>
+
+			<a class="contact-cell" href="/resume.pdf" target="_blank" rel="noopener">
+				<span class="contact-icon" aria-hidden="true">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.6"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8z" />
+						<path d="M14 3v5h5" />
+						<path d="M12 12v6m0 0 3-3m-3 3-3-3" />
+					</svg>
+				</span>
+				<div class="contact-body">
+					<div class="contact-k">Resume</div>
+					<div class="contact-v">Download resume (PDF)</div>
 				</div>
 				<span class="contact-arrow">↗</span>
 			</a>

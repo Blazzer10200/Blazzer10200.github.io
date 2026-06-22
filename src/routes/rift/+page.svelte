@@ -240,7 +240,7 @@
 			<span class="pill">v0.24.0 · alpha, but real</span>
 		</div>
 
-		<h1>A desktop cockpit with an AI assistant that <em>actually does the work.</em></h1>
+		<h1>A desktop cockpit with an AI assistant that actually does the work.</h1>
 
 		<p class="hero-sub">
 			Rift is a desktop app for coding with AI. The assistant works inside your project — it reads
@@ -298,8 +298,8 @@
 			<div class="stat-l">the version you can download today</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">~44k</div>
-			<div class="stat-l">lines of Rust and TypeScript</div>
+			<div class="stat-n">weekly</div>
+			<div class="stat-l">public releases, Rust and TypeScript</div>
 		</div>
 		<div class="stat">
 			<div class="stat-n">286</div>
@@ -520,7 +520,7 @@
 	<!-- 04 The ugly corners -->
 	<section class="block reveal">
 		<SectionRail num="04 / 06" label="The ugly corners" meta="Where the work actually lived" />
-		<h2>The easy version is a weekend. <em>The real one took months.</em></h2>
+		<h2>The easy version is a weekend. The real one took months.</h2>
 		<p class="body">
 			Anyone can put a chat box in a window. The hard part is making an assistant that's safe to
 			hand real tools, an app the AI can drive without being able to hijack it, and updates that
@@ -598,7 +598,7 @@
 	<!-- CTA -->
 	<section class="cta reveal">
 		<h3>
-			This is the kind of thing I build. <em>If you're hiring, let's talk.</em>
+			This is the kind of thing I build. If you're hiring, let's talk.
 		</h3>
 		<div class="cta-actions stagger">
 			<a class="btn primary" href="mailto:braison.swilling@outlook.com?subject=Hello%20Braison">

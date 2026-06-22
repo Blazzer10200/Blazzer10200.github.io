@@ -148,7 +148,7 @@
 			<span class="pill">My first real project · 2025</span>
 		</div>
 
-		<h1>The right app takes focus, the display <em>retunes itself.</em></h1>
+		<h1>The right app takes focus, the display retunes itself.</h1>
 
 		<p class="hero-sub">
 			EXFIL is a Windows tray utility. Bind a display-vibrance profile to any app, and the tool
@@ -162,9 +162,9 @@
 			> — so I can see what the rig is doing without a second tool open.
 		</p>
 		<p class="hero-sub">
-			This was my first real project — built early in 2025 while I was still learning. It's rough
-			around the edges and I keep it on my desktop, not in everyone's hands. I'm leaving it here on
-			purpose: put it next to Rift and you can see how far the work came in a year.
+			This was my first shipped tool — built early in 2025, the project where I learned to take an
+			idea all the way to working software. I keep it on the site on purpose: put it next to Rift
+			and you can see how far the work came in a year.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -268,7 +268,7 @@
 			label="The ugly corners"
 			meta="The part that took the months"
 		/>
-		<h2>Easy on my rig. <em>Hard on everyone else's.</em></h2>
+		<h2>Easy on my rig. Hard on everyone else's.</h2>
 		<p class="body">
 			Shipping this on my own machine took a weekend. Shipping it so it doesn't break on someone
 			else's laptop — weird external monitor, HDR half-enabled, docked at a coffee shop — took a
@@ -326,7 +326,7 @@
 	<!-- CTA -->
 	<section class="cta reveal">
 		<h3>
-			This is where it started. <em>See where it went.</em>
+			This is where it started. See where it went.
 		</h3>
 		<div class="cta-actions stagger">
 			<a class="btn primary" href="/rift">
