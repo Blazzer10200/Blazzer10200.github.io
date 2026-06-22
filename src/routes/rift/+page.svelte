@@ -226,6 +226,7 @@
 	/>
 	<meta property="og:url" content="https://blazzer10200.github.io/rift" />
 	<meta name="twitter:title" content="Rift · Case study · Braison Swilling" />
+	<link rel="canonical" href="https://blazzer10200.github.io/rift" />
 </svelte:head>
 
 <svelte:window onkeydown={onPlayerKeydown} />
