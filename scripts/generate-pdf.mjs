@@ -6,10 +6,11 @@
 // local http server, loads it in headless Chromium with print-media emulation,
 // and writes the PDF back into build/ so it ships in the Pages artifact.
 //
-// Usage: node scripts/generate-pdf.mjs   (or `npm run pdf`, which builds first)
+// Usage: node scripts/generate-pdf.mjs (or `npm run pdf`). Requires an existing
+// build/ — run `npm run build:pdf` to build first, then generate.
 
 import { createServer } from 'node:http';
-import { readFile, writeFile, stat } from 'node:fs/promises';
+import { readFile, stat } from 'node:fs/promises';
 import { join, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
