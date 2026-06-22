@@ -15,56 +15,56 @@
 	const challenges = [
 		{
 			n: '01',
-			title: 'Per-app profile matching',
-			body: `EXFIL watches for whichever app you've clicked into and matches it by the actual program, not its window title (titles change), and without constantly polling (that drains your battery). Any app it doesn't recognize quietly falls back to your default look.`,
+			title: 'Knowing which app you just clicked into',
+			body: `EXFIL watches for whichever app you've clicked into and figures out what it actually is. It matches on the real program, not the window's title, because titles change all the time. It does this without constantly checking in the background, which would drain your battery. Anything it doesn't recognize just quietly falls back to your normal look.`,
 			kv: [
-				['How', 'Matches the real program, instantly'],
-				['Outcome', 'Unlimited app profiles']
+				['How', 'It spots the real program the moment you switch'],
+				['Result', 'As many app profiles as you want']
 			]
 		},
 		{
 			n: '02',
-			title: 'Talking to the GPU',
-			body: `The vibrance setting EXFIL controls isn't something Windows exposes — it's buried in NVIDIA's graphics driver, with no clean, trustworthy way to reach it. So I wrote that connection myself, from the ground up, working straight against the driver's own low-level interface. It taught me exactly how that layer behaves.`,
+			title: 'Talking to the graphics card',
+			body: `The color setting EXFIL controls isn't something Windows lets you reach. It's buried deep inside NVIDIA's graphics driver, with no clean or reliable way in. So I wrote that connection myself, from scratch, talking straight to the driver's own low-level controls. It taught me a lot about how that layer really behaves.`,
 			kv: [
-				['How', 'Talks straight to the graphics driver'],
-				['Outcome', 'Reliable control of the display']
+				['How', 'It talks straight to the graphics driver'],
+				['Result', 'Steady, reliable control of your screen']
 			]
 		},
 		{
 			n: '03',
-			title: 'HDR changes the rules',
-			body: `When a screen is in HDR mode, the color math works differently — and applying the wrong profile can look worse than leaving it alone. So EXFIL checks with Windows whether each display is actually in HDR before it does anything, and adjusts accordingly. It never just assumes how your setup is configured.`,
+			title: 'HDR screens change the rules',
+			body: `When a screen is in HDR mode, the color works differently, and using the wrong settings can look worse than doing nothing at all. So before EXFIL touches anything, it asks Windows whether each display is actually in HDR, then adjusts to match. It never just assumes how your setup is put together.`,
 			kv: [
-				['How', 'Checks each screen before acting'],
-				['Outcome', 'Right on HDR and regular displays']
+				['How', 'It checks each screen before it acts'],
+				['Result', 'Looks right on HDR and normal screens']
 			]
 		},
 		{
 			n: '04',
 			title: 'Monitors get unplugged mid-session',
-			body: `People unplug monitors. People dock and undock laptops. Screens sleep and wake up looking different. When that happens, EXFIL notices, takes stock of what's now connected, and re-applies the right profile — instead of sitting there confused, still pointed at a screen that's no longer there.`,
+			body: `People unplug monitors. They dock and undock laptops. Screens go to sleep and wake up looking different. When any of that happens, EXFIL notices, takes stock of what's connected now, and re-applies the right settings. It doesn't just sit there confused, still pointed at a screen that isn't there anymore.`,
 			kv: [
-				['How', 'Re-checks when your screens change'],
-				['Outcome', 'Handles unplugging and docking']
+				['How', 'It re-checks whenever your screens change'],
+				['Result', 'Handles unplugging and docking cleanly']
 			]
 		},
 		{
 			n: '05',
-			title: 'Settings that survive an upgrade',
-			body: `Every time I change how settings are saved, I risk wiping out everyone's existing setup on the next update. So EXFIL knows how to read its older settings and quietly upgrade them — and if anything looks wrong while doing it, it backs out safely instead of corrupting your config. The settings you saved six months ago still load today.`,
+			title: 'Settings that survive an update',
+			body: `Every time I change how settings get saved, I risk wiping out everyone's existing setup on the next update. So EXFIL knows how to read its older settings and quietly bring them up to date. If anything looks wrong while it's doing that, it backs out safely instead of corrupting your setup. The settings you saved six months ago still load just fine today.`,
 			kv: [
-				['How', 'Upgrades your old settings for you'],
-				['Outcome', 'Updates never wipe your setup']
+				['How', 'It upgrades your old settings for you'],
+				['Result', 'Updates never wipe out your setup']
 			]
 		},
 		{
 			n: '06',
-			title: 'If I crash, your desktop is fine',
-			body: `The worst case is EXFIL crashing while a punchy game profile is still applied — leaving your whole desktop looking oversaturated with no obvious way to fix it. So on startup, it checks whether the last session ended badly and resets you to normal before doing anything else. You never get stuck with a wrong-looking screen.`,
+			title: 'If it crashes, your desktop is still fine',
+			body: `The worst case is EXFIL crashing while a punchy game profile is still on. That leaves your whole desktop looking blown out and oversaturated, with no obvious way to fix it. So every time it starts up, it checks whether the last session ended badly and resets you back to normal before it does anything else. You never get stuck staring at a wrong-looking screen.`,
 			kv: [
-				['How', 'Resets to normal after a crash'],
-				['Outcome', 'You never get left stuck']
+				['How', 'It resets you to normal after a crash'],
+				['Result', 'You never get left stuck']
 			]
 		}
 	];
@@ -72,28 +72,28 @@
 	const screenshots = [
 		{
 			src: 'exfil-dashboard.png',
-			name: 'exfil — dashboard',
+			name: 'exfil · dashboard',
 			alt: 'EXFIL dashboard with tray status, OSD preview, game library, and live system telemetry',
 			capTitle: 'Dashboard.',
-			cap: 'Live tray status, OSD preview, game library, and a system panel pulling real GPU / CPU temps and load straight from the hardware monitor.'
+			cap: 'Live tray status, a preview of the on-screen overlay, your game library, and a panel pulling real graphics and processor temps and load straight from the hardware.'
 		},
 		{
 			src: 'exfil-presets.png',
-			name: 'exfil — presets',
+			name: 'exfil · presets',
 			alt: 'EXFIL preset editor with vibrance, gamma, brightness, and contrast curves',
 			capTitle: 'Presets.',
-			cap: 'Per-app vibrance, gamma, brightness, and contrast curves. Bind a preset to a game and EXFIL applies it the instant focus changes.'
+			cap: 'Set color, brightness, and contrast for each app. Tie a preset to a game and EXFIL applies it the instant you click in.'
 		},
 		{
 			src: 'exfil-osd.png',
-			name: 'exfil — osd designer',
+			name: 'exfil · overlay designer',
 			alt: 'EXFIL OSD designer with overlay layout, content, and style controls',
-			capTitle: 'OSD designer.',
-			cap: `Drag the overlay where it fits, pick a layout, and tune what's shown. FPS, GPU / CPU load, and temps render in-game with no injection.`
+			capTitle: 'Overlay designer.',
+			cap: `Drag the overlay wherever it fits, pick a layout, and choose what it shows. Your frame rate, graphics and processor load, and temps all draw on top of the game without ever touching it.`
 		},
 		{
 			src: 'exfil-about.png',
-			name: 'exfil — about',
+			name: 'exfil · about',
 			alt: 'EXFIL about page with build info, driver status, and install notes',
 			capTitle: 'About.',
 			cap: 'Build, runtime, and graphics-driver status all in one view. Bug-report copy, changelog, and source links live here too.'
@@ -104,7 +104,7 @@
 		{
 			n: '01',
 			title: 'Start with the crash path',
-			body: `The crash-recovery safety net got added late. Next time I'd design the "what happens if this dies at a bad moment" story on day one, not after I shipped and got nervous about it.`
+			body: `The crash-recovery safety net got added late. Next time I'd plan out the "what happens if this dies at a bad moment" story on day one, not after I'd already shipped and started getting nervous about it.`
 		},
 		{
 			n: '02',
@@ -114,27 +114,27 @@
 		{
 			n: '03',
 			title: 'Test on a laptop earlier',
-			body: `Mixed-DPI, HDR, external monitors, docking — all the ugly display-config edge cases live on laptops. Testing on a desktop too long let bugs pile up.`
+			body: `Mismatched screen sizes, HDR, external monitors, docking. All the ugly display edge cases live on laptops. I tested on a desktop too long, and the bugs piled up while I wasn't looking.`
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>EXFIL — Case study · Braison Swilling</title>
+	<title>EXFIL · Case study · Braison Swilling</title>
 	<meta
 		name="description"
-		content="Building EXFIL: a Windows tray tool that swaps display vibrance per app and overlays live FPS, GPU/CPU/RAM load, and core temps."
+		content="Building EXFIL, a small Windows app that retunes your screen's color for each app you open and shows live frame rate, graphics, processor and memory load, and core temps."
 	/>
-	<meta property="og:title" content="EXFIL — Case study · Braison Swilling" />
+	<meta property="og:title" content="EXFIL · Case study · Braison Swilling" />
 	<meta
 		property="og:description"
-		content="Building EXFIL: a Windows tray tool that swaps display vibrance per app and overlays live FPS, GPU/CPU/RAM load, and core temps."
+		content="Building EXFIL, a small Windows app that retunes your screen's color for each app you open and shows live frame rate, graphics, processor and memory load, and core temps."
 	/>
 	<meta property="og:url" content="https://blazzer10200.github.io/exfil" />
-	<meta name="twitter:title" content="EXFIL — Case study · Braison Swilling" />
+	<meta name="twitter:title" content="EXFIL · Case study · Braison Swilling" />
 	<meta
 		name="twitter:description"
-		content="Building EXFIL: a Windows tray tool that swaps display vibrance per app and overlays live FPS, GPU/CPU/RAM load, and core temps."
+		content="Building EXFIL, a small Windows app that retunes your screen's color for each app you open and shows live frame rate, graphics, processor and memory load, and core temps."
 	/>
 </svelte:head>
 
@@ -151,20 +151,20 @@
 		<h1>The right app takes focus, the display retunes itself.</h1>
 
 		<p class="hero-sub">
-			EXFIL is a Windows tray utility. Bind a display-vibrance profile to any app, and the tool
-			swaps profiles automatically as window focus changes. Tarkov is washed out and dark, so I
-			crank vibrance for it; my desktop and editing apps stay neutral; movies sit somewhere in the
-			middle. Point it at an executable, pick a profile, and stop thinking about it.
+			EXFIL is a small Windows app that lives down in your taskbar tray. You tie a color profile to
+			any app, and EXFIL swaps to it the second you click into that app. Tarkov is washed out and
+			dark, so I crank up the color for it. My desktop and editing apps stay normal. Movies sit
+			somewhere in between. You point it at an app, pick a profile, and then stop thinking about it.
 		</p>
 		<p class="hero-sub">
-			Since it's already running, it doubles as a slim overlay with live <strong
-				>FPS, GPU / CPU / RAM load, and core temps</strong
-			> — so I can see what the rig is doing without a second tool open.
+			Since it's already running anyway, it doubles as a slim overlay that shows your live <strong
+				>frame rate, your graphics card, processor and memory load, and your core temperatures</strong
+			>. That way I can see what my PC is doing without opening a second tool.
 		</p>
 		<p class="hero-sub">
-			This was my first shipped tool — built early in 2025, the project where I learned to take an
-			idea all the way to working software. I keep it on the site on purpose: put it next to Rift
-			and you can see how far the work came in a year.
+			This was the first tool I ever shipped. I built it early in 2025, and it's the project where I
+			learned to take an idea all the way to finished, working software. I keep it on the site on
+			purpose. Put it next to Rift and you can see how far the work came in a single year.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -204,28 +204,29 @@
 	<!-- 01 The problem -->
 	<section class="block reveal">
 		<SectionRail num="01 / 05" label="The problem" meta="Why this exists" />
-		<h2>One display setting doesn't fit everything you do on the same machine.</h2>
+		<h2>One screen setting can't cover everything you do on the same PC.</h2>
 		<p class="body">
-			It started with Tarkov. The game is dark and low-contrast, so I crank NVIDIA's digital
-			vibrance to make targets stand out. But the same setting makes my desktop, photos, and
-			movies look radioactive. The usual workaround is to toggle vibrance by hand every launch.
+			It started with Tarkov. The game is dark and low on contrast, so I crank up the screen's color
+			to make targets stand out. The problem is that same setting makes my desktop, my photos, and my
+			movies look radioactive. The usual fix is to toggle it by hand every time you launch the game.
 			Nobody actually does that.
 		</p>
 		<p class="body">
-			Once the Tarkov case worked, the rest fell out for free. EXFIL stores an unlimited list of
-			<strong>per-application profiles</strong>. Bind a profile to an executable and the tool
-			swaps it the instant that app takes focus — no hotkeys, no manual switching.
+			Once I had Tarkov working, the rest came almost for free. EXFIL keeps an unlimited list of
+			profiles, one for each app you care about. You tie a profile to an app, and EXFIL swaps to it
+			the instant you click into that app. No hotkeys, no flipping settings by hand.
 		</p>
 	</section>
 
 	<!-- 02 What it looks like -->
 	<section class="block reveal">
 		<SectionRail num="02 / 05" label="Inside EXFIL" meta="C# · Windows 11" />
-		<h2>A tray icon, a settings window, and a slim overlay. Then you forget it exists.</h2>
+		<h2>A tray icon, a settings window, and a slim overlay. Then you forget it's there.</h2>
 		<p class="body">
-			Three surfaces. The tray icon handles fast profile switching. The settings window is where
-			you manage per-app profiles, the OSD overlay, and system info. The overlay floats over your
-			active app showing FPS and hardware stats. That's the whole UI.
+			There are really only three parts. The little tray icon down by the clock handles quick profile
+			switching. The settings window is where you set up your per-app profiles, the on-screen overlay,
+			and the system info. And the overlay itself floats over whatever app you're in, showing your
+			frame rate and PC stats. That's the entire app.
 		</p>
 
 		<div class="screens stagger">
@@ -268,11 +269,11 @@
 			label="The ugly corners"
 			meta="The part that took the months"
 		/>
-		<h2>Easy on my rig. Hard on everyone else's.</h2>
+		<h2>Easy on my own PC. Hard on everyone else's.</h2>
 		<p class="body">
-			Shipping this on my own machine took a weekend. Shipping it so it doesn't break on someone
-			else's laptop — weird external monitor, HDR half-enabled, docked at a coffee shop — took a
-			lot longer. Here's where the time actually went.
+			Getting this working on my own machine took a weekend. Getting it to not break on someone
+			else's laptop took a lot longer. Think a strange external monitor, HDR turned half on, the thing
+			docked at a coffee shop. That's where the real time went.
 		</p>
 
 		<div class="challenges stagger">
@@ -297,13 +298,13 @@
 	<!-- 04 How I built it -->
 	<section class="block reveal">
 		<SectionRail num="04 / 05" label="How I built it" meta="AI-assisted, not AI-written" />
-		<h2>Built the way I build everything — I make the calls, the AI helps me move.</h2>
+		<h2>Built the way I build everything. I make the calls, the AI helps me move.</h2>
 		<p class="body">
-			I'd decide the next piece — say, "it needs to notice when a monitor gets unplugged and
-			re-apply the right profile" — sketch out how I wanted it to work, and hand that off. Then I'd
-			read through what came back and keep only what I understood. That's why I can still explain
-			every choice here: why it recovers the way it does after a crash, why your old settings survive
-			an update, why it checks for HDR first.
+			I'd decide the next piece myself. Say, it needs to notice when a monitor gets unplugged and put
+			the right profile back. I'd sketch out how I wanted it to work and hand that off. Then I'd read
+			through what came back and keep only the parts I actually understood. That's why I can still
+			explain every choice here. Why it recovers the way it does after a crash. Why your old settings
+			survive an update. Why it checks for HDR first.
 		</p>
 	</section>
 

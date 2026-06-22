@@ -11,31 +11,31 @@
 	const pillars = [
 		{
 			n: '01',
-			title: 'An assistant with real tools, not just chat',
+			title: 'An AI with real tools, not just chat',
 			body: null,
-			html: `The assistant isn't a chat box bolted on — it actually does the work. It reads your files, searches the codebase, and runs git, all scoped to the folder you point it at. You get multiple conversations at once, the ability to redirect it mid-task, control over what it's allowed to touch, and a running tally of what each turn costs.`,
+			html: `This isn't a chat box with a fancy name. The AI actually does the work. It reads your files and searches your code, and it can run git for you (the tool that saves and tracks code changes). Everything it touches is fenced to the one folder you point it at. You can keep several conversations going, jump in and redirect it mid-task, set exactly what it's allowed to touch, and watch what each turn is costing you as it goes.`,
 			kv: [
-				['Does', 'Reads, searches, runs git'],
-				['You', 'Stay in control, review the work']
+				['What it does', 'Reads and searches your code, runs git'],
+				['Your part', 'You stay in control and review the work']
 			]
 		},
 		{
 			n: '02',
-			title: 'An app the assistant can drive',
+			title: 'An app the AI can drive',
 			body: null,
-			html: `Most AI tools can only talk back. Rift's assistant can act on the app itself — it pops a question card right in the chat when it needs a decision, opens a live preview of whatever you're building in the built-in browser, or nudges the corner of the window when a long job is done. And it always knows the state of the app around it: what's on screen, how much of your usage you've used up.`,
+			html: `Most AI tools can only talk back at you. Rift's AI can actually act on the app. When it needs a decision, a question pops up right in the chat. It can open a live preview of whatever you're building in the browser that's built in. When a long job finishes, it nudges the corner of the window so you know. It also keeps track of where things stand, like what's on your screen and how much of your usage you've spent.`,
 			kv: [
-				['Does', 'Asks, previews, notifies'],
-				['Knows', 'What is on screen and what is left']
+				['What it does', 'Asks you, shows previews, sends a nudge'],
+				['What it tracks', "What's on screen and how much is left"]
 			]
 		},
 		{
 			n: '03',
 			title: 'It ships itself',
-			body: `One command kicks off a release: it builds, packages, and publishes, and every copy already out there updates itself the next time it launches. The current build is public right now — a one-click Windows installer, v0.24.0 — and nothing ships unless the compiler, the type-checker, and the full test suite all pass first.`,
+			body: `One command starts a release. It builds the app, packages it up, and publishes it, and every copy already out in the world updates itself the next time someone opens it. The current build is public right now, a one-click Windows installer, v0.26.1. And nothing ever goes out the door unless the compiler, the type-checker, and the full test suite all pass first.`,
 			kv: [
-				['Does', 'Builds, packages, publishes'],
-				['Now', 'Public download, v0.24.0']
+				['What it does', 'Builds, packages, and publishes itself'],
+				['Right now', 'Public download, v0.26.1']
 			]
 		}
 	];
@@ -44,41 +44,41 @@
 		{
 			n: '01',
 			title: 'I deleted the feature the app was named for',
-			lead: `Rift started as a game-server sync tool. I cut the entire sync half — a quarter of the codebase — when the assistant became the product.`,
-			body: `Rift began as an SSH/SFTP cockpit for game-server developers: file watcher, atomic uploads, drift scanner. Then the assistant outgrew it — I was opening Rift to code, not to sync. So I ripped out the half the app was named for: the SSH stack, the watcher, the drift scanner, every remote code path. ~13k lines, deleted on purpose. What's left is a product with one job, and every line serves it.`,
+			lead: `Rift started as a tool for syncing files to game servers. I cut the entire sync half, about a quarter of the code, once the AI part became the real product.`,
+			body: `Rift began as a control panel for game-server developers. It watched your files and pushed them to a remote server safely. Then the AI side outgrew all of that. I noticed I was opening Rift to write code, not to sync anything. So I tore out the half the app was literally named after: the remote connection, the file watcher, all of it. That was around 13,000 lines, deleted on purpose. What's left does one job, and every line of it earns its place.`,
 			kv: [
-				['Cut', '~13k lines, on purpose'],
-				['Result', 'One product, one job']
+				['What I cut', 'About 13,000 lines, on purpose'],
+				['The result', 'One product that does one job']
 			]
 		},
 		{
 			n: '02',
-			title: 'I shipped an update that bricked every client',
-			lead: `One lost key locked everyone out — so I rebuilt updates so no key can ever do that again.`,
-			body: `My old update system signed each release with a secret key — and when I lost that key, every installed copy was stranded, unable to accept a single update ever again. I rebuilt the whole thing so there's no key that can be lost. The tricky part: an update silently fails if the app is still running a background task, so the new system shuts those down cleanly before swapping itself out. Nobody can get stranded like that again.`,
+			title: 'I shipped an update that broke every copy out there',
+			lead: `One lost key locked everyone out. So I rebuilt updates so that no key can ever do that again.`,
+			body: `My old update system signed each release with a secret key. When I lost that key, every installed copy was stuck and could never accept another update again. I rebuilt the whole thing so there's no key left to lose in the first place. The tricky part was that an update quietly fails if the app is still busy in the background, so the new system shuts those jobs down cleanly before it swaps itself out. Nobody gets stranded like that again.`,
 			kv: [
-				['Fix', 'No key left to lose'],
-				['Result', 'Updates that can’t lock anyone out']
+				['The fix', 'No key left to lose'],
+				['The result', "Updates that can't lock anyone out"]
 			]
 		},
 		{
 			n: '03',
-			title: 'My AI can run git — so I attacked it first',
-			lead: `The assistant can commit and push code. Before it shipped, I tried to break it on purpose.`,
-			body: `The moment an AI can run real commands, those commands become a way in for anything malicious. Real security holes had just been found in tools exactly like this, so I assumed mine had them too. I locked down every input it accepts: it can only touch the project folder, only run a fixed set of safe operations, can't be tricked into reaching outside the repo, and flatly refuses the dangerous stuff. Two independent layers have to agree before it's allowed to act — if one is wrong, the other still holds.`,
+			title: 'My AI can run git, so I attacked it first',
+			lead: `The AI can save and push code on its own. Before it shipped, I tried to break it on purpose.`,
+			body: `The moment an AI can run real commands on your machine, those commands become a door someone could sneak through. Real security holes had just turned up in tools a lot like mine, so I assumed mine had them too. I locked down everything it accepts. It can only touch the project folder, it can only run a short list of safe operations, it can't be tricked into reaching outside the project, and it flatly refuses anything dangerous. Two separate checks both have to agree before it's allowed to act, so if one of them is ever wrong, the other still holds the line.`,
 			kv: [
-				['Approach', 'Two layers, both must agree'],
-				['Result', 'Locked down before it shipped']
+				['My approach', 'Two checks, and both have to agree'],
+				['The result', 'Locked down before it ever shipped']
 			]
 		},
 		{
 			n: '04',
-			title: 'The AI was being told to use a tool that didn’t exist',
-			lead: `It was being pointed at a feature an earlier cleanup had quietly removed.`,
-			body: `While auditing what the assistant could do, I found a ghost. When it hit a wall, the app would tell it to "go ask the user" — but the feature that actually showed the user that question had been deleted weeks earlier in a big cleanup. The AI was being coached to use something that wasn't there anymore. I rebuilt it properly, and made it fail gracefully: if that channel is ever down, the AI simply isn't offered those tools, instead of trying and erroring.`,
+			title: "The AI was being told to use a tool that didn't exist",
+			lead: `It was being pointed at a feature an earlier cleanup had quietly deleted.`,
+			body: `While I was going through what the AI could do, I found a ghost. Whenever it got stuck, the app would tell it to go ask me a question. But the feature that actually showed me that question had been deleted weeks earlier in a big cleanup. The AI was being told to use something that wasn't there anymore. I rebuilt it properly and made it fail gracefully. Now, if that part is ever down, the AI just isn't offered those tools at all, instead of trying and hitting an error.`,
 			kv: [
-				['Fix', 'Rebuilt it, fails gracefully now'],
-				['Result', 'Ask, preview, and notify — all live']
+				['The fix', 'Rebuilt it, and it fails gracefully now'],
+				['The result', 'Asking, previews, and nudges all work']
 			]
 		}
 	];
@@ -86,18 +86,18 @@
 	const lessons = [
 		{
 			n: '01',
-			title: 'Write the security model before the feature',
-			body: `The git-tool hardening was designed up front, in a brief, before a line shipped. That's the order I want for anything that touches a network or runs a command — not a retrofit after it works.`
+			title: 'Write the security plan before the feature',
+			body: `The git lockdown got designed up front, written out before a single line shipped. That's the order I want for anything that touches the internet or runs a command. Figure out how it could go wrong first, don't bolt safety on after it already works.`
 		},
 		{
 			n: '02',
 			title: 'Delete faster',
-			body: `I knew the assistant was the product weeks before I cut the sync half. Sunk cost kept dead weight in the tree, and when the cut finally came, it left a ghost tool behind. Next time the call gets made the week the evidence lands.`
+			body: `I knew the AI was the real product weeks before I actually cut the sync half. I held onto dead weight because I'd already sunk time into it, and when I finally cut it, it left that ghost tool behind. Next time I'll make the call the same week the evidence is in front of me.`
 		},
 		{
 			n: '03',
-			title: 'Keep files small enough to reason about',
-			body: `A couple of core files grew past 2,000 lines and got brittle to change. I've been carving them into focused modules — the work is easier when each piece fits in your head.`
+			title: 'Keep files small enough to hold in your head',
+			body: `A couple of core files grew past 2,000 lines and got scary to touch. I've been breaking them into smaller, focused pieces. The work goes a lot easier when each piece fits in your head at once.`
 		}
 	];
 
@@ -214,18 +214,18 @@
 </script>
 
 <svelte:head>
-	<title>Rift — Case study · Braison Swilling</title>
+	<title>Rift · Case study · Braison Swilling</title>
 	<meta
 		name="description"
-		content="Building Rift: a Rust desktop app for coding with AI — an assistant that reads your code and runs git for you, a built-in browser, and updates that install themselves. Public download."
+		content="Building Rift, a desktop app for coding with AI. The AI reads your code and can run git for you, there's a web browser built in, and it updates itself. You stay in control. Free public download."
 	/>
-	<meta property="og:title" content="Rift — Case study · Braison Swilling" />
+	<meta property="og:title" content="Rift · Case study · Braison Swilling" />
 	<meta
 		property="og:description"
-		content="Building Rift: a Rust desktop app for coding with AI — an assistant that reads your code and runs git for you, a built-in browser, and updates that install themselves. Public download."
+		content="Building Rift, a desktop app for coding with AI. The AI reads your code and can run git for you, there's a web browser built in, and it updates itself. You stay in control. Free public download."
 	/>
 	<meta property="og:url" content="https://blazzer10200.github.io/rift" />
-	<meta name="twitter:title" content="Rift — Case study · Braison Swilling" />
+	<meta name="twitter:title" content="Rift · Case study · Braison Swilling" />
 </svelte:head>
 
 <svelte:window onkeydown={onPlayerKeydown} />
@@ -237,20 +237,21 @@
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Case study</span>
-			<span class="pill">v0.24.0 · alpha, but real</span>
+			<span class="pill">v0.26.1 · early, but real</span>
 		</div>
 
-		<h1>A desktop cockpit with an AI assistant that actually does the work.</h1>
+		<h1>A desktop app with an AI that actually does the work.</h1>
 
 		<p class="hero-sub">
-			Rift is a desktop app for coding with AI. The assistant works inside your project — it reads
-			your files, searches the code, runs git, and proposes changes for you to approve — all inside a
-			real desktop app with multiple chats at once, a built-in browser, and a running cost meter.
+			Rift is a desktop app for coding with AI. The AI works inside your project. It reads your
+			files, searches the code, and can run git for you, then proposes changes you approve. All of
+			that lives in a real desktop app, with several chats open at once, a web browser built in, and
+			a meter showing what each turn costs.
 		</p>
 		<p class="hero-sub">
-			It's built on <strong>Rust</strong> for the speed and safety that matters in a desktop app,
-			the assistant can act on the app itself, and it installs and updates without you lifting a
-			finger — and nothing ships unless every test passes first. It's early, but
+			It runs on <strong>Rust</strong>, which keeps it fast and stable. The AI can act on the app
+			itself, and the whole thing installs and updates without you lifting a finger. Nothing ever
+			ships unless every test passes first. It's still early, but
 			<strong>you can download and run it right now.</strong>
 		</p>
 
@@ -294,12 +295,12 @@
 	<!-- Stats band -->
 	<section class="stats reveal" aria-label="Rift at a glance">
 		<div class="stat">
-			<div class="stat-n">v0.24</div>
+			<div class="stat-n">v0.26</div>
 			<div class="stat-l">the version you can download today</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">weekly</div>
-			<div class="stat-l">public releases, Rust and TypeScript</div>
+			<div class="stat-n">56</div>
+			<div class="stat-l">public releases so far, Rust and TypeScript</div>
 		</div>
 		<div class="stat">
 			<div class="stat-n">286</div>
@@ -307,7 +308,7 @@
 		</div>
 		<div class="stat">
 			<div class="stat-n">1</div>
-			<div class="stat-l">person — me, start to finish</div>
+			<div class="stat-l">person built it. Me, start to finish.</div>
 		</div>
 	</section>
 
@@ -316,9 +317,10 @@
 		<SectionRail num="01 / 06" label="The film" meta="73 seconds" />
 		<h2>Here's what it actually looks like.</h2>
 		<p class="body">
-			Describe the work and watch it happen — the assistant plans and edits your code live, checks
-			its own work, and you steer it with a sentence. Two chats side by side, a private local model,
-			and a single preset that restyles the whole app. No narration needed.
+			Tell it what you want and watch it happen. The AI plans the work, edits your code live, and
+			checks its own work, and you steer the whole thing with a sentence here and there. You'll see
+			two chats running side by side, an AI model running privately on the machine, and one click
+			that restyles the entire app. No narration, just the real thing working.
 		</p>
 
 		<figure class="film-wrap stagger">
@@ -349,7 +351,7 @@
 					onclick={togglePlay}
 				>
 					<source src="{base}/videos/rift-film.mp4" type="video/mp4" />
-					Your browser doesn't play MP4 — the case study below covers everything in the film.
+					Your browser doesn't play MP4. The case study below covers everything in the film.
 				</video>
 
 				<!-- click-to-play surface (poster shows until first play) -->
@@ -425,7 +427,7 @@
 					</div>
 				</div>
 			</div>
-			<figcaption>Every frame is the real app — the actual Rift interface, driven through a live session and captured start to finish.</figcaption>
+			<figcaption>Every frame here is the real app. This is the actual Rift, running a live session, captured start to finish.</figcaption>
 		</figure>
 	</section>
 
@@ -434,16 +436,18 @@
 		<SectionRail num="02 / 06" label="The problem" meta="Why this exists" />
 		<h2>The best AI coding tool lives in a terminal window. I wanted a real app.</h2>
 		<p class="body">
-			The AI I code with every day runs in a plain terminal — powerful, but a cramped place to work.
-			No tabs, no clean way to review its changes side by side, no browser for the thing you just
-			built, no sense of what a session costs until the bill arrives. Most desktop alternatives just
-			wrap a web page around a chat box and call it an app.
+			The AI I code with every day runs in a plain terminal window. It's powerful, but it's a cramped
+			place to work. There are no tabs. There's no clean way to look at its changes side by side, no
+			browser for the thing you just built, and no sense of what a session is costing you until the
+			bill shows up. Most of the desktop versions out there just wrap a web page around a chat box and
+			call it an app.
 		</p>
 		<p class="body">
-			Rift is that workflow built as a proper desktop app. Point it at a project and the assistant
-			works the same way you would — reading the code, searching it, running git — while you approve
-			every change before it lands. The preview opens in a browser docked beside the chat, your cost
-			and usage stay in view, and you can talk to it instead of typing.
+			Rift takes that same way of working and builds it into a proper desktop app. You point it at a
+			project and the AI works the way you would. It reads the code, searches it, and runs git, while
+			you approve every change before it lands. The preview opens in a browser docked right next to
+			the chat, your cost and usage stay in view the whole time, and you can talk to it instead of
+			typing.
 		</p>
 	</section>
 
@@ -452,8 +456,8 @@
 		<SectionRail num="03 / 06" label="Inside Rift" meta="Three pillars" />
 		<h2>Three things make it more than a chat window.</h2>
 		<p class="body">
-			An assistant that actually does the work, an app it can act on, and a build that ships and
-			updates itself. The film above shows all three in motion.
+			There's an AI that actually does the work. There's an app it can reach out and act on. And the
+			whole thing ships and updates itself. The film above shows all three of them in motion.
 		</p>
 
 		<div class="challenges stagger">
@@ -491,28 +495,28 @@
 		<h3 class="demo-lead">And a lot more under the hood.</h3>
 		<div class="surface stagger">
 			<div class="feat">
-				<div class="feat-t">Built-in browser</div>
-				<p>A real browser docked right beside the chat — scroll, click, type an address. The assistant can open pages in it for you.</p>
+				<div class="feat-t">A browser built in</div>
+				<p>A real web browser docked right next to the chat. You can scroll, click, and type an address, and the AI can open pages in it for you.</p>
 			</div>
 			<div class="feat">
-				<div class="feat-t">Cost cockpit</div>
-				<p>See exactly what every turn costs and how much of your usage is left — no surprise bill at the end of the month.</p>
+				<div class="feat-t">See what it costs</div>
+				<p>You can see exactly what every turn costs and how much of your usage is left. No surprise bill at the end of the month.</p>
 			</div>
 			<div class="feat">
-				<div class="feat-t">Voice input</div>
-				<p>Talk to it instead of typing. The speech-to-text runs entirely on your machine — no audio ever leaves it.</p>
+				<div class="feat-t">Talk to it</div>
+				<p>Speak instead of typing. The part that turns your voice into text runs right on your computer, so no audio ever leaves it.</p>
 			</div>
 			<div class="feat">
 				<div class="feat-t">You decide what it can touch</div>
-				<p>From "ask me before every change" to "go run on your own" — pick how much freedom the assistant gets, and change it any time.</p>
+				<p>Set it to ask you before every change, or let it run on its own. You choose how much freedom the AI gets, and you can change it any time.</p>
 			</div>
 			<div class="feat">
-				<div class="feat-t">Work in parallel</div>
-				<p>For big jobs, it can split the work across several helpers at once — each kept safely isolated so they don't step on each other.</p>
+				<div class="feat-t">Work on several things at once</div>
+				<p>For a big job, it can split the work across several helpers running at the same time. Each one is kept walled off so they don't step on each other.</p>
 			</div>
 			<div class="feat">
-				<div class="feat-t">Prompt polish</div>
-				<p>Type a rough thought, hit one button, and it rewrites it into a clear, specific instruction before sending.</p>
+				<div class="feat-t">Clean up your wording</div>
+				<p>Type a rough thought, hit one button, and it rewrites it into a clear, specific instruction before it sends.</p>
 			</div>
 		</div>
 	</section>
@@ -520,11 +524,12 @@
 	<!-- 04 The ugly corners -->
 	<section class="block reveal">
 		<SectionRail num="04 / 06" label="The ugly corners" meta="Where the work actually lived" />
-		<h2>The easy version is a weekend. The real one took months.</h2>
+		<h2>You could fake this in a weekend. The real version took months.</h2>
 		<p class="body">
-			Anyone can put a chat box in a window. The hard part is making an assistant that's safe to
-			hand real tools, an app the AI can drive without being able to hijack it, and updates that
-			can't leave anyone stranded. That's where the months went. Four of those corners:
+			Anyone can put a chat box in a window. The hard part is making an AI that's actually safe to
+			hand real tools to. It's building an app the AI can drive without being able to hijack it. It's
+			shipping updates that can't leave anyone stranded. That's where the months went. Here are four
+			of those corners.
 		</p>
 
 		<div class="challenges stagger">
@@ -552,18 +557,18 @@
 	<!-- 05 How I built it -->
 	<section class="block reveal">
 		<SectionRail num="05 / 06" label="How I built it" meta="AI-assisted, not AI-written" />
-		<h2>I'm self-taught, and I build by pairing with AI — but I make the calls.</h2>
+		<h2>I taught myself this, and I build by working alongside AI. But I make the calls.</h2>
 		<p class="body">
-			The way I work: I decide what to build next, sketch out the shape I want and the limits it has
-			to respect, and hand that off to the AI. Then I go through what comes back, push back on
-			anything that's wrong, and only keep code I actually understand. Nothing ships until it's
-			clean — the Rust compiler, the type-checker, and the full test suite all have to pass.
+			Here's how I actually work. I decide what to build next. I sketch out the shape I want and the
+			limits it has to stay inside, and I hand that to the AI. Then I read back through everything it
+			gives me, push back on whatever's wrong, and only keep code I genuinely understand. Nothing
+			ships until it's clean. The Rust compiler, the type-checker, and the full test suite all have to
+			pass first.
 		</p>
 		<p class="body">
-			That's why I can walk you through any decision in here: why the update system can't lock
-			anyone out, why the assistant's access to your code is fenced off the way it is, why the
-			security still holds even if one layer fails. The AI helped me move faster. The decisions
-			were mine.
+			That's why I can walk you through any decision on this page. Why the update system can't lock
+			anyone out. Why the AI's reach into your code is fenced off the way it is. Why the security
+			still holds even if one check fails. The AI helped me move faster. The decisions were all mine.
 		</p>
 
 		<div class="skills">

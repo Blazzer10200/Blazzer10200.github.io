@@ -80,8 +80,8 @@ $titleBrush.Dispose()
 # Tagline — multi-line
 $taglineFont = New-Object System.Drawing.Font "Segoe UI", 28, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $taglineBrush = New-Object System.Drawing.SolidBrush $text2
-$g.DrawString("I design Windows software, work with AI to build it,", $taglineFont, $taglineBrush, $pad, 370)
-$g.DrawString("and ship it. Rift is the proof.", $taglineFont, $taglineBrush, $pad, 410)
+$g.DrawString("I build desktop software with AI, and I ship it.", $taglineFont, $taglineBrush, $pad, 370)
+$g.DrawString("Right now that's Rift, free to download.", $taglineFont, $taglineBrush, $pad, 410)
 $taglineFont.Dispose()
 $taglineBrush.Dispose()
 
@@ -92,7 +92,7 @@ $linePen.Dispose()
 
 $stackFont = New-Object System.Drawing.Font "Consolas", 19, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $stackBrush = New-Object System.Drawing.SolidBrush $text2
-$g.DrawString("Rust  $mid  Tauri 2  $mid  TypeScript  $mid  SvelteKit  $mid  C# / .NET 8  $mid  Win32", $stackFont, $stackBrush, $pad, 540)
+$g.DrawString("Rust  $mid  Tauri 2  $mid  TypeScript  $mid  SvelteKit  $mid  C# / .NET 8", $stackFont, $stackBrush, $pad, 540)
 $stackFont.Dispose()
 $stackBrush.Dispose()
 

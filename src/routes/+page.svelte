@@ -32,7 +32,7 @@
 </script>
 
 <svelte:head>
-	<title>Braison Swilling — Systems &amp; Desktop Developer</title>
+	<title>Braison Swilling · Systems &amp; Desktop Developer</title>
 </svelte:head>
 
 <TopBar />
@@ -53,13 +53,13 @@
 			<span class="pill">Open to work</span>
 		</div>
 
-		<h1>I design and build <em>desktop software that ships.</em></h1>
+		<h1>I design and build <em>desktop software, and I ship it.</em></h1>
 
 		<p class="hero-sub">
-			I've been writing code since high school — self-taught, working my way up from live
-			game-server backends to finished desktop software. Right now I'm building
-			<strong>Rift</strong>: a Rust app that turns coding into a review-and-approve workflow.
-			It's public, and you can download it and run it today.
+			I've been writing code since high school. No degree, I taught myself, starting with live
+			game-server backends and working my way up to real desktop software. Right now I'm building
+			<strong>Rift</strong>. It's a coding app where an AI does the typing and you read every
+			change before it happens. It's public. You can download it and run it today.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -80,7 +80,7 @@
 		<div class="hero-meta stagger">
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Currently building</div>
-				<div class="hero-meta-v accent">Rift v0.24.0</div>
+				<div class="hero-meta-v accent">Rift v0.26.1</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
@@ -99,22 +99,23 @@
 
 	<!-- Featured -->
 	<section class="featured reveal" id="featured">
-		<SectionRail num="01 / 03" label="Featured project" meta="2026 — In active development" />
+		<SectionRail num="01 / 03" label="Featured project" meta="2026 · In active development" />
 
 		<div class="featured-grid stagger">
 			<div>
-				<h2>Rift — a Rust desktop app for coding with AI.</h2>
+				<h2>Rift, a desktop app for coding with AI.</h2>
 				<p>
-					<strong>You stay in the reviewer's seat.</strong> The assistant works inside your
-					project — reading your files, running git, and proposing changes — but nothing lands
-					until you approve it. Several chats at once, a built-in browser, and a running cost
-					meter.
+					<strong>You stay the reviewer.</strong> The AI works inside your project. It reads your
+					files and proposes changes, and it can run git for you (that's the tool that saves and
+					tracks every code change). Nothing actually happens until you approve it. You also get
+					several chats open at once, a web browser built right in, and a meter showing what each
+					turn is costing you.
 				</p>
 				<p>
-					The app and the assistant work together: it can ask you a question right in the chat,
-					open a preview in the built-in browser, or nudge you when a long task finishes. Built
-					on Rust for speed and safety, with voice input that never leaves your machine and
-					updates that install themselves.
+					The app and the AI talk to each other. It can stop and ask you a question in the chat,
+					pop open a preview of what you're building, or ping you when a long job is done. It runs
+					on Rust, which keeps it fast and stable. You can talk to it instead of typing, and your
+					voice never leaves your computer. It even updates itself.
 				</p>
 
 				<div class="stack-row">
@@ -143,13 +144,13 @@
 		<div class="screens stagger">
 			<a class="screens-cta" href="/rift">
 				<div class="screens-cta-body">
-					<div class="screens-cta-eyebrow">— Case study</div>
+					<div class="screens-cta-eyebrow">Case study</div>
 					<div class="screens-cta-title">
-						The full story of how I built Rift — and the film of it working.
+						The full story of how I built Rift, plus a short film of it working.
 					</div>
 					<div class="screens-cta-stats">
-						<span><strong>v0.24</strong></span>
-						<span><strong>weekly</strong> releases</span>
+						<span><strong>v0.26</strong></span>
+						<span><strong>shipping</strong> often</span>
 						<span><strong>286</strong> tests</span>
 						<span><strong>73-second</strong> demo</span>
 					</div>
@@ -165,73 +166,76 @@
 
 		<div class="exp-wrap">
 			<ExperienceItem
-				years="2025 — Present"
+				years="2025 to now"
 				role="Independent software developer"
 				org="Self-directed"
 			>
 				{#snippet summary()}
 					<li>
-						<strong>Building Rift</strong> — a Rust + Tauri coding assistant you drive from the
-						reviewer's seat: it reads your code and runs git for you, a docked browser, and
-						updates that install themselves. 286 tests, shipping public releases
-						(v0.24). Designed and built end to end — nights and weekends alongside factory work
-						through Jan 2026, full-time since.
+						<strong>Building Rift</strong>, a desktop app for coding with AI. The AI reads your
+						code and can run git for you, there's a web browser built in, and it updates itself.
+						You stay in control and approve the changes. It has 286 tests and ships as a public
+						download (v0.26). I designed and built the whole thing myself. I did it nights and
+						weekends around a factory job through Jan 2026, and full-time since.
 					</li>
 					<li>
-						<strong>Built EXFIL</strong>, my first real project — a Windows tray tool that
-						retunes your display per app and overlays live FPS and hardware stats while you game.
-						C# / .NET 8. My first shipped tool — I keep it on the site to show the progression to Rift.
+						<strong>Built EXFIL</strong>, my first real project. It's a small Windows app that
+						lives in your taskbar tray and retunes your screen's color for each app you open. It
+						also shows your frame rate and PC stats while you game. Built in C# and .NET 8. It was
+						the first thing I took all the way to working software, and I keep it here to show how
+						far I've come since.
 					</li>
 					<li>
-						Full-stack range — SvelteKit + TypeScript on the front, Python + FastAPI and Rust
-						on the back, SSH / Linux for deploy.
+						I work across the whole stack. SvelteKit and TypeScript for the part you see, Python,
+						FastAPI and Rust behind it, and Linux for putting it online.
 					</li>
 				{/snippet}
 			</ExperienceItem>
 
 			<ExperienceItem
-				years="Jul 2025 — Jan 2026"
+				years="Jul 2025 to Jan 2026"
 				role="Production / Assembly"
 				org="Strong Manufacturing"
 			>
 				{#snippet summary()}
 					<li>
-						Started in yard work and facility cleaning, promoted to the assembly line within
-						a few months — until company-wide cuts ended the role in Jan 2026.
+						Started in yard work and facility cleaning, then got moved up to the assembly line
+						within a few months. Company-wide cuts ended the role in Jan 2026.
 					</li>
 				{/snippet}
 			</ExperienceItem>
 
 			<ExperienceItem
-				years="2023 — Mar 2025"
+				years="2023 to Mar 2025"
 				role="Heavy equipment operator · Landfill operations"
-				org="S&L Contracting LLC — Twin Rivers Paper Mill (now American Kraft)"
+				org="S&L Contracting LLC, Twin Rivers Paper Mill (now American Kraft)"
 			>
 				{#snippet summary()}
 					<li>
-						Operated heavy equipment and ran landfill ops on site at an active paper mill.
-						Showed up, did it right, kept it safe for roughly two years — until the contract
-						ended in March 2025.
+						Ran heavy equipment and handled landfill operations on site at a working paper mill.
+						I showed up, did it right, and kept it safe for about two years. The contract ended in
+						March 2025.
 					</li>
 				{/snippet}
 				{#snippet more()}
 					<li>
-						Day-to-day responsibility for safe equipment operation in a live industrial site
-						— not the kind of job you fake your way through.
+						I was responsible every day for running equipment safely on a live industrial site.
+						It's not the kind of job you can fake your way through.
 					</li>
 				{/snippet}
 			</ExperienceItem>
 
 			<ExperienceItem
-				years="High school — 2025"
+				years="High school to 2025"
 				role="FiveM & RedM server operator"
 				org="Self-employed"
 			>
 				{#snippet summary()}
 					<li>
-						<strong>Where I started writing code.</strong> Built and ran live FiveM/RedM
-						servers for real player communities — Lua scripting, MySQL, Windows + Linux admin,
-						and shipping fixes to an audience that noticed when something broke.
+						<strong>This is where I started writing code.</strong> I built and ran live FiveM and
+						RedM game servers for real player communities. That meant scripting in Lua, running a
+						MySQL database, and admining both Windows and Linux. People noticed the second anything
+						broke, so I learned to ship fixes fast.
 					</li>
 					<li>Wound down in early 2025 to focus on building software full-time.</li>
 				{/snippet}
@@ -254,7 +258,7 @@
 					<li>Rust</li>
 					<li>C# / .NET 8</li>
 					<li>Tauri 2</li>
-					<li>AI / agent tooling</li>
+					<li>Building AI tools</li>
 					<li>Windows APIs</li>
 				</ul>
 			</div>
@@ -292,8 +296,9 @@
 	<section class="contact reveal" id="contact">
 		<h3>If you're hiring, I'd love to chat.</h3>
 		<p class="contact-sub">
-			I'm after a junior-to-mid systems or desktop engineering role — remote or Little Rock /
-			Central Arkansas. If the work is Rust or C#/.NET, desktop apps, or agent tooling, even better.
+			I'm looking for a junior to mid-level role building systems or desktop software. Remote works,
+			or in person around Little Rock and Central Arkansas. If the job involves Rust, C# and .NET,
+			desktop apps, or building AI tools, even better.
 		</p>
 
 		<div class="contact-grid stagger">
