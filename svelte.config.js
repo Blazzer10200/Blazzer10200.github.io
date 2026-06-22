@@ -17,7 +17,15 @@ const config = {
 			base: process.env.BASE_PATH ?? ''
 		},
 		prerender: {
-			entries: ['/', '/rift', '/exfil']
+			entries: ['/', '/rift', '/exfil'],
+			handleHttpError: ({ path, message }) => {
+				// The resume PDF is dropped in manually (static/resume.pdf) and isn't
+				// in the repo yet. Allow the link to dangle so the build still passes;
+				// it 404s at runtime until the file lands. Every other broken link
+				// stays a fatal build error.
+				if (path === '/resume.pdf') return;
+				throw new Error(message);
+			}
 		}
 	}
 };
