@@ -32,10 +32,10 @@
 		{
 			n: '03',
 			title: 'It ships itself',
-			body: `One command starts a release. It builds the app, packages it up, and publishes it, and every copy already out in the world updates itself the next time someone opens it. The current build is public right now, a one-click Windows installer, v0.26.1. And nothing ever goes out the door unless the compiler, the type-checker, and the full test suite all pass first.`,
+			body: `One command starts a release. It builds the app, packages it up, and publishes it, and every copy already out in the world updates itself the next time someone opens it. The current build is public right now, a one-click Windows installer, v0.93.0. And nothing ever goes out the door unless the compiler, the type-checker, and the full test suite all pass first.`,
 			kv: [
 				['What it does', 'Builds, packages, and publishes itself'],
-				['Right now', 'Public download, v0.26.1']
+				['Right now', 'Public download, v0.93.0']
 			]
 		}
 	];
@@ -238,7 +238,7 @@
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Case study</span>
-			<span class="pill">v0.26.1 · early, but real</span>
+			<span class="pill">v0.93.0 · early, but real</span>
 		</div>
 
 		<h1>A desktop app with an AI that actually does the work.</h1>
@@ -296,16 +296,16 @@
 	<!-- Stats band -->
 	<section class="stats reveal" aria-label="Rift at a glance">
 		<div class="stat">
-			<div class="stat-n">v0.26</div>
+			<div class="stat-n">v0.93</div>
 			<div class="stat-l">the version you can download today</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">56</div>
+			<div class="stat-n">100</div>
 			<div class="stat-l">public releases so far, Rust and TypeScript</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">286</div>
-			<div class="stat-l">tests · 64 Rust + 222 vitest</div>
+			<div class="stat-n">656</div>
+			<div class="stat-l">tests · 146 Rust + 510 vitest</div>
 		</div>
 		<div class="stat">
 			<div class="stat-n">1</div>

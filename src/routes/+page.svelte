@@ -5,7 +5,7 @@
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
 
 	const riftLog = [
-		{ ts: '[boot ]', text: 'rift v0.24.0 · ready' },
+		{ ts: '[boot ]', text: 'rift v0.93.0 · ready' },
 		{ ts: '[ai   ]', text: 'opened your project · tools ready', variant: 'ok' as const, dimTs: true },
 		{ ts: '[ai   ]', text: 'new turn · thinking out loud as it goes' },
 		{
@@ -81,7 +81,7 @@
 		<div class="hero-meta stagger">
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Currently building</div>
-				<div class="hero-meta-v accent">Rift v0.26.1</div>
+				<div class="hero-meta-v accent">Rift v0.93.0</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
@@ -150,9 +150,9 @@
 						The full story of how I built Rift, plus a short film of it working.
 					</div>
 					<div class="screens-cta-stats">
-						<span><strong>v0.26</strong></span>
+						<span><strong>v0.93</strong></span>
 						<span><strong>shipping</strong> often</span>
-						<span><strong>286</strong> tests</span>
+						<span><strong>656</strong> tests</span>
 						<span><strong>73-second</strong> demo</span>
 					</div>
 				</div>
@@ -175,8 +175,8 @@
 					<li>
 						<strong>Building Rift</strong>, a desktop app for coding with AI. The AI reads your
 						code and can run git for you, there's a web browser built in, and it updates itself.
-						You stay in control and approve the changes. It has 286 tests and ships as a public
-						download (v0.26). I designed and built the whole thing myself. I did it nights and
+						You stay in control and approve the changes. It has 656 tests and ships as a public
+						download (v0.93). I designed and built the whole thing myself. I did it nights and
 						weekends around a factory job through Jan 2026, and full-time since.
 					</li>
 					<li>
