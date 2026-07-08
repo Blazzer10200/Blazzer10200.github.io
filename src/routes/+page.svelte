@@ -33,6 +33,7 @@
 
 <svelte:head>
 	<title>Braison Swilling · Systems &amp; Desktop Developer</title>
+	<link rel="canonical" href="https://blazzer10200.github.io/" />
 </svelte:head>
 
 <TopBar />

@@ -132,6 +132,7 @@
 	/>
 	<meta property="og:url" content="https://blazzer10200.github.io/exfil" />
 	<meta name="twitter:title" content="EXFIL · Case study · Braison Swilling" />
+	<link rel="canonical" href="https://blazzer10200.github.io/exfil" />
 	<meta
 		name="twitter:description"
 		content="Building EXFIL, a small Windows app that retunes your screen's color for each app you open and shows live frame rate, graphics, processor and memory load, and core temps."
