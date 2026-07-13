@@ -35,6 +35,10 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Authenticated GitHub API calls (build-time Rift version fetch) — avoids
+          # the shared-runner unauthenticated rate limit.
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Generate resume PDF
         run: npm run pdf

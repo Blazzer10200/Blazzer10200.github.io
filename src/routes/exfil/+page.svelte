@@ -6,7 +6,7 @@
 	const navLinks = [
 		{ href: '/', label: '← Back to résumé', primary: true },
 		{
-			href: 'https://github.com/Blazzer10200/exfil-v1',
+			href: 'https://github.com/Blazzer10200/exfil',
 			label: 'GitHub ↗',
 			external: true
 		}
@@ -171,7 +171,7 @@
 		<div class="hero-actions stagger">
 			<a
 				class="btn primary"
-				href="https://github.com/Blazzer10200/exfil-v1"
+				href="https://github.com/Blazzer10200/exfil"
 				target="_blank"
 				rel="noopener"
 			>

@@ -3,9 +3,15 @@
 	import SectionRail from '$lib/components/SectionRail.svelte';
 	import TerminalPanel from '$lib/components/TerminalPanel.svelte';
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+	// svelte-ignore state_referenced_locally -- fully prerendered, data never changes
+	const vFull = `v${data.riftVersion}`;
+	const vShort = vFull.replace(/\.\d+$/, '');
 
 	const riftLog = [
-		{ ts: '[boot ]', text: 'rift v0.93.0 · ready' },
+		{ ts: '[boot ]', text: `rift ${vFull} · ready` },
 		{ ts: '[ai   ]', text: 'opened your project · tools ready', variant: 'ok' as const, dimTs: true },
 		{ ts: '[ai   ]', text: 'new turn · thinking out loud as it goes' },
 		{
@@ -60,7 +66,8 @@
 			I've been writing code since high school. No degree, I taught myself, starting with live
 			game-server backends and working my way up to real desktop software. Right now I'm building
 			<strong>Rift</strong>. It's a coding app where an AI does the typing and you read every
-			change before it happens. It's public. You can download it and run it today.
+			change before it happens. It's open source. You can download it and run it today, or read
+			every line of the code.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -81,7 +88,7 @@
 		<div class="hero-meta stagger">
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Currently building</div>
-				<div class="hero-meta-v accent">Rift v0.93.0</div>
+				<div class="hero-meta-v accent">Rift {vFull}</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
@@ -131,9 +138,15 @@
 				<div class="featured-actions">
 					<a
 						class="link-quiet"
-						href="https://github.com/Blazzer10200/rift/releases/latest"
+						href="https://github.com/Blazzer10200/rift-tauri/releases/latest"
 						target="_blank"
 						rel="noopener">Download Rift ↓</a
+					>
+					<a
+						class="link-quiet"
+						href="https://github.com/Blazzer10200/rift-tauri"
+						target="_blank"
+						rel="noopener">View the source ↗</a
 					>
 					<a class="link-quiet" href="/rift">Read the case study ↗</a>
 				</div>
@@ -150,10 +163,10 @@
 						The full story of how I built Rift, plus a short film of it working.
 					</div>
 					<div class="screens-cta-stats">
-						<span><strong>v0.93</strong></span>
-						<span><strong>shipping</strong> often</span>
-						<span><strong>656</strong> tests</span>
-						<span><strong>73-second</strong> demo</span>
+						<span><strong>{vShort}</strong></span>
+						<span><strong>MIT</strong> open source</span>
+						<span><strong>746</strong> tests</span>
+						<span><strong>45-second</strong> demo</span>
 					</div>
 				</div>
 				<span class="screens-cta-arrow" aria-hidden="true">→</span>
@@ -175,8 +188,8 @@
 					<li>
 						<strong>Building Rift</strong>, a desktop app for coding with AI. The AI reads your
 						code and can run git for you, there's a web browser built in, and it updates itself.
-						You stay in control and approve the changes. It has 656 tests and ships as a public
-						download (v0.93). I designed and built the whole thing myself. I did it nights and
+						You stay in control and approve the changes. It's open source, has 746 tests, and
+						ships as a public download ({vShort}). I designed and built the whole thing myself. I did it nights and
 						weekends around a factory job through Jan 2026, and full-time since.
 					</li>
 					<li>

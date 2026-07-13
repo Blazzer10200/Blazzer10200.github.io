@@ -2,9 +2,16 @@
 	import { base } from '$app/paths';
 	import TopBar from '$lib/components/TopBar.svelte';
 	import SectionRail from '$lib/components/SectionRail.svelte';
+	import type { PageProps } from './$types';
+
+	let { data }: PageProps = $props();
+	// svelte-ignore state_referenced_locally -- fully prerendered, data never changes
+	const vFull = `v${data.riftVersion}`;
+	const vShort = vFull.replace(/\.\d+$/, '');
 
 	const navLinks = [
 		{ href: '/', label: '← Back to résumé', primary: true },
+		{ href: 'https://github.com/Blazzer10200/rift-tauri', label: 'GitHub ↗', external: true },
 		{ href: '#film', label: 'The film ↓', external: false }
 	];
 
@@ -32,10 +39,10 @@
 		{
 			n: '03',
 			title: 'It ships itself',
-			body: `One command starts a release. It builds the app, packages it up, and publishes it, and every copy already out in the world updates itself the next time someone opens it. The current build is public right now, a one-click Windows installer, v0.93.0. And nothing ever goes out the door unless the compiler, the type-checker, and the full test suite all pass first.`,
+			body: `One command starts a release. It builds the app, packages it up, and publishes it, and every copy already out in the world updates itself the next time someone opens it. The current build is public right now, a one-click Windows installer, ${vFull}, and the code behind it is open source. And nothing ever goes out the door unless the compiler, the type-checker, and the full test suite all pass first.`,
 			kv: [
 				['What it does', 'Builds, packages, and publishes itself'],
-				['Right now', 'Public download, v0.93.0']
+				['Right now', `Open source · public download, ${vFull}`]
 			]
 		}
 	];
@@ -217,12 +224,12 @@
 	<title>Rift · Case study · Braison Swilling</title>
 	<meta
 		name="description"
-		content="Building Rift, a desktop app for coding with AI. The AI reads your code and can run git for you, there's a web browser built in, and it updates itself. You stay in control. Free public download."
+		content="Building Rift, a desktop app for coding with AI. The AI reads your code and can run git for you, there's a web browser built in, and it updates itself. You stay in control. Open source, free public download."
 	/>
 	<meta property="og:title" content="Rift · Case study · Braison Swilling" />
 	<meta
 		property="og:description"
-		content="Building Rift, a desktop app for coding with AI. The AI reads your code and can run git for you, there's a web browser built in, and it updates itself. You stay in control. Free public download."
+		content="Building Rift, a desktop app for coding with AI. The AI reads your code and can run git for you, there's a web browser built in, and it updates itself. You stay in control. Open source, free public download."
 	/>
 	<meta property="og:url" content="https://blazzer10200.github.io/rift" />
 	<meta name="twitter:title" content="Rift · Case study · Braison Swilling" />
@@ -238,7 +245,7 @@
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Case study</span>
-			<span class="pill">v0.93.0 · early, but real</span>
+			<span class="pill">{vFull} · early, but real</span>
 		</div>
 
 		<h1>A desktop app with an AI that actually does the work.</h1>
@@ -253,13 +260,14 @@
 			It runs on <strong>Rust</strong>, which keeps it fast and stable. The AI can act on the app
 			itself, and the whole thing installs and updates without you lifting a finger. Nothing ever
 			ships unless every test passes first. It's still early, but
-			<strong>you can download and run it right now.</strong>
+			<strong>you can download and run it right now</strong> — and every line of the code is
+			public.
 		</p>
 
 		<div class="hero-actions stagger">
 			<a
 				class="btn primary"
-				href="https://github.com/Blazzer10200/rift/releases/latest"
+				href="https://github.com/Blazzer10200/rift-tauri/releases/latest"
 				target="_blank"
 				rel="noopener"
 			>
@@ -267,6 +275,9 @@
 			</a>
 			<a class="btn" href="#film">
 				<span class="ico">▸</span> Watch the film
+			</a>
+			<a class="btn" href="https://github.com/Blazzer10200/rift-tauri" target="_blank" rel="noopener">
+				<span class="ico">↗</span> View the source
 			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
@@ -288,7 +299,7 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Status</div>
-				<div class="hero-meta-v accent">Alpha · public download</div>
+				<div class="hero-meta-v accent">Alpha · open source</div>
 			</div>
 		</div>
 	</section>
@@ -296,16 +307,16 @@
 	<!-- Stats band -->
 	<section class="stats reveal" aria-label="Rift at a glance">
 		<div class="stat">
-			<div class="stat-n">v0.93</div>
+			<div class="stat-n">{vShort}</div>
 			<div class="stat-l">the version you can download today</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">100</div>
-			<div class="stat-l">public releases so far, Rust and TypeScript</div>
+			<div class="stat-n">MIT</div>
+			<div class="stat-l">open source. Read every line on GitHub.</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">656</div>
-			<div class="stat-l">tests · 146 Rust + 510 vitest</div>
+			<div class="stat-n">746</div>
+			<div class="stat-l">tests · 176 Rust + 570 vitest</div>
 		</div>
 		<div class="stat">
 			<div class="stat-n">1</div>
@@ -315,13 +326,12 @@
 
 	<!-- 01 The film -->
 	<section class="block reveal" id="film">
-		<SectionRail num="01 / 06" label="The film" meta="73 seconds" />
+		<SectionRail num="01 / 06" label="The film" meta="45 seconds" />
 		<h2>Here's what it actually looks like.</h2>
 		<p class="body">
-			Tell it what you want and watch it happen. The AI plans the work, edits your code live, and
-			checks its own work, and you steer the whole thing with a sentence here and there. You'll see
-			two chats running side by side, an AI model running privately on the machine, and one click
-			that restyles the entire app. No narration, just the real thing working.
+			Tell it what you want and watch it happen. You'll see it open a project, work through the
+			code in chat, split the window into side-by-side panes, and restyle the entire app from
+			settings with one click. No narration, just the real thing working.
 		</p>
 
 		<figure class="film-wrap stagger">
@@ -342,7 +352,7 @@
 					bind:this={video}
 					preload="metadata"
 					playsinline
-					poster="{base}/videos/rift-film-poster.jpg"
+					poster="{base}/videos/rift-tour-poster.jpg"
 					ontimeupdate={onTimeUpdate}
 					onloadedmetadata={onLoaded}
 					onplay={() => { playing = true; nudgeControls(); }}
@@ -351,7 +361,7 @@
 					onvolumechange={() => { muted = video.muted; volume = video.volume; }}
 					onclick={togglePlay}
 				>
-					<source src="{base}/videos/rift-film.mp4" type="video/mp4" />
+					<source src="{base}/videos/rift-tour.mp4" type="video/mp4" />
 					Your browser doesn't play MP4. The case study below covers everything in the film.
 				</video>
 
@@ -571,6 +581,13 @@
 			anyone out. Why the AI's reach into your code is fenced off the way it is. Why the security
 			still holds even if one check fails. The AI helped me move faster. The decisions were all mine.
 		</p>
+		<p class="body">
+			And you don't have to take my word for it. Rift is open source — the code, the commits, every
+			decision on this page, all of it is public.
+			<a href="https://github.com/Blazzer10200/rift-tauri" target="_blank" rel="noopener"
+				>Read it on GitHub ↗</a
+			>
+		</p>
 
 		<div class="skills">
 			<span class="skills-lead">What this demonstrates</span>
@@ -609,6 +626,9 @@
 		<div class="cta-actions stagger">
 			<a class="btn primary" href="mailto:braison.swilling@outlook.com?subject=Hello%20Braison">
 				<span class="ico">→</span> Email me
+			</a>
+			<a class="btn" href="https://github.com/Blazzer10200/rift-tauri" target="_blank" rel="noopener">
+				<span class="ico">↗</span> See the code
 			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
