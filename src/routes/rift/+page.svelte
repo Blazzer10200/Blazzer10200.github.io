@@ -2,12 +2,12 @@
 	import { base } from '$app/paths';
 	import TopBar from '$lib/components/TopBar.svelte';
 	import SectionRail from '$lib/components/SectionRail.svelte';
+	import { riftVersionStrings, RIFT_TESTS, RIFT_TESTS_DETAIL } from '$lib/rift-facts';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 	// svelte-ignore state_referenced_locally -- fully prerendered, data never changes
-	const vFull = `v${data.riftVersion}`;
-	const vShort = vFull.replace(/\.\d+$/, '');
+	const { vFull, vShort } = riftVersionStrings(data.riftVersion);
 
 	const navLinks = [
 		{ href: '/', label: '← Back to résumé', primary: true },
@@ -315,8 +315,8 @@
 			<div class="stat-l">open source. Read every line on GitHub.</div>
 		</div>
 		<div class="stat">
-			<div class="stat-n">746</div>
-			<div class="stat-l">tests · 176 Rust + 570 vitest</div>
+			<div class="stat-n">{RIFT_TESTS}</div>
+			<div class="stat-l">tests · {RIFT_TESTS_DETAIL}</div>
 		</div>
 		<div class="stat">
 			<div class="stat-n">1</div>

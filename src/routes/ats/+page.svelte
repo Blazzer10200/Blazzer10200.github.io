@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { riftVersionStrings, RIFT_TESTS } from '$lib/rift-facts';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 	// svelte-ignore state_referenced_locally -- fully prerendered, data never changes
-	const vFull = `v${data.riftVersion}`;
+	const { vFull } = riftVersionStrings(data.riftVersion);
 </script>
 
 <svelte:head>
@@ -21,7 +22,7 @@
 	<header>
 		<h1>Braison Swilling</h1>
 		<p class="role">Systems and Desktop Developer</p>
-		<p class="contact">
+		<p class="contact-row">
 			Little Rock, AR or Remote (US) · braison.swilling@outlook.com · github.com/Blazzer10200 ·
 			blazzer10200.github.io
 		</p>
@@ -31,8 +32,8 @@
 		<h2>Professional Summary</h2>
 		<p>
 			Self-taught systems and desktop developer who ships working software. Designed and built Rift,
-			an open-source Windows desktop application for coding with AI ({vFull}, 746 automated tests,
-			public installer), solo. Comfortable across the stack: Rust and C# desktop applications,
+			an open-source Windows desktop application for coding with AI ({vFull}, {RIFT_TESTS}
+			automated tests, public installer), solo. Comfortable across the stack: Rust and C# desktop applications,
 			TypeScript and SvelteKit frontends, Python backends, and Linux deployment. Looking for a
 			junior to mid-level role building systems, desktop software, or AI tooling.
 		</p>
@@ -61,8 +62,8 @@
 				<li>
 					Designed and built Rift, an open-source desktop app for coding with AI (Rust, Tauri 2,
 					Svelte 5, TypeScript). The AI reads code, proposes changes for approval, and runs git;
-					the app includes a built-in browser, voice input, and cost tracking. 746 automated tests
-					(Rust and vitest), a self-updating public Windows installer, and a one-command release
+					the app includes a built-in browser, voice input, and cost tracking. {RIFT_TESTS} automated
+					tests (Rust and vitest), a self-updating public Windows installer, and a one-command release
 					pipeline through GitHub Actions. MIT licensed, source public on GitHub.
 				</li>
 				<li>
@@ -156,7 +157,7 @@
 		color: var(--text);
 		margin-top: 2px;
 	}
-	.contact {
+	.contact-row {
 		color: var(--dim);
 		font-size: 13.5px;
 		margin-top: 6px;

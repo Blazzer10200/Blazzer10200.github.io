@@ -3,12 +3,12 @@
 	import SectionRail from '$lib/components/SectionRail.svelte';
 	import TerminalPanel from '$lib/components/TerminalPanel.svelte';
 	import ExperienceItem from '$lib/components/ExperienceItem.svelte';
+	import { riftVersionStrings, RIFT_TESTS } from '$lib/rift-facts';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
 	// svelte-ignore state_referenced_locally -- fully prerendered, data never changes
-	const vFull = `v${data.riftVersion}`;
-	const vShort = vFull.replace(/\.\d+$/, '');
+	const { vFull, vShort } = riftVersionStrings(data.riftVersion);
 
 	const riftLog = [
 		{ ts: '[boot ]', text: `rift ${vFull} · ready` },
@@ -165,7 +165,7 @@
 					<div class="screens-cta-stats">
 						<span><strong>{vShort}</strong></span>
 						<span><strong>MIT</strong> open source</span>
-						<span><strong>746</strong> tests</span>
+						<span><strong>{RIFT_TESTS}</strong> tests</span>
 						<span><strong>45-second</strong> demo</span>
 					</div>
 				</div>
@@ -188,7 +188,7 @@
 					<li>
 						<strong>Building Rift</strong>, a desktop app for coding with AI. The AI reads your
 						code and can run git for you, there's a web browser built in, and it updates itself.
-						You stay in control and approve the changes. It's open source, has 746 tests, and
+						You stay in control and approve the changes. It's open source, has {RIFT_TESTS} tests, and
 						ships as a public download ({vShort}). I designed and built the whole thing myself. I did it nights and
 						weekends around a factory job through Jan 2026, and full-time since.
 					</li>
@@ -887,10 +887,5 @@
 	}
 	.ats-note a:hover {
 		color: var(--text);
-	}
-	@media print {
-		.ats-note {
-			display: none !important;
-		}
 	}
 </style>

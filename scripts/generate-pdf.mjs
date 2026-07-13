@@ -105,7 +105,11 @@ async function main() {
 		for (const job of JOBS) {
 			const out = join(BUILD_DIR, job.out);
 			const page = await browser.newPage();
-			await page.goto(new URL(job.route, url).href, { waitUntil: 'networkidle' });
+			const res = await page.goto(new URL(job.route, url).href, { waitUntil: 'networkidle' });
+			if (!res || !res.ok()) {
+				// Fail loud: never render an error/404 page into a shipping PDF.
+				throw new Error(`[pdf] ${job.route} responded ${res ? res.status() : 'nothing'} — aborting ${job.out}`);
+			}
 			// Use the site's print stylesheet, not the screen one.
 			await page.emulateMedia({ media: 'print' });
 			await page.pdf({
