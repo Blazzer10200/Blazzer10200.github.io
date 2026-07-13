@@ -22,12 +22,14 @@
 			{ href: '#featured', label: 'Work' },
 			{ href: '#experience', label: 'Experience' },
 			{ href: '#toolkit', label: 'Toolkit' },
-			{ href: '#contact', label: 'Contact' }
+			{ href: '#contact', label: 'Contact' },
+			{ href: 'https://github.com/Blazzer10200', label: 'GitHub ↗', external: true }
 		],
 		showStatus = false
 	}: Props = $props();
 
 	let activeHash = $state('');
+	let menuOpen = $state(false);
 
 	onMount(() => {
 		// scroll-spy: highlight the nav link for the section currently in view
@@ -88,7 +90,35 @@
 				</span>
 			{/if}
 		</nav>
+		<button
+			class="menu-btn"
+			aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+			aria-expanded={menuOpen}
+			onclick={() => (menuOpen = !menuOpen)}
+		>
+			{#if menuOpen}
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+			{:else}
+				<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+			{/if}
+		</button>
 	</div>
+
+	{#if menuOpen}
+		<nav class="mobile-nav">
+			{#each links as link (link.href + link.label)}
+				<a
+					href={link.href}
+					class:active={activeHash === link.href}
+					target={link.external ? '_blank' : null}
+					rel={link.external ? 'noopener' : null}
+					onclick={() => (menuOpen = false)}
+				>
+					{link.label}
+				</a>
+			{/each}
+		</nav>
+	{/if}
 </header>
 
 <style>
@@ -96,9 +126,9 @@
 		position: sticky;
 		top: 0;
 		z-index: 50;
-		background: rgba(10, 11, 15, 0.78);
-		backdrop-filter: saturate(140%) blur(10px);
-		-webkit-backdrop-filter: saturate(140%) blur(10px);
+		background: rgba(10, 11, 15, 0.92);
+		backdrop-filter: saturate(140%) blur(12px);
+		-webkit-backdrop-filter: saturate(140%) blur(12px);
 		border-bottom: 1px solid var(--line);
 	}
 	.topbar-inner {
@@ -192,14 +222,57 @@
 		margin-left: 4px;
 		border-left: 1px solid var(--line);
 	}
+	.menu-btn {
+		display: none;
+		background: none;
+		border: 0;
+		padding: 6px;
+		margin: -6px;
+		color: var(--text-2);
+		cursor: pointer;
+	}
+	.menu-btn svg {
+		width: 22px;
+		height: 22px;
+		stroke: currentColor;
+		stroke-width: 1.6;
+		fill: none;
+		stroke-linecap: round;
+	}
+	.menu-btn:hover {
+		color: var(--text);
+	}
+	.mobile-nav {
+		display: none;
+	}
 	@media (max-width: 880px) {
-		.nav :global(a:not(.status):not(.back)) {
+		.nav {
 			display: none;
 		}
-		.status {
-			padding-left: 0;
-			margin-left: 0;
-			border-left: 0;
+		.menu-btn {
+			display: inline-flex;
+			align-items: center;
+		}
+		.mobile-nav {
+			display: flex;
+			flex-direction: column;
+			padding: 4px 20px 14px;
+			background: rgba(10, 11, 15, 0.97);
+			backdrop-filter: saturate(140%) blur(12px);
+			-webkit-backdrop-filter: saturate(140%) blur(12px);
+			border-bottom: 1px solid var(--line);
+		}
+		.mobile-nav :global(a) {
+			padding: 13px 4px;
+			font-size: 15px;
+			color: var(--text-2);
+			border-top: 1px solid var(--line);
+		}
+		.mobile-nav :global(a:first-child) {
+			border-top: 0;
+		}
+		.mobile-nav :global(a.active) {
+			color: var(--accent);
 		}
 	}
 </style>

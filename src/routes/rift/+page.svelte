@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import { onMount } from 'svelte';
 	import TopBar from '$lib/components/TopBar.svelte';
 	import SectionRail from '$lib/components/SectionRail.svelte';
 	import { riftVersionStrings, RIFT_TESTS, RIFT_TESTS_DETAIL } from '$lib/rift-facts';
@@ -113,8 +114,6 @@
 	let player: HTMLDivElement = $state()!;
 	let started = $state(false); // has playback ever begun (hides poster overlay)
 	let playing = $state(false);
-	let muted = $state(false);
-	let volume = $state(1);
 	let current = $state(0);
 	let duration = $state(0);
 	let buffered = $state(0);
@@ -168,14 +167,6 @@
 		scrubbing = false;
 		(e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
 	}
-	function toggleMute() {
-		video.muted = !video.muted;
-	}
-	function onVolumeInput(e: Event) {
-		const v = Number((e.currentTarget as HTMLInputElement).value);
-		video.volume = v;
-		video.muted = v === 0;
-	}
 	function skip(delta: number) {
 		video.currentTime = Math.min(duration, Math.max(0, video.currentTime + delta));
 	}
@@ -203,10 +194,6 @@
 				e.preventDefault();
 				skip(-5);
 				break;
-			case 'm':
-				e.preventDefault();
-				toggleMute();
-				break;
 			case 'f':
 				e.preventDefault();
 				toggleFullscreen();
@@ -218,6 +205,14 @@
 		clearTimeout(idleTimer);
 		if (playing) idleTimer = setTimeout(() => (controlsVisible = false), 2600);
 	}
+
+	onMount(() => {
+		// preload="metadata" can fire loadedmetadata before this handler is bound
+		// (cached / fast load), so seed the duration if it's already available
+		if (video && video.readyState >= 1 && Number.isFinite(video.duration)) {
+			duration = video.duration;
+		}
+	});
 </script>
 
 <svelte:head>
@@ -358,7 +353,6 @@
 					onplay={() => { playing = true; nudgeControls(); }}
 					onpause={() => { playing = false; controlsVisible = true; }}
 					onended={() => { playing = false; controlsVisible = true; }}
-					onvolumechange={() => { muted = video.muted; volume = video.volume; }}
 					onclick={togglePlay}
 				>
 					<source src="{base}/videos/rift-tour.mp4" type="video/mp4" />
@@ -403,26 +397,6 @@
 								<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
 							{/if}
 						</button>
-
-						<div class="vol">
-							<button class="ctl" onclick={toggleMute} aria-label={muted ? 'Unmute' : 'Mute'}>
-								{#if muted || volume === 0}
-									<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4zm12.5 3a4.5 4.5 0 00-2-3.7v1.6L17 12l-2.5 2.1v1.6a4.5 4.5 0 002-3.7z" opacity=".4"/><path d="M19 5l-2 2 5 5-5 5 2 2 5-5z" transform="translate(-3.5 0)"/></svg>
-								{:else}
-									<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4zm11.5-2.5a6.5 6.5 0 010 11v-1.8a4.7 4.7 0 000-7.4zm-1.5 3a3 3 0 010 5V9.5z"/></svg>
-								{/if}
-							</button>
-							<input
-								class="vol-slider"
-								type="range"
-								min="0"
-								max="1"
-								step="0.05"
-								value={muted ? 0 : volume}
-								oninput={onVolumeInput}
-								aria-label="Volume"
-							/>
-						</div>
 
 						<span class="time">{fmt(current)} <span class="time-sep">/</span> {fmt(duration)}</span>
 
@@ -663,6 +637,11 @@
 	/* hero */
 	.hero {
 		padding: 96px 0 88px;
+	}
+	@media (max-width: 640px) {
+		.hero {
+			padding: 44px 0 56px;
+		}
 	}
 	.hero-eyebrow {
 		color: var(--dim);
@@ -1050,25 +1029,6 @@
 	.ctl-spacer {
 		flex: 1;
 	}
-	.vol {
-		display: flex;
-		align-items: center;
-		gap: 2px;
-	}
-	.vol-slider {
-		width: 0;
-		opacity: 0;
-		height: 4px;
-		accent-color: var(--accent);
-		cursor: pointer;
-		transition: width 0.2s ease, opacity 0.2s ease;
-	}
-	.vol:hover .vol-slider,
-	.vol-slider:focus-visible {
-		width: 72px;
-		opacity: 1;
-		margin-right: 4px;
-	}
 	.time {
 		font-family: 'JetBrains Mono', ui-monospace, monospace;
 		font-size: 12px;
@@ -1084,9 +1044,6 @@
 		.play-cue {
 			width: 46px;
 			height: 46px;
-		}
-		.vol-slider {
-			display: none;
 		}
 	}
 

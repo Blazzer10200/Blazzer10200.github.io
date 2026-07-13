@@ -370,6 +370,11 @@
 	.hero {
 		padding: 96px 0 88px;
 	}
+	@media (max-width: 640px) {
+		.hero {
+			padding: 44px 0 56px;
+		}
+	}
 	.hero-eyebrow {
 		color: var(--dim);
 		font-size: 12px;
