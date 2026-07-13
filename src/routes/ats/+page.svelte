@@ -33,8 +33,8 @@
 		<p>
 			Self-taught software developer specializing in systems and desktop applications, focused on
 			shipping finished, dependable software rather than prototypes. Primary work is Rift, an
-			open-source Windows desktop app for AI-assisted coding, designed and built end to end. It ships
-			at {vFull} with {RIFT_TESTS} automated tests and a public installer. Comfortable across the
+			open-source Windows desktop app for AI-assisted coding, designed and built end to end. It's now
+			at {vFull}, with {RIFT_TESTS} automated tests and a public installer. Comfortable across the
 			stack: Rust and C# on the desktop, TypeScript and SvelteKit on the web, Python for back-end
 			services, and Linux for deployment. Seeking a junior to mid-level role in systems software,
 			desktop applications, or AI tooling.
@@ -73,7 +73,7 @@
 				</li>
 				<li>
 					Backed the app with {RIFT_TESTS} automated tests and shipped it as an auto-updating public
-					Windows installer, with full releases automated to a single command through GitHub Actions.
+					Windows installer, with each release built and published by a single command through GitHub Actions.
 				</li>
 				<li>
 					Threat-modeled and sandboxed the assistant's access before release: confined it to the
