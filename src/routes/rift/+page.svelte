@@ -235,7 +235,7 @@
 
 <TopBar variant="case-study" brandRole="Rift · Case study" links={navLinks} />
 
-<main class="page">
+<main class="page" id="main-content" tabindex="-1">
 	<!-- Hero -->
 	<section class="hero reveal">
 		<div class="hero-eyebrow">

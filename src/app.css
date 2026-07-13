@@ -48,6 +48,32 @@
 	border-radius: 2px;
 }
 
+/* keyboard skip-to-content — hidden until focused */
+.skip-link {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	z-index: 100;
+	padding: 10px 16px;
+	background: var(--accent);
+	color: var(--bg);
+	font-weight: 600;
+	border-radius: 4px;
+	transform: translateY(-160%);
+	transition: transform 0.16s ease;
+}
+.skip-link:focus {
+	transform: translateY(0);
+}
+:where(main):focus-visible {
+	outline: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.skip-link {
+		transition: none;
+	}
+}
+
 html,
 body {
 	background: var(--bg);
@@ -338,6 +364,7 @@ strong {
 
 	/* kill anything decorative or non-resume */
 	.bg-fx,
+	.skip-link,
 	.topbar,
 	.status-dot,
 	.cursor,

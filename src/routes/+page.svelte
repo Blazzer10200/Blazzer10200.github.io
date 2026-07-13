@@ -44,7 +44,7 @@
 
 <TopBar />
 
-<main class="page">
+<main class="page" id="main-content" tabindex="-1">
 	<!-- Print-only header (resume PDF — name + contact at top) -->
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>

@@ -16,7 +16,7 @@
 	/>
 </svelte:head>
 
-<main class="ats">
+<main class="ats" id="main-content" tabindex="-1">
 	<p class="back"><a href="/">← Back to the full résumé</a></p>
 
 	<header>
