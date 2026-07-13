@@ -33,11 +33,11 @@
 		<p>
 			Self-taught software developer specializing in systems and desktop applications, focused on
 			shipping finished, dependable software rather than prototypes. Primary work is Rift, an
-			open-source Windows desktop app for AI-assisted coding — {vFull}, {RIFT_TESTS} automated
-			tests, and a public installer — designed and built end to end. Comfortable across the stack:
-			Rust and C# on the desktop, TypeScript and SvelteKit on the web, Python for back-end services,
-			and Linux for deployment. Seeking a junior to mid-level role in systems software, desktop
-			applications, or AI tooling.
+			open-source Windows desktop app for AI-assisted coding, designed and built end to end. It ships
+			at {vFull} with {RIFT_TESTS} automated tests and a public installer. Comfortable across the
+			stack: Rust and C# on the desktop, TypeScript and SvelteKit on the web, Python for back-end
+			services, and Linux for deployment. Seeking a junior to mid-level role in systems software,
+			desktop applications, or AI tooling.
 		</p>
 	</section>
 
@@ -58,12 +58,14 @@
 		<h2>Experience</h2>
 
 		<div class="job">
-			<h3>Independent Software Developer — Self-directed</h3>
-			<p class="dates">2025 – Present</p>
+			<h3>Independent Software Developer</h3>
+			<p class="company">Self-directed</p>
+			<p class="dates">2025 to Present</p>
 			<ul>
 				<li>
 					Designed and built Rift, an open-source (MIT) desktop app for AI-assisted coding, in Rust,
-					Tauri 2, Svelte 5, and TypeScript — architected and implemented solo, end to end.
+					Tauri 2, Svelte 5, and TypeScript. Architected and implemented solo, from first commit to
+					public release.
 				</li>
 				<li>
 					Engineered the assistant to read the project and propose changes while keeping the
@@ -84,16 +86,17 @@
 					settings that persist across updates, and crash recovery.
 				</li>
 				<li>
-					Work across the full stack — SvelteKit and TypeScript on the front end; Python, FastAPI, and
-					Rust on the back end; Linux for hosting. Built and continuously deploy the portfolio site this
-					resume comes from through GitHub Actions.
+					Work across the full stack: SvelteKit and TypeScript on the front end, Python, FastAPI, and
+					Rust on the back end, and Linux for hosting. Built and continuously deploy the portfolio site
+					this resume comes from through GitHub Actions.
 				</li>
 			</ul>
 		</div>
 
 		<div class="job">
-			<h3>Production / Assembly — Strong Manufacturing</h3>
-			<p class="dates">July 2025 – January 2026</p>
+			<h3>Production / Assembly</h3>
+			<p class="company">Strong Manufacturing</p>
+			<p class="dates">July 2025 to January 2026</p>
 			<ul>
 				<li>
 					Promoted from yard and facility work to the assembly line within a few months. Role ended
@@ -103,8 +106,9 @@
 		</div>
 
 		<div class="job">
-			<h3>Heavy Equipment Operator, Landfill Operations — S&amp;L Contracting LLC</h3>
-			<p class="dates">2023 – March 2025</p>
+			<h3>Heavy Equipment Operator, Landfill Operations</h3>
+			<p class="company">S&amp;L Contracting LLC</p>
+			<p class="dates">2023 to March 2025</p>
 			<ul>
 				<li>
 					Operated heavy equipment and ran landfill operations on a live industrial site at a working
@@ -115,11 +119,12 @@
 		</div>
 
 		<div class="job">
-			<h3>Game Server Operator (FiveM and RedM) — Self-employed</h3>
-			<p class="dates">High school – early 2025</p>
+			<h3>Game Server Operator (FiveM and RedM)</h3>
+			<p class="company">Self-employed</p>
+			<p class="dates">High school to early 2025</p>
 			<ul>
 				<li>
-					Built and operated live multiplayer game servers for active player communities — Lua
+					Built and operated live multiplayer game servers for active player communities, covering Lua
 					scripting, a MySQL database, and both Windows and Linux administration. This was the first
 					hands-on software work: diagnosed and shipped fixes quickly under real user load, then wound
 					the operation down in 2025 to develop software full-time.
@@ -211,6 +216,11 @@
 		color: var(--text);
 		font-size: 15px;
 		font-weight: 600;
+	}
+	.company {
+		color: var(--text-2);
+		font-weight: 500;
+		margin-top: 1px;
 	}
 	.dates {
 		color: var(--dim);
