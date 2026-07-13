@@ -1,6 +1,6 @@
-// Renders the built homepage to build/resume.pdf using the site's own
-// @media print styles, so the downloadable resume is generated from the
-// single source of truth (the page copy) and can never drift out of sync.
+// Renders the built /ats route to build/Braison-Swilling-Resume.pdf using the
+// site's own @media print styles, so the downloadable resume is generated from
+// the single source of truth (the page copy) and can never drift out of sync.
 //
 // Runs AFTER `vite build`: it serves the prerendered build/ output over a
 // local http server, loads it in headless Chromium with print-media emulation,
@@ -18,13 +18,10 @@ import { chromium } from 'playwright';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const BUILD_DIR = resolve(__dirname, '..', 'build');
 
-// Each job renders one route to one PDF. resume.pdf keeps the site's designed
-// print view; Braison-Swilling-Resume.pdf is the plain single-column /ats view
-// built for applicant tracking systems (Indeed, Workday, etc.).
-const JOBS = [
-	{ route: '/', out: 'resume.pdf' },
-	{ route: '/ats', out: 'Braison-Swilling-Resume.pdf' }
-];
+// One resume PDF for the whole site. Braison-Swilling-Resume.pdf is the
+// single-column /ats view — ATS-safe for job portals (Indeed, Workday, etc.)
+// AND the file the site's "Download resume" links hand out. One source, one file.
+const JOBS = [{ route: '/ats', out: 'Braison-Swilling-Resume.pdf' }];
 
 const MIME = {
 	'.html': 'text/html; charset=utf-8',

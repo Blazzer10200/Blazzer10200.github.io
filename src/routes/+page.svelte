@@ -80,7 +80,7 @@
 			<a class="btn" href="#contact">
 				<span class="ico">↓</span> Get in touch
 			</a>
-			<a class="btn" href="/resume.pdf" target="_blank" rel="noopener">
+			<a class="btn" href="/Braison-Swilling-Resume.pdf" target="_blank" rel="noopener">
 				<span class="ico">↓</span> Download resume (PDF)
 			</a>
 		</div>
@@ -357,7 +357,7 @@
 				<span class="contact-arrow">↗</span>
 			</a>
 
-			<a class="contact-cell" href="/resume.pdf" target="_blank" rel="noopener">
+			<a class="contact-cell" href="/Braison-Swilling-Resume.pdf" target="_blank" rel="noopener">
 				<span class="contact-icon" aria-hidden="true">
 					<svg
 						viewBox="0 0 24 24"
@@ -381,10 +381,8 @@
 		</div>
 
 		<p class="ats-note">
-			Applying through a job portal like Indeed? Grab the
-			<a href="/Braison-Swilling-Resume.pdf" target="_blank" rel="noopener"
-				>plain-format resume</a
-			> instead — same content, single column, built for automated screeners.
+			The résumé PDF is single-column and built to read clean through automated
+			screeners like Indeed — same content you see here.
 		</p>
 	</section>
 
@@ -884,13 +882,5 @@
 		margin-top: 24px;
 		font-size: 13px;
 		color: var(--dim);
-	}
-	.ats-note a {
-		color: var(--text-2);
-		text-decoration: underline;
-		text-underline-offset: 3px;
-	}
-	.ats-note a:hover {
-		color: var(--text);
 	}
 </style>

@@ -132,8 +132,13 @@
 </main>
 
 <style>
+	/* Branded-dev resume: single-column and parse-safe for ATS, but carrying the
+	   site's DNA — Inter for readable body, JetBrains Mono for dates/labels, and
+	   the accent blue on section rules. The `//` prefixes are CSS ::before marks
+	   (decorative only — screeners read the DOM text, never the pseudo-content). */
 	.ats {
-		max-width: 760px;
+		--mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+		max-width: 780px;
 		margin: 0 auto;
 		padding: 56px 24px 80px;
 		font-family: 'Inter', system-ui, sans-serif;
@@ -143,42 +148,62 @@
 	}
 	.back {
 		margin-bottom: 40px;
-		font-size: 13px;
+		font-family: var(--mono);
+		font-size: 12.5px;
 	}
 	.back a {
 		color: var(--dim);
 	}
 	.back a:hover {
-		color: var(--text);
+		color: var(--accent);
+	}
+
+	header {
+		border-bottom: 2px solid var(--accent);
+		padding-bottom: 14px;
 	}
 	h1 {
 		color: var(--text);
-		font-size: 28px;
-		font-weight: 600;
-		letter-spacing: -0.01em;
+		font-size: 30px;
+		font-weight: 700;
+		letter-spacing: -0.02em;
 	}
 	.role {
 		color: var(--text);
+		font-weight: 500;
 		margin-top: 2px;
 	}
 	.contact-row {
 		color: var(--dim);
-		font-size: 13.5px;
-		margin-top: 6px;
+		font-family: var(--mono);
+		font-size: 12.5px;
+		margin-top: 8px;
 	}
+
 	section {
-		margin-top: 28px;
+		margin-top: 26px;
 	}
 	h2 {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
 		color: var(--text);
-		font-size: 15px;
-		font-weight: 600;
+		font-size: 14px;
+		font-weight: 700;
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		border-bottom: 1px solid var(--line);
+		letter-spacing: 0.1em;
+		border-bottom: 1px solid var(--line-2);
 		padding-bottom: 6px;
-		margin-bottom: 12px;
+		margin-bottom: 13px;
 	}
+	h2::before {
+		content: '//';
+		font-family: var(--mono);
+		font-weight: 500;
+		letter-spacing: 0;
+		color: var(--accent);
+	}
+
 	h3 {
 		color: var(--text);
 		font-size: 15px;
@@ -186,8 +211,9 @@
 	}
 	.dates {
 		color: var(--dim);
-		font-size: 13.5px;
-		margin: 1px 0 6px;
+		font-family: var(--mono);
+		font-size: 12.5px;
+		margin: 2px 0 7px;
 	}
 	.job + .job {
 		margin-top: 18px;
@@ -195,11 +221,24 @@
 	ul {
 		padding-left: 20px;
 	}
+	/* Colour the native marker via ::marker — keeps every <li> in normal flow so
+	   the PDF text stream stays in reading order (an absolutely/relatively
+	   positioned bullet paints in a later pass and scrambles the ATS text layer). */
+	li::marker {
+		content: '▹  ';
+		color: var(--accent);
+		font-size: 0.85em;
+	}
 	li + li {
 		margin-top: 6px;
 	}
+	section > p {
+		margin-top: 4px;
+	}
 	strong {
 		color: var(--text);
+		font-family: var(--mono);
+		font-size: 0.92em;
 		font-weight: 600;
 	}
 
@@ -208,23 +247,37 @@
 			max-width: none;
 			padding: 0;
 			font-size: 10pt;
-			line-height: 1.45;
+			line-height: 1.42;
 		}
 		.back {
 			display: none;
 		}
+		header {
+			padding-bottom: 9pt;
+		}
 		h1 {
-			font-size: 20pt;
+			font-size: 21pt;
+		}
+		.contact-row {
+			font-size: 8.5pt;
+			margin-top: 5pt;
+		}
+		section {
+			margin-top: 13pt;
 		}
 		h2 {
 			font-size: 11pt;
 			margin-top: 0;
+			margin-bottom: 8pt;
 		}
-		section {
-			margin-top: 14pt;
+		.dates {
+			font-size: 8.5pt;
 		}
 		.job {
 			break-inside: avoid;
+		}
+		.job + .job {
+			margin-top: 12pt;
 		}
 	}
 </style>

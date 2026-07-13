@@ -19,10 +19,10 @@ const config = {
 		prerender: {
 			entries: ['/', '/rift', '/exfil', '/ats'],
 			handleHttpError: ({ path, message }) => {
-				// The resume PDFs are generated AFTER `vite build` (scripts/generate-pdf.mjs),
-				// so their links dangle during prerender. Allow them through; every other
+				// The resume PDF is generated AFTER `vite build` (scripts/generate-pdf.mjs),
+				// so its links dangle during prerender. Allow it through; every other
 				// broken link stays a fatal build error.
-				if (path === '/resume.pdf' || path === '/Braison-Swilling-Resume.pdf') return;
+				if (path === '/Braison-Swilling-Resume.pdf') return;
 				throw new Error(message);
 			}
 		}
