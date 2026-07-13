@@ -379,6 +379,13 @@
 				<span class="contact-arrow">↗</span>
 			</a>
 		</div>
+
+		<p class="ats-note">
+			Applying through a job portal like Indeed? Grab the
+			<a href="/Braison-Swilling-Resume.pdf" target="_blank" rel="noopener"
+				>plain-format resume</a
+			> instead — same content, single column, built for automated screeners.
+		</p>
 	</section>
 
 	<!-- Footer -->
@@ -867,5 +874,23 @@
 	.contact-cell:hover .contact-arrow {
 		color: var(--accent);
 		transform: translate(3px, -3px);
+	}
+	.ats-note {
+		margin-top: 24px;
+		font-size: 13px;
+		color: var(--dim);
+	}
+	.ats-note a {
+		color: var(--text-2);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.ats-note a:hover {
+		color: var(--text);
+	}
+	@media print {
+		.ats-note {
+			display: none !important;
+		}
 	}
 </style>

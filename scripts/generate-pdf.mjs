@@ -17,7 +17,14 @@ import { chromium } from 'playwright';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const BUILD_DIR = resolve(__dirname, '..', 'build');
-const OUT = join(BUILD_DIR, 'resume.pdf');
+
+// Each job renders one route to one PDF. resume.pdf keeps the site's designed
+// print view; Braison-Swilling-Resume.pdf is the plain single-column /ats view
+// built for applicant tracking systems (Indeed, Workday, etc.).
+const JOBS = [
+	{ route: '/', out: 'resume.pdf' },
+	{ route: '/ats', out: 'Braison-Swilling-Resume.pdf' }
+];
 
 const MIME = {
 	'.html': 'text/html; charset=utf-8',
@@ -42,7 +49,18 @@ function serve(root) {
 			if (path.endsWith('/')) path += 'index.html';
 			let file = join(root, path);
 			try {
-				if ((await stat(file)).isDirectory()) file = join(file, 'index.html');
+				if ((await stat(file)).isDirectory()) {
+					// A route can exist as BOTH `foo.html` (trailingSlash: 'never') and a
+					// `foo/` dir holding only `__data.json` (server-load data) — prefer
+					// dir/index.html, fall back to the sibling .html page.
+					const idx = join(file, 'index.html');
+					try {
+						await stat(idx);
+						file = idx;
+					} catch {
+						file = `${file}.html`;
+					}
+				}
 			} catch {
 				// try directory-style route (/foo -> /foo.html), then fallback
 				if (!extname(file)) {
@@ -84,18 +102,22 @@ async function main() {
 
 	const browser = await chromium.launch();
 	try {
-		const page = await browser.newPage();
-		await page.goto(url, { waitUntil: 'networkidle' });
-		// Use the site's print stylesheet, not the screen one.
-		await page.emulateMedia({ media: 'print' });
-		await page.pdf({
-			path: OUT,
-			format: 'Letter',
-			printBackground: true,
-			// Margins live in the site's `@page` rule; keep Chromium's at 0.
-			margin: { top: '0', right: '0', bottom: '0', left: '0' }
-		});
-		console.log(`[pdf] wrote ${OUT}`);
+		for (const job of JOBS) {
+			const out = join(BUILD_DIR, job.out);
+			const page = await browser.newPage();
+			await page.goto(new URL(job.route, url).href, { waitUntil: 'networkidle' });
+			// Use the site's print stylesheet, not the screen one.
+			await page.emulateMedia({ media: 'print' });
+			await page.pdf({
+				path: out,
+				format: 'Letter',
+				printBackground: true,
+				// Margins live in the site's `@page` rule; keep Chromium's at 0.
+				margin: { top: '0', right: '0', bottom: '0', left: '0' }
+			});
+			await page.close();
+			console.log(`[pdf] wrote ${out}`);
+		}
 	} finally {
 		await browser.close();
 		server.close();
