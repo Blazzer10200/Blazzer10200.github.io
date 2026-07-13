@@ -31,12 +31,13 @@
 	<section>
 		<h2>Professional Summary</h2>
 		<p>
-			I taught myself to code, and I ship working software. My main work is Rift, an open-source
-			Windows desktop app for coding with AI — {vFull}, {RIFT_TESTS} automated tests, a public
-			installer, and I built all of it myself. I work across the stack: Rust and C# on the desktop,
-			TypeScript and SvelteKit on the web, Python behind the scenes, and Linux to put things
-			online. I'm looking for a junior to mid-level role building systems, desktop software, or AI
-			tools.
+			Self-taught software developer specializing in systems and desktop applications, focused on
+			shipping finished, dependable software rather than prototypes. Primary work is Rift, an
+			open-source Windows desktop app for AI-assisted coding — {vFull}, {RIFT_TESTS} automated
+			tests, and a public installer — designed and built end to end. Comfortable across the stack:
+			Rust and C# on the desktop, TypeScript and SvelteKit on the web, Python for back-end services,
+			and Linux for deployment. Seeking a junior to mid-level role in systems software, desktop
+			applications, or AI tooling.
 		</p>
 	</section>
 
@@ -61,29 +62,31 @@
 			<p class="dates">2025 – Present</p>
 			<ul>
 				<li>
-					I designed and built Rift, an open-source desktop app for coding with AI (Rust, Tauri 2,
-					Svelte 5, TypeScript). The AI reads your code, proposes changes, and runs git — you
-					approve everything before it lands. There's a browser built in, voice input, and a meter
-					that shows what each turn costs. It has {RIFT_TESTS} automated tests, a public Windows
-					installer that updates itself, and one command cuts a whole release through GitHub
-					Actions. MIT licensed — anyone can read the code.
+					Designed and built Rift, an open-source (MIT) desktop app for AI-assisted coding, in Rust,
+					Tauri 2, Svelte 5, and TypeScript — architected and implemented solo, end to end.
 				</li>
 				<li>
-					Before Rift shipped, I locked down the AI's access myself. It can only touch the project
-					folder, and two separate permission checks both have to agree before any command runs. I
-					tried to break it before anyone else could.
+					Engineered the assistant to read the project and propose changes while keeping the
+					developer in control: every file edit and command requires explicit approval before it runs.
 				</li>
 				<li>
-					Before that I built EXFIL, a Windows tray app in C# and .NET 8. It retunes your screen's
-					color for each app you open by talking straight to the graphics driver, and it shows your
-					frame rate, hardware load, and temperatures in a game overlay. It handles HDR screens,
-					monitors getting unplugged mid-session, settings that survive updates, and crash
-					recovery.
+					Backed the app with {RIFT_TESTS} automated tests and shipped it as an auto-updating public
+					Windows installer, with full releases automated to a single command through GitHub Actions.
 				</li>
 				<li>
-					I also work full-stack: SvelteKit and TypeScript up front, Python, FastAPI, and Rust
-					behind it, Linux for hosting. This resume comes off a site I built and deploy
-					automatically through GitHub Actions.
+					Threat-modeled and sandboxed the assistant's access before release: confined it to the
+					project directory behind two independent permission checks, then probed it for weaknesses first.
+				</li>
+				<li>
+					Earlier, developed EXFIL, a Windows system-tray app in C# and .NET 8 that retunes
+					per-application display color (including HDR) and overlays live frame rate, hardware load, and
+					temperatures while gaming. Handled real-world edge cases: monitors disconnected mid-session,
+					settings that persist across updates, and crash recovery.
+				</li>
+				<li>
+					Work across the full stack — SvelteKit and TypeScript on the front end; Python, FastAPI, and
+					Rust on the back end; Linux for hosting. Built and continuously deploy the portfolio site this
+					resume comes from through GitHub Actions.
 				</li>
 			</ul>
 		</div>
@@ -93,8 +96,8 @@
 			<p class="dates">July 2025 – January 2026</p>
 			<ul>
 				<li>
-					I started in yard work and facility cleaning and got moved up to the assembly line
-					within a few months. Company-wide cuts ended the role in January 2026.
+					Promoted from yard and facility work to the assembly line within a few months. Role ended
+					in a company-wide workforce reduction in January 2026.
 				</li>
 			</ul>
 		</div>
@@ -104,9 +107,9 @@
 			<p class="dates">2023 – March 2025</p>
 			<ul>
 				<li>
-					I ran heavy equipment on a live industrial site at a working paper mill (Twin Rivers
-					Paper, now American Kraft) for about two years. I showed up, did it right, and kept it
-					safe until the contract ended in March 2025.
+					Operated heavy equipment and ran landfill operations on a live industrial site at a working
+					paper mill (Twin Rivers Paper, now American Kraft) for roughly two years, maintaining a clean
+					safety record until the contract ended in March 2025.
 				</li>
 			</ul>
 		</div>
@@ -116,10 +119,10 @@
 			<p class="dates">High school – early 2025</p>
 			<ul>
 				<li>
-					This is where I learned to code. I built and ran live multiplayer game servers for real
-					player communities — Lua scripting, a MySQL database, and both Windows and Linux
-					servers. People noticed the second anything broke, so I learned to ship fixes fast. I
-					wound it down in 2025 to build software full-time.
+					Built and operated live multiplayer game servers for active player communities — Lua
+					scripting, a MySQL database, and both Windows and Linux administration. This was the first
+					hands-on software work: diagnosed and shipped fixes quickly under real user load, then wound
+					the operation down in 2025 to develop software full-time.
 				</li>
 			</ul>
 		</div>
@@ -127,7 +130,7 @@
 
 	<section>
 		<h2>Education</h2>
-		<p>High school diploma, 2023. Everything else I taught myself, and I'm still going.</p>
+		<p>High school diploma, 2023. Self-taught in software development.</p>
 	</section>
 </main>
 
