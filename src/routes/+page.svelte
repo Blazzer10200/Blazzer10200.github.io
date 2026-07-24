@@ -49,7 +49,7 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			AI-Native Software Builder · braison.swilling@outlook.com · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
+			AI-Native Software Builder · braison.swilling@outlook.com · 870-267-3299 · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
 		</div>
 	</header>
 
@@ -343,6 +343,28 @@
 				<div class="contact-body">
 					<div class="contact-k">Email</div>
 					<div class="contact-v">braison.swilling@outlook.com</div>
+				</div>
+				<span class="contact-arrow">↗</span>
+			</a>
+
+			<a class="contact-cell" href="tel:+18702673299">
+				<span class="contact-icon" aria-hidden="true">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.6"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path
+							d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+						/>
+					</svg>
+				</span>
+				<div class="contact-body">
+					<div class="contact-k">Phone</div>
+					<div class="contact-v">870-267-3299</div>
 				</div>
 				<span class="contact-arrow">↗</span>
 			</a>

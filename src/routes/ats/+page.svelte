@@ -23,7 +23,8 @@
 		<h1>Braison Swilling</h1>
 		<p class="role">AI-Native Software Builder</p>
 		<p class="contact-row">
-			Little Rock, AR or Remote (US) · braison.swilling@outlook.com · github.com/Blazzer10200
+			Little Rock, AR or Remote (US) · 870-267-3299 · braison.swilling@outlook.com ·
+			github.com/Blazzer10200
 		</p>
 		<p class="portfolio-row">
 			Full case studies, source code, and a short demo at blazzer10200.github.io
