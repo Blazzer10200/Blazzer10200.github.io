@@ -38,7 +38,7 @@
 </script>
 
 <svelte:head>
-	<title>Braison Swilling · Systems &amp; Desktop Developer</title>
+	<title>Braison Swilling · AI-Native Software Builder</title>
 	<link rel="canonical" href="https://blazzer10200.github.io/" />
 </svelte:head>
 
@@ -49,25 +49,26 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			Systems &amp; Desktop Developer · braison.swilling@outlook.com · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
+			AI-Native Software Builder · braison.swilling@outlook.com · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
 		</div>
 	</header>
 
 	<!-- Hero -->
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
-			<span>Systems &amp; desktop developer</span>
+			<span>AI-native software builder</span>
 			<span class="pill">Open to work</span>
 		</div>
 
-		<h1>I design and build <em>desktop software, and I ship it.</em></h1>
+		<h1>I build real software by <em>directing AI, and I ship it.</em></h1>
 
 		<p class="hero-sub">
-			I've been writing code since high school. No degree, I taught myself, starting with live
-			game-server backends and working my way up to real desktop software. Right now I'm building
-			<strong>Rift</strong>. It's a coding app where an AI does the typing and you read every
-			change before it happens. It's open source. You can download it and run it today, or read
-			every line of the code.
+			Self-taught, no degree. I started out running game servers, then AI came along and changed
+			everything for me. What I'm good at is directing AI to build real software. I decide what to
+			build, set the limits it has to work inside, and check every change before it's kept. Right
+			now I'm building <strong>Rift</strong>, a coding app where the AI does the typing and you
+			approve every change. It's open source, so you can download it and run it today, or read
+			every line of it.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -92,11 +93,11 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Focus</div>
-				<div class="hero-meta-v">Desktop apps &amp; tooling</div>
+				<div class="hero-meta-v">AI-built apps &amp; tools</div>
 			</div>
 			<div class="hero-meta-cell">
-				<div class="hero-meta-k">Core stack</div>
-				<div class="hero-meta-v">Rust · TypeScript · C#</div>
+				<div class="hero-meta-k">How I work</div>
+				<div class="hero-meta-v">Directing AI coding agents</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Based</div>
@@ -189,19 +190,21 @@
 						<strong>Building Rift</strong>, a desktop app for coding with AI. The AI reads your
 						code and can run git for you, there's a web browser built in, and it updates itself.
 						You stay in control and approve the changes. It's open source, has {RIFT_TESTS} tests, and
-						ships as a public download ({vShort}). I designed and built the whole thing myself. I did it nights and
-						weekends around a factory job through Jan 2026, and full-time since.
+						ships as a public download ({vShort}). I designed and directed the whole build myself,
+						setting the overall design and the AI's limits, then reviewing every change it made. I
+						did it nights and weekends around a factory job until January 2026, and full-time since.
 					</li>
 					<li>
 						<strong>Built EXFIL</strong>, my first real project. It's a small Windows app that
 						lives in your taskbar tray and retunes your screen's color for each app you open. It
-						also shows your frame rate and PC stats while you game. Built in C# and .NET 8. It was
-						the first thing I took all the way to working software, and I keep it here to show how
-						far I've come since.
+						also shows your frame rate and PC stats while you game. I built it in C# and .NET 8, with
+						the AI writing the code and me making the calls. It was the first thing I took all the way
+						to finished, working software, and I keep it here to show how far I've come since.
 					</li>
 					<li>
-						I work across the whole stack. SvelteKit and TypeScript for the part you see, Python,
-						FastAPI and Rust behind it, and Linux for putting it online.
+						I work across the whole stack. The AI writes it and I direct it, from SvelteKit and
+						TypeScript for the part you see to Python, FastAPI, and Rust behind it, and Linux to put
+						it online.
 					</li>
 				{/snippet}
 			</ExperienceItem>
@@ -246,10 +249,10 @@
 			>
 				{#snippet summary()}
 					<li>
-						<strong>This is where I started writing code.</strong> I built and ran live FiveM and
-						RedM game servers for real player communities. That meant scripting in Lua, running a
-						MySQL database, and admining both Windows and Linux. People noticed the second anything
-						broke, so I learned to ship fixes fast.
+						<strong>This is where I started.</strong> I built and ran live FiveM and RedM game
+						servers for real player communities. That meant configuring resources, tweaking Lua,
+						running a MySQL database, and admining both Windows and Linux. People noticed the second
+						anything broke, so I learned to fix fast.
 					</li>
 					<li>Wound down in early 2025 to focus on building software full-time.</li>
 				{/snippet}
@@ -263,35 +266,41 @@
 
 	<!-- Toolkit -->
 	<section class="toolkit reveal" id="toolkit">
-		<SectionRail num="03 / 03" label="Toolkit" meta="What I work with" />
+		<SectionRail num="03 / 03" label="Toolkit" meta="What I build with" />
+
+		<p class="tk-lead">
+			This is the stack my projects are built in. I direct the AI across all of it and review what
+			it writes.
+		</p>
 
 		<div class="toolkit-grid stagger">
+			<div class="tk">
+				<div class="tk-head">How I work</div>
+				<ul>
+					<li>Directing AI agents</li>
+					<li>Prompt engineering</li>
+					<li>Guardrails &amp; security</li>
+					<li>Reading &amp; reviewing code</li>
+					<li>Shipping releases</li>
+				</ul>
+			</div>
 			<div class="tk">
 				<div class="tk-head">Desktop &amp; systems</div>
 				<ul>
 					<li>Rust</li>
 					<li>C# / .NET 8</li>
 					<li>Tauri 2</li>
-					<li>Building AI tools</li>
 					<li>Windows APIs</li>
 				</ul>
 			</div>
 			<div class="tk">
-				<div class="tk-head">Web</div>
+				<div class="tk-head">Web &amp; backend</div>
 				<ul>
 					<li>SvelteKit 5</li>
 					<li>TypeScript</li>
-					<li>Vite</li>
-					<li>HTML / CSS</li>
-				</ul>
-			</div>
-			<div class="tk">
-				<div class="tk-head">Backend &amp; data</div>
-				<ul>
 					<li>Python</li>
 					<li>FastAPI</li>
 					<li>MySQL / SQL</li>
-					<li>REST APIs</li>
 				</ul>
 			</div>
 			<div class="tk">
@@ -308,11 +317,12 @@
 
 	<!-- Contact -->
 	<section class="contact reveal" id="contact">
-		<h3>If you're hiring, I'd love to chat.</h3>
+		<h3>If you're building with AI, let's talk.</h3>
 		<p class="contact-sub">
-			I'm looking for a junior to mid-level role building systems or desktop software. Remote works,
-			or in person around Little Rock and Central Arkansas. If the job involves Rust, C# and .NET,
-			desktop apps, or building AI tools, even better.
+			I'm looking for a role where I can build with AI, whether that's AI engineering, developer
+			tools, or AI-focused product work. Remote is fine, or in person around Little Rock and
+			Central Arkansas. If your team is trying to figure out how to ship real software with AI,
+			that's the kind of work I'm best at.
 		</p>
 
 		<div class="contact-grid stagger">
@@ -387,7 +397,7 @@
 	</section>
 
 	<!-- Footer -->
-	<footer class="footer">© 2026 Braison Swilling · Built by hand</footer>
+	<footer class="footer">© 2026 Braison Swilling · Designed by me, built with AI</footer>
 </main>
 
 <style>
@@ -719,6 +729,15 @@
 	/* ── toolkit ── */
 	.toolkit {
 		padding: 24px 0 96px;
+	}
+	.tk-lead {
+		margin-top: 20px;
+		max-width: 620px;
+		color: var(--text-2);
+		font-family: 'Inter', system-ui, sans-serif;
+		font-size: 15px;
+		line-height: 1.6;
+		text-wrap: pretty;
 	}
 	.toolkit-grid {
 		display: grid;

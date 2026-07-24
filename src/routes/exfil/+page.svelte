@@ -25,7 +25,7 @@
 		{
 			n: '02',
 			title: 'Talking to the graphics card',
-			body: `The color setting EXFIL controls isn't something Windows lets you reach. It's buried deep inside NVIDIA's graphics driver, with no clean or reliable way in. So I wrote that connection myself, from scratch, talking straight to the driver's own low-level controls. It taught me a lot about how that layer really behaves.`,
+			body: `The color setting EXFIL controls isn't something Windows lets you reach. It's buried deep inside NVIDIA's graphics driver, with no clean or reliable way in. So this part had to be built from scratch, talking straight to the driver's own low-level controls. Getting it right taught me a lot about how that layer really behaves.`,
 			kv: [
 				['How', 'It talks straight to the graphics driver'],
 				['Result', 'Steady, reliable control of your screen']
@@ -303,8 +303,8 @@
 		<p class="body">
 			I'd decide the next piece myself. Say, it needs to notice when a monitor gets unplugged and put
 			the right profile back. I'd sketch out how I wanted it to work and hand that off. Then I'd read
-			through what came back and keep only the parts I actually understood. That's why I can still
-			explain every choice here. Why it recovers the way it does after a crash. Why your old settings
+			through what came back and keep only what I'd been through and could stand behind. That's why I
+			can still explain every choice here. Why it recovers the way it does after a crash. Why your old settings
 			survive an update. Why it checks for HDR first.
 		</p>
 	</section>
@@ -341,7 +341,7 @@
 	</section>
 </main>
 
-<footer class="footer">© 2026 Braison Swilling · Built by hand</footer>
+<footer class="footer">© 2026 Braison Swilling · Designed by me, built with AI</footer>
 
 <style>
 	/* ── footer (overrides app.css default — full-width on case study) ── */

@@ -66,7 +66,7 @@ $markFont.Dispose()
 # Eyebrow line — "BRAISON SWILLING / SOFTWARE DEVELOPER"
 $eyebrowFont = New-Object System.Drawing.Font "Consolas", 18, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $eyebrowBrush = New-Object System.Drawing.SolidBrush $accent
-$g.DrawString("SOFTWARE DEVELOPER  $mid  OPEN TO WORK", $eyebrowFont, $eyebrowBrush, ($pad + $markSize + 24), ($markY + 22))
+$g.DrawString("AI-NATIVE SOFTWARE BUILDER  $mid  OPEN TO WORK", $eyebrowFont, $eyebrowBrush, ($pad + $markSize + 24), ($markY + 22))
 $eyebrowFont.Dispose()
 $eyebrowBrush.Dispose()
 
@@ -80,8 +80,8 @@ $titleBrush.Dispose()
 # Tagline — multi-line
 $taglineFont = New-Object System.Drawing.Font "Segoe UI", 28, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $taglineBrush = New-Object System.Drawing.SolidBrush $text2
-$g.DrawString("I build desktop software with AI, and I ship it.", $taglineFont, $taglineBrush, $pad, 370)
-$g.DrawString("Right now that's Rift, free to download.", $taglineFont, $taglineBrush, $pad, 410)
+$g.DrawString("I build real software by directing AI, and I ship it.", $taglineFont, $taglineBrush, $pad, 370)
+$g.DrawString("Right now that's Rift, open source and free to download.", $taglineFont, $taglineBrush, $pad, 410)
 $taglineFont.Dispose()
 $taglineBrush.Dispose()
 

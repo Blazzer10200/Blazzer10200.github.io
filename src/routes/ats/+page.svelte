@@ -21,36 +21,41 @@
 
 	<header>
 		<h1>Braison Swilling</h1>
-		<p class="role">Systems and Desktop Developer</p>
+		<p class="role">AI-Native Software Builder</p>
 		<p class="contact-row">
-			Little Rock, AR or Remote (US) · braison.swilling@outlook.com · github.com/Blazzer10200 ·
-			blazzer10200.github.io
+			Little Rock, AR or Remote (US) · braison.swilling@outlook.com · github.com/Blazzer10200
+		</p>
+		<p class="portfolio-row">
+			Full case studies, source code, and a short demo at blazzer10200.github.io
 		</p>
 	</header>
 
 	<section>
 		<h2>Professional Summary</h2>
 		<p>
-			Self-taught software developer specializing in systems and desktop applications, focused on
-			shipping finished, dependable software rather than prototypes. Primary work is Rift, an
-			open-source Windows desktop app for AI-assisted coding, designed and built end to end. It's now
-			at {vFull}, with {RIFT_TESTS} automated tests and a public installer. Comfortable across the
-			stack: Rust and C# on the desktop, TypeScript and SvelteKit on the web, Python for back-end
-			services, and Linux for deployment. Seeking a junior to mid-level role in systems software,
-			desktop applications, or AI tooling.
+			Self-taught software builder who ships real software by directing AI. I decide what to build,
+			set the limits, and review every change before it's kept. My main work is Rift, an
+			open-source Windows desktop app for AI-assisted coding that I designed and directed end to
+			end, now at {vFull} with {RIFT_TESTS} automated tests and a public installer. I work across
+			the stack, from Rust and C# on the desktop to TypeScript and SvelteKit on the web, with Python
+			back ends on Linux. Seeking a role in AI engineering, developer tools, or AI-focused product.
 		</p>
 	</section>
 
 	<section>
 		<h2>Skills</h2>
-		<p><strong>Languages:</strong> Rust, C#, TypeScript, JavaScript, Python, Lua, SQL, HTML, CSS</p>
 		<p>
-			<strong>Frameworks and tools:</strong> .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI,
-			Node.js, MySQL, Git, GitHub Actions, Playwright
+			<strong>AI and workflow:</strong> Directing AI coding agents, prompt engineering, agent
+			tooling and guardrail design, spec-driven development, reading and reviewing AI-written code
 		</p>
 		<p>
-			<strong>Practices:</strong> Windows desktop applications, AI integration, REST APIs, CI/CD,
-			automated testing, application security, Windows administration, Linux server administration
+			<strong>Technologies I build with:</strong> Rust, C#, TypeScript, JavaScript, Python, Lua, SQL,
+			HTML, CSS, .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI, Node.js, MySQL, Git, GitHub
+			Actions, Playwright
+		</p>
+		<p>
+			<strong>Practices:</strong> AI integration, REST APIs, CI/CD, automated testing, application
+			security, Windows and Linux administration
 		</p>
 	</section>
 
@@ -63,32 +68,26 @@
 			<p class="dates">2025 to Present</p>
 			<ul>
 				<li>
-					Designed and built Rift, an open-source (MIT) desktop app for AI-assisted coding, in Rust,
-					Tauri 2, Svelte 5, and TypeScript. Architected and implemented solo, from first commit to
-					public release.
+					Designed and directed Rift end to end, an open-source (MIT) desktop app for AI-assisted
+					coding in Rust, Tauri 2, Svelte 5, and TypeScript. I set the design and the AI's limits and
+					reviewed every change, and I stay in control: every AI edit needs my approval before it runs.
+					Full case study and demo at blazzer10200.github.io/rift.
 				</li>
 				<li>
-					Engineered the assistant to read the project and propose changes while keeping the
-					developer in control: every file edit and command requires explicit approval before it runs.
+					Shipped it as an auto-updating public Windows installer, now at {vFull}, backed by {RIFT_TESTS}
+					automated tests, each release built and published by one command through GitHub Actions.
 				</li>
 				<li>
-					Backed the app with {RIFT_TESTS} automated tests and shipped it as an auto-updating public
-					Windows installer, with each release built and published by a single command through GitHub Actions.
+					Planned and tested its security before release: confined the AI to the project folder behind
+					two independent permission checks, then tried to break it myself.
 				</li>
 				<li>
-					Threat-modeled and sandboxed the assistant's access before release: confined it to the
-					project directory behind two independent permission checks, then probed it for weaknesses first.
+					Earlier, built EXFIL, a C# and .NET 8 Windows tray app for per-app display color (including
+					HDR) and live frame rate and hardware stats while gaming.
 				</li>
 				<li>
-					Earlier, developed EXFIL, a Windows system-tray app in C# and .NET 8 that retunes
-					per-application display color (including HDR) and overlays live frame rate, hardware load, and
-					temperatures while gaming. Handled real-world edge cases: monitors disconnected mid-session,
-					settings that persist across updates, and crash recovery.
-				</li>
-				<li>
-					Work across the full stack: SvelteKit and TypeScript on the front end, Python, FastAPI, and
-					Rust on the back end, and Linux for hosting. Built and continuously deploy the portfolio site
-					this resume comes from through GitHub Actions.
+					Build and deploy full-stack apps in SvelteKit, TypeScript, Python, FastAPI, and Rust,
+					including this portfolio site.
 				</li>
 			</ul>
 		</div>
@@ -99,8 +98,8 @@
 			<p class="dates">July 2025 to January 2026</p>
 			<ul>
 				<li>
-					Promoted from yard and facility work to the assembly line within a few months. Role ended
-					in a company-wide workforce reduction in January 2026.
+					Promoted from yard and facility work to the assembly line; role ended in a company-wide
+					workforce reduction in January 2026.
 				</li>
 			</ul>
 		</div>
@@ -111,9 +110,8 @@
 			<p class="dates">2023 to March 2025</p>
 			<ul>
 				<li>
-					Operated heavy equipment and ran landfill operations on a live industrial site at a working
-					paper mill (Twin Rivers Paper, now American Kraft) for roughly two years, maintaining a clean
-					safety record until the contract ended in March 2025.
+					Operated heavy equipment and ran landfill operations on a live industrial site (Twin Rivers
+					Paper mill) for about two years, with a clean safety record.
 				</li>
 			</ul>
 		</div>
@@ -124,10 +122,9 @@
 			<p class="dates">High school to early 2025</p>
 			<ul>
 				<li>
-					Built and operated live multiplayer game servers for active player communities, covering Lua
-					scripting, a MySQL database, and both Windows and Linux administration. This was the first
-					hands-on software work: diagnosed and shipped fixes quickly under real user load, then wound
-					the operation down in 2025 to develop software full-time.
+					Built and ran live multiplayer game servers (FiveM and RedM) for active communities:
+					resource configuration, Lua tweaks, a MySQL database, and Windows and Linux
+					administration. My first hands-on tech work, under real user load.
 				</li>
 			</ul>
 		</div>
@@ -186,6 +183,12 @@
 		font-family: var(--mono);
 		font-size: 12.5px;
 		margin-top: 8px;
+	}
+	.portfolio-row {
+		color: var(--accent);
+		font-family: var(--mono);
+		font-size: 12.5px;
+		margin-top: 5px;
 	}
 
 	section {
@@ -259,14 +262,14 @@
 		.ats {
 			max-width: none;
 			padding: 0;
-			font-size: 10pt;
-			line-height: 1.42;
+			font-size: 8.9pt;
+			line-height: 1.3;
 		}
 		.back {
 			display: none;
 		}
 		header {
-			padding-bottom: 9pt;
+			padding-bottom: 7pt;
 		}
 		h1 {
 			font-size: 21pt;
@@ -275,13 +278,17 @@
 			font-size: 8.5pt;
 			margin-top: 5pt;
 		}
+		.portfolio-row {
+			font-size: 8.5pt;
+			margin-top: 3pt;
+		}
 		section {
-			margin-top: 13pt;
+			margin-top: 6pt;
 		}
 		h2 {
 			font-size: 11pt;
 			margin-top: 0;
-			margin-bottom: 8pt;
+			margin-bottom: 5pt;
 		}
 		.dates {
 			font-size: 8.5pt;
@@ -290,7 +297,10 @@
 			break-inside: avoid;
 		}
 		.job + .job {
-			margin-top: 12pt;
+			margin-top: 5pt;
+		}
+		li + li {
+			margin-top: 2.5pt;
 		}
 	}
 </style>

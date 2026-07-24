@@ -546,9 +546,9 @@
 		<p class="body">
 			Here's how I actually work. I decide what to build next. I sketch out the shape I want and the
 			limits it has to stay inside, and I hand that to the AI. Then I read back through everything it
-			gives me, push back on whatever's wrong, and only keep code I genuinely understand. Nothing
-			ships until it's clean. The Rust compiler, the type-checker, and the full test suite all have to
-			pass first.
+			gives me, push back on whatever's wrong, and only keep what I've read through and can stand
+			behind. Nothing ships until it's clean. The Rust compiler, the type-checker, and the full test
+			suite all have to pass first.
 		</p>
 		<p class="body">
 			That's why I can walk you through any decision on this page. Why the update system can't lock
@@ -566,9 +566,9 @@
 		<div class="skills">
 			<span class="skills-lead">What this demonstrates</span>
 			<div class="skills-row">
-				<span class="chip">Rust</span>
+				<span class="chip">Directing AI</span>
 				<span class="chip">Desktop apps</span>
-				<span class="chip">Concurrency</span>
+				<span class="chip">System design</span>
 				<span class="chip">Security</span>
 				<span class="chip">AI integration</span>
 				<span class="chip">Shipping &amp; updates</span>
@@ -611,7 +611,7 @@
 	</section>
 </main>
 
-<footer class="footer">© 2026 Braison Swilling · Built by hand</footer>
+<footer class="footer">© 2026 Braison Swilling · Designed by me, built with AI</footer>
 
 <style>
 	.footer {
