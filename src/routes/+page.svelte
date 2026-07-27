@@ -38,7 +38,7 @@
 </script>
 
 <svelte:head>
-	<title>Braison Swilling · AI-Native Software Builder</title>
+	<title>Braison Swilling · Software Developer</title>
 	<link rel="canonical" href="https://blazzer10200.github.io/" />
 </svelte:head>
 
@@ -49,14 +49,14 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			AI-Native Software Builder · braison.swilling@outlook.com · 870-267-3299 · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
+			Software Developer · braison.swilling@outlook.com · 870-267-3299 · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
 		</div>
 	</header>
 
 	<!-- Hero -->
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
-			<span>AI-native software builder</span>
+			<span>Software developer</span>
 			<span class="pill">Open to work</span>
 		</div>
 

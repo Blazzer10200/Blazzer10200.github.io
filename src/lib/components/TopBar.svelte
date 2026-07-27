@@ -17,7 +17,7 @@
 
 	let {
 		variant = 'resume',
-		brandRole = 'AI-Native Software Builder',
+		brandRole = 'Software Developer',
 		links = [
 			{ href: '#featured', label: 'Work' },
 			{ href: '#experience', label: 'Experience' },

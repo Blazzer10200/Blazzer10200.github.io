@@ -21,7 +21,7 @@
 
 	<header>
 		<h1>Braison Swilling</h1>
-		<p class="role">AI-Native Software Builder</p>
+		<p class="role">Software Developer</p>
 		<p class="contact-row">
 			Little Rock, AR or Remote (US) · 870-267-3299 · braison.swilling@outlook.com ·
 			github.com/Blazzer10200
@@ -34,12 +34,14 @@
 	<section>
 		<h2>Professional Summary</h2>
 		<p>
-			Self-taught software builder who ships real software by directing AI. I decide what to build,
-			set the limits, and review every change before it's kept. My main work is Rift, an
-			open-source Windows desktop app for AI-assisted coding that I designed and directed end to
-			end, now at {vFull} with {RIFT_TESTS} automated tests and a public installer. I work across
-			the stack, from Rust and C# on the desktop to TypeScript and SvelteKit on the web, with Python
-			back ends on Linux. Seeking a role in AI engineering, developer tools, or AI-focused product.
+			I design and ship real software end to end. My main work is Rift, an open-source Windows
+			desktop app for AI-assisted coding, built in Rust and TypeScript and now at {vFull} with
+			{RIFT_TESTS} automated tests and a public auto-updating installer. The way I build is
+			AI-native: I decide what gets built, set the limits the AI works inside, and review every
+			change before it's kept. Across the stack that's Rust and C# on the desktop, TypeScript and
+			SvelteKit on the web, Python back ends on Linux. Self-taught, and all of it is public to
+			download or read. Seeking a role in software engineering, developer tools, or AI-focused
+			product.
 		</p>
 	</section>
 

@@ -66,7 +66,7 @@ $markFont.Dispose()
 # Eyebrow line — "BRAISON SWILLING / SOFTWARE DEVELOPER"
 $eyebrowFont = New-Object System.Drawing.Font "Consolas", 18, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $eyebrowBrush = New-Object System.Drawing.SolidBrush $accent
-$g.DrawString("AI-NATIVE SOFTWARE BUILDER  $mid  OPEN TO WORK", $eyebrowFont, $eyebrowBrush, ($pad + $markSize + 24), ($markY + 22))
+$g.DrawString("SOFTWARE DEVELOPER  $mid  OPEN TO WORK", $eyebrowFont, $eyebrowBrush, ($pad + $markSize + 24), ($markY + 22))
 $eyebrowFont.Dispose()
 $eyebrowBrush.Dispose()
 
