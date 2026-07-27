@@ -167,8 +167,9 @@
 			8, and it's the project where I learned to take an idea all the way to finished, working
 			software. Then in 2026 I rebuilt it from scratch in Rust. Same app, much better foundation,
 			and everything below that I'd learned the hard way the first time got designed in from the
-			start. The rewrite is what's public today: open source, free to download, and it updates
-			itself. Put the two versions side by side and you can see how far the work came in a year.
+			start. Both versions are public and open source, so you can put them
+			side by side and see how far the work came in a year. The Rust one is the one to actually
+			install — it's free to download and it updates itself.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -179,6 +180,14 @@
 				rel="noopener"
 			>
 				<span class="ico">↗</span> Get the Rust rewrite on GitHub
+			</a>
+			<a
+				class="btn"
+				href="https://github.com/Blazzer10200/exfil-v1"
+				target="_blank"
+				rel="noopener"
+			>
+				<span class="ico">↗</span> Read the original C# version
 			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
@@ -200,7 +209,7 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Status</div>
-				<div class="hero-meta-v accent">v2 open source · MIT</div>
+				<div class="hero-meta-v accent">Both versions open source · MIT</div>
 			</div>
 		</div>
 	</section>

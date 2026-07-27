@@ -71,7 +71,7 @@
 				<li>
 					Designed and directed Rift end to end, an open-source (MIT) desktop app for AI-assisted
 					coding in Rust, Tauri 2, Svelte 5, and TypeScript. I set the design and the AI's limits and
-					reviewed every change, and I stay in control: every AI edit needs my approval before it runs.
+					reviewed every change; every AI edit needs my approval before it runs.
 					Full case study and demo at blazzer10200.github.io/rift.
 				</li>
 				<li>
@@ -85,7 +85,7 @@
 				<li>
 					Built EXFIL, a Windows tray app for per-app display color (including HDR) plus live frame
 					rate and hardware stats. Shipped v1 in C# and .NET 8, then rewrote it in Rust and Tauri 2;
-					the rewrite is open source (MIT) with a signed, self-updating installer.
+					both open source (MIT); the rewrite ships a signed installer.
 				</li>
 				<li>
 					Build and deploy full-stack apps in SvelteKit, TypeScript, Python, FastAPI, and Rust,
