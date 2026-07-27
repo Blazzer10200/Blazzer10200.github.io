@@ -197,9 +197,9 @@
 					<li>
 						<strong>Built EXFIL</strong>, my first real project. It's a small Windows app that
 						lives in your taskbar tray and retunes your screen's color for each app you open. It
-						also shows your frame rate and PC stats while you game. I built it in C# and .NET 8, with
-						the AI writing the code and me making the calls. It was the first thing I took all the way
-						to finished, working software, and I keep it here to show how far I've come since.
+						also shows your frame rate and PC stats while you game. I shipped the first version in
+						C# and .NET 8, then rebuilt it from scratch in Rust once I knew better. That rewrite is
+						the one that's public now, free to download, and it updates itself.
 					</li>
 					<li>
 						I work across the whole stack. The AI writes it and I direct it, from SvelteKit and

@@ -163,9 +163,12 @@
 			>. That way I can see what my PC is doing without opening a second tool.
 		</p>
 		<p class="hero-sub">
-			This was the first tool I ever shipped. I built it early in 2025, and it's the project where I
-			learned to take an idea all the way to finished, working software. I keep it on the site on
-			purpose. Put it next to Rift and you can see how far the work came in a single year.
+			This was the first tool I ever shipped. I built the first version early in 2025 in C# and .NET
+			8, and it's the project where I learned to take an idea all the way to finished, working
+			software. Then in 2026 I rebuilt it from scratch in Rust. Same app, much better foundation,
+			and everything below that I'd learned the hard way the first time got designed in from the
+			start. The rewrite is what's public today: open source, free to download, and it updates
+			itself. Put the two versions side by side and you can see how far the work came in a year.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -175,7 +178,7 @@
 				target="_blank"
 				rel="noopener"
 			>
-				<span class="ico">↗</span> Read the code on GitHub
+				<span class="ico">↗</span> Get the Rust rewrite on GitHub
 			</a>
 			<a class="btn" href="/">
 				<span class="ico">←</span> Back to résumé
@@ -189,7 +192,7 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Stack</div>
-				<div class="hero-meta-v">C# · .NET 8 · WinForms</div>
+				<div class="hero-meta-v">C# · .NET 8 → Rust · Tauri 2</div>
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Surface</div>
@@ -197,7 +200,7 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Status</div>
-				<div class="hero-meta-v accent">Where I started</div>
+				<div class="hero-meta-v accent">v2 open source · MIT</div>
 			</div>
 		</div>
 	</section>
@@ -221,7 +224,7 @@
 
 	<!-- 02 What it looks like -->
 	<section class="block reveal">
-		<SectionRail num="02 / 05" label="Inside EXFIL" meta="C# · Windows 11" />
+		<SectionRail num="02 / 05" label="Inside EXFIL" meta="Tray · settings · overlay" />
 		<h2>A tray icon, a settings window, and a slim overlay. Then you forget it's there.</h2>
 		<p class="body">
 			There are really only three parts. The little tray icon down by the clock handles quick profile
@@ -256,6 +259,8 @@
 			<span class="chip">C#</span>
 			<span class="chip">.NET 8</span>
 			<span class="chip">WinForms</span>
+			<span class="chip">Rust</span>
+			<span class="chip">Tauri 2</span>
 			<span class="chip">Graphics driver</span>
 			<span class="chip">Windows APIs</span>
 			<span class="chip">HDR-aware</span>

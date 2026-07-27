@@ -35,13 +35,12 @@
 		<h2>Professional Summary</h2>
 		<p>
 			I design and ship real software end to end. My main work is Rift, an open-source Windows
-			desktop app for AI-assisted coding, built in Rust and TypeScript and now at {vFull} with
+			desktop app for AI-assisted coding, built in Rust and TypeScript, now at {vFull} with
 			{RIFT_TESTS} automated tests and a public auto-updating installer. The way I build is
 			AI-native: I decide what gets built, set the limits the AI works inside, and review every
-			change before it's kept. Across the stack that's Rust and C# on the desktop, TypeScript and
-			SvelteKit on the web, Python back ends on Linux. Self-taught, and all of it is public to
-			download or read. Seeking a role in software engineering, developer tools, or AI-focused
-			product.
+			change. Across the stack that's Rust and C# on the desktop, TypeScript and SvelteKit on the
+			web, Python back ends on Linux. All of it is public to download or read. Seeking a role in
+			software engineering, developer tools, or AI-focused product.
 		</p>
 	</section>
 
@@ -85,8 +84,9 @@
 					two independent permission checks, then tried to break it myself.
 				</li>
 				<li>
-					Earlier, built EXFIL, a C# and .NET 8 Windows tray app for per-app display color (including
-					HDR) and live frame rate and hardware stats while gaming.
+					Built EXFIL, a Windows tray app for per-app display color (including HDR) plus live frame
+					rate and hardware stats. Shipped v1 in C# and .NET 8, then rewrote it in Rust and Tauri 2;
+					the rewrite is open source (MIT) with a signed, self-updating installer.
 				</li>
 				<li>
 					Build and deploy full-stack apps in SvelteKit, TypeScript, Python, FastAPI, and Rust,
