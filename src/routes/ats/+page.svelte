@@ -23,8 +23,8 @@
 		<h1>Braison Swilling</h1>
 		<p class="role">Software Developer</p>
 		<p class="contact-row">
-			Little Rock, AR or Remote (US) · 870-267-3299 · braison.swilling@outlook.com ·
-			github.com/Blazzer10200
+			Little Rock / Pine Bluff, AR · Open to relocation or remote (US) · 870-267-3299 ·
+			braison.swilling@outlook.com · github.com/Blazzer10200
 		</p>
 		<p class="portfolio-row">
 			Full case studies, source code, and a short demo at blazzer10200.github.io
@@ -38,9 +38,8 @@
 			desktop app for AI-assisted coding, built in Rust and TypeScript, now at {vFull} with
 			{RIFT_TESTS} automated tests and a public auto-updating installer. The way I build is
 			AI-native: I decide what gets built, set the limits the AI works inside, and review every
-			change. Across the stack that's Rust and C# on the desktop, TypeScript and SvelteKit on the
-			web, Python back ends on Linux. All of it is public to download or read. Seeking a role in
-			software engineering, developer tools, or AI-focused product.
+			change. All of it is public to download or read. Seeking a role in software engineering,
+			developer tools, or AI-focused product.
 		</p>
 	</section>
 

@@ -49,7 +49,7 @@
 	<header class="print-resume-header" aria-hidden="true">
 		<div class="print-name">Braison Swilling</div>
 		<div class="print-contact">
-			Software Developer · braison.swilling@outlook.com · 870-267-3299 · github.com/Blazzer10200 · Little Rock, AR or Remote (US)
+			Software Developer · braison.swilling@outlook.com · 870-267-3299 · github.com/Blazzer10200 · Little Rock / Pine Bluff, AR · Open to relocation or remote (US)
 		</div>
 	</header>
 
@@ -101,7 +101,7 @@
 			</div>
 			<div class="hero-meta-cell">
 				<div class="hero-meta-k">Based</div>
-				<div class="hero-meta-v">Little Rock area or Remote (US)</div>
+				<div class="hero-meta-v">Little Rock / Pine Bluff, AR, or remote</div>
 			</div>
 		</div>
 	</section>
@@ -319,10 +319,10 @@
 	<section class="contact reveal" id="contact">
 		<h3>If you're building with AI, let's talk.</h3>
 		<p class="contact-sub">
-			I'm looking for a role where I can build with AI, whether that's AI engineering, developer
-			tools, or AI-focused product work. Remote is fine, or in person around Little Rock and
-			Central Arkansas. If your team is trying to figure out how to ship real software with AI,
-			that's the kind of work I'm best at.
+			I'm looking for a role building real software, whether that's software engineering, developer
+			tools, or AI-focused product work. Remote is fine, in person around Little Rock, Pine Bluff,
+			and Central Arkansas works, and I'm open to relocating for the right team. If you're trying
+			to figure out how to ship real software with AI, that's the kind of work I'm best at.
 		</p>
 
 		<div class="contact-grid stagger">
