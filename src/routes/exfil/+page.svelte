@@ -258,7 +258,7 @@
 		<div class="stack-row">
 			<span class="chip">C#</span>
 			<span class="chip">.NET 8</span>
-			<span class="chip">WinForms</span>
+			<span class="chip">WPF</span>
 			<span class="chip">Rust</span>
 			<span class="chip">Tauri 2</span>
 			<span class="chip">Graphics driver</span>
