@@ -53,9 +53,9 @@
 			n: '01',
 			title: 'I deleted the feature the app was named for',
 			lead: `Rift started as a tool for syncing files to game servers. I cut the entire sync half, about a quarter of the code, once the AI part became the product.`,
-			body: `Rift began as a control panel for game-server developers. It watched your files and pushed them to a remote server safely. Then the AI side outgrew all of that. I noticed I was opening Rift to write code, not to sync anything. So I tore out the half the app was literally named after: the remote connection, the file watcher, all of it. That was around 13,000 lines, deleted on purpose. What's left does one job, and every line of it earns its place.`,
+			body: `Rift began as a control panel for game-server developers. It watched your files and pushed them to a remote server safely. Then the AI side outgrew all of that. I noticed I was opening Rift to write code, not to sync anything. So I tore out the half the app was literally named after: the remote connection, the file watcher, all of it. That was around 15,000 lines, deleted on purpose. What's left does one job, and every line of it earns its place.`,
 			kv: [
-				['What I cut', 'About 13,000 lines, on purpose'],
+				['What I cut', 'About 15,000 lines, on purpose'],
 				['The result', 'One product that does one job']
 			]
 		},
@@ -321,7 +321,7 @@
 
 	<!-- 01 The film -->
 	<section class="block reveal" id="film">
-		<SectionRail num="01 / 06" label="The film" meta="45 seconds" />
+		<SectionRail num="01 / 06" label="The film" meta="48 seconds" />
 		<h2>Here's what it actually looks like.</h2>
 		<p class="body">
 			Tell it what you want and watch it happen. You'll see it open a project, work through the
