@@ -155,8 +155,9 @@
 <style>
 	/* Branded-dev resume: single-column and parse-safe for ATS, but carrying the
 	   site's DNA — Inter for readable body, JetBrains Mono for dates/labels, and
-	   the accent blue on section rules. The `//` prefixes are CSS ::before marks
-	   (decorative only — screeners read the DOM text, never the pseudo-content). */
+	   the accent blue on section rules. The `//` prefixes are CSS ::before marks,
+	   on-screen only — pseudo-content DOES land in the PDF text layer, so print
+	   strips them (see the @media print block). */
 	.ats {
 		--mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
 		max-width: 780px;
