@@ -250,7 +250,7 @@
 				{#snippet summary()}
 					<li>
 						<strong>This is where I started.</strong> I built and ran live FiveM and RedM game
-						servers for live player communities. That meant configuring resources, scripting Lua,
+						servers for live player communities. That meant configuring resources, modifying Lua,
 						running a MySQL database, and admining both Windows and Linux. People noticed the second
 						anything broke, so I learned to fix fast.
 					</li>

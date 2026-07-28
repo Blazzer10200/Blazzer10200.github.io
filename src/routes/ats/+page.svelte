@@ -50,8 +50,8 @@
 			agent tooling and guardrail design, spec-driven development, code review of AI-generated code
 		</p>
 		<p>
-			<strong>Languages and frameworks:</strong> Rust, C#, TypeScript, JavaScript, Python, Lua, SQL,
-			HTML, CSS, .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI, Node.js, MySQL
+			<strong>Technologies in shipped projects:</strong> Rust, C#, TypeScript, JavaScript, Python,
+			Lua, SQL, HTML, CSS, .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI, Node.js, MySQL
 		</p>
 		<p>
 			<strong>Tools and practices:</strong> Git, GitHub Actions, CI/CD, automated testing (vitest,
@@ -140,8 +140,9 @@
 			<ul>
 				<li>
 					Built and operated live multiplayer game servers for active player communities: server
-					resource configuration, Lua scripting, MySQL database administration, and Windows and
-					Linux system administration. First hands-on technical work, under live user load.
+					resource configuration, modifying and debugging Lua resources, MySQL database
+					administration, and Windows and Linux system administration. First hands-on technical
+					work, under live user load.
 				</li>
 			</ul>
 		</div>
