@@ -243,16 +243,21 @@
 			</ExperienceItem>
 
 			<ExperienceItem
-				years="High school to 2025"
+				years="2022 to early 2025"
 				role="FiveM & RedM server operator"
 				org="Self-employed"
 			>
 				{#snippet summary()}
 					<li>
-						<strong>This is where I started.</strong> I built and ran live FiveM and RedM game
-						servers for live player communities. That meant configuring resources, modifying Lua,
-						running a MySQL database, and admining both Windows and Linux. People noticed the second
-						anything broke, so I learned to fix fast.
+						<strong>This is where I started.</strong> I got in by modifying game files in 2022, then
+						came back in early 2023 and hosted my own server. It didn't last — I didn't know how to
+						optimize or manage it yet, and a live server tells you that fast. That lesson stuck.
+					</li>
+					<li>
+						I spent the next two years developing for other FiveM and RedM communities alongside
+						full-time work: configuring resources, modifying Lua, running a MySQL database, and
+						admining both Windows and Linux. People notice the second anything breaks, so I learned
+						to fix fast.
 					</li>
 					<li>Wound down in early 2025 to focus on building software full-time.</li>
 				{/snippet}

@@ -134,13 +134,14 @@
 		<div class="job">
 			<h3>Game Server Operator (FiveM and RedM)</h3>
 			<p class="company">Self-employed</p>
-			<p class="dates">High school to early 2025</p>
+			<p class="dates">2022 to early 2025</p>
 			<ul>
 				<li>
-					Built and operated live multiplayer game servers for active player communities: server
-					resource configuration, modifying and debugging Lua resources, MySQL database
-					administration, and Windows and Linux system administration. First hands-on technical
-					work, under live user load.
+					Hosted an independent production server in 2023 and learned optimization and capacity
+					management firsthand when it outgrew what the setup could handle, then developed for
+					established communities through early 2025: server resource configuration, modifying and
+					debugging Lua resources, MySQL database administration, and Windows and Linux system
+					administration. First hands-on technical work, under live user load.
 				</li>
 			</ul>
 		</div>
@@ -306,7 +307,7 @@
 			margin-top: 3pt;
 		}
 		section {
-			margin-top: 5pt;
+			margin-top: 4pt;
 		}
 		h2 {
 			font-size: 10.5pt;
@@ -335,7 +336,7 @@
 			break-inside: avoid;
 		}
 		.job + .job {
-			margin-top: 4pt;
+			margin-top: 3pt;
 		}
 		li + li {
 			margin-top: 2pt;
