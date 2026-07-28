@@ -182,8 +182,8 @@
 		<div class="exp-wrap">
 			<ExperienceItem
 				years="2025 to now"
-				role="Independent software developer"
-				org="Self-directed"
+				role="What I'm building"
+				org="Rift, EXFIL, and this site"
 			>
 				{#snippet summary()}
 					<li>

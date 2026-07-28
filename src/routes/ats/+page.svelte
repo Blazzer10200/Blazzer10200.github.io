@@ -81,6 +81,11 @@
 					the project folder behind two independent path checks, exposed five selectable permission
 					modes with an approval prompt, and defaulted git access to read-only.
 				</li>
+				<li>
+					Built nights and weekends around a full-time factory job through January 2026, and
+					full-time since. Directed AI coding agents against a written spec and reviewed every
+					change before it shipped.
+				</li>
 			</ul>
 		</div>
 
@@ -103,23 +108,6 @@
 
 	<section>
 		<h2>Experience</h2>
-
-		<div class="job">
-			<h3>Independent Software Developer</h3>
-			<p class="company">Self-employed</p>
-			<p class="dates">2025 to Present</p>
-			<ul>
-				<li>
-					Design, build, and ship desktop and full-stack applications end to end (see Projects
-					above). Direct AI coding agents against a written spec, design the guardrails they
-					operate within, and review every change before it ships.
-				</li>
-				<li>
-					Built the first year of this work nights and weekends around a full-time factory job, and
-					have worked on it full-time since January 2026.
-				</li>
-			</ul>
-		</div>
 
 		<div class="job">
 			<h3>Production / Assembly</h3>
