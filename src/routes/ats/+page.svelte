@@ -35,11 +35,11 @@
 		<h2>Professional Summary</h2>
 		<p>
 			Software developer who designs and ships production desktop and web applications end to end.
-			Creator of Rift, an open-source Windows desktop app for AI-assisted coding built in Rust and
-			TypeScript, currently {vFull} with {RIFT_TESTS} automated tests and a public auto-updating
-			installer. Works AI-native: scopes the build, designs the guardrails the AI operates within,
-			and reviews every change before it ships. All source is public and verifiable. Seeking a role
-			in software engineering, developer tools, or AI-focused product.
+			Creator of Rift, an open-source Windows desktop app for AI-assisted coding, currently {vFull}
+			with {RIFT_TESTS} automated tests and a public auto-updating installer. Works AI-native:
+			scopes the build, designs the guardrails the AI operates within, and reviews every change
+			before it ships. All source is public and verifiable. Seeking a role in software engineering,
+			developer tools, or AI-focused product.
 		</p>
 	</section>
 
@@ -72,9 +72,8 @@
 					a docked browser, live streaming interface, and on-device voice input.
 				</li>
 				<li>
-					Ships as a public auto-updating Windows installer, currently {vFull}, backed by
-					{RIFT_TESTS} automated tests. Each release is built and published by a single command
-					through GitHub Actions.
+					Ships as a public auto-updating Windows installer, with each release built, signed, and
+					published by a single command through GitHub Actions.
 				</li>
 				<li>
 					Threat-modeled and hardened the AI's access before release: confined file operations to
@@ -83,8 +82,7 @@
 				</li>
 				<li>
 					Built nights and weekends around a full-time factory job through January 2026, and
-					full-time since. Directed AI coding agents against a written spec and reviewed every
-					change before it shipped.
+					full-time since.
 				</li>
 			</ul>
 		</div>
@@ -99,8 +97,8 @@
 					including HDR, and reports live frame rate and hardware statistics.
 				</li>
 				<li>
-					Shipped v1 in C# and .NET 8, then rewrote it in Rust and Tauri 2. Both versions are
-					public and MIT-licensed, and the rewrite ships a signed installer with an update channel.
+					Shipped v1, then rewrote it from the ground up in Rust for v2. Both repos are public, and
+					the rewrite ships a signed installer with an update channel.
 				</li>
 			</ul>
 		</div>
@@ -280,8 +278,8 @@
 		.ats {
 			max-width: none;
 			padding: 0;
-			font-size: 8.4pt;
-			line-height: 1.24;
+			font-size: 8.8pt;
+			line-height: 1.3;
 		}
 		/* Decorative marker glyph lands in the PDF text layer as a stray character
 		   before every bullet. Native disc keeps list semantics without the noise. */
