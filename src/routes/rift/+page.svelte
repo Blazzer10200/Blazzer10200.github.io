@@ -52,7 +52,7 @@
 		{
 			n: '01',
 			title: 'I deleted the feature the app was named for',
-			lead: `Rift started as a tool for syncing files to game servers. I cut the entire sync half, about a quarter of the code, once the AI part became the real product.`,
+			lead: `Rift started as a tool for syncing files to game servers. I cut the entire sync half, about a quarter of the code, once the AI part became the product.`,
 			body: `Rift began as a control panel for game-server developers. It watched your files and pushed them to a remote server safely. Then the AI side outgrew all of that. I noticed I was opening Rift to write code, not to sync anything. So I tore out the half the app was literally named after: the remote connection, the file watcher, all of it. That was around 13,000 lines, deleted on purpose. What's left does one job, and every line of it earns its place.`,
 			kv: [
 				['What I cut', 'About 13,000 lines, on purpose'],
@@ -247,8 +247,8 @@
 
 		<p class="hero-sub">
 			Rift is a desktop app for coding with AI. The AI works inside your project. It reads your
-			files, searches the code, and can run git for you, then proposes changes you approve. All of
-			that lives in a real desktop app, with several chats open at once, a web browser built in, and
+			files, searches the code, and can run git for you, and you choose how much it does on its own.
+			All of that lives in a proper desktop app, with several chats open at once, a web browser built in, and
 			a meter showing what each turn costs.
 		</p>
 		<p class="hero-sub">
@@ -429,8 +429,8 @@
 		</p>
 		<p class="body">
 			Rift takes that same way of working and builds it into a proper desktop app. You point it at a
-			project and the AI works the way you would. It reads the code, searches it, and runs git, while
-			you approve every change before it lands. The preview opens in a browser docked right next to
+			project and the AI works the way you would. It reads the code, searches it, and runs git, and
+			you set how much of that it can do without asking. The preview opens in a browser docked right next to
 			the chat, your cost and usage stay in view the whole time, and you can talk to it instead of
 			typing.
 		</p>

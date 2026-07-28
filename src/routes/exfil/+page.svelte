@@ -75,7 +75,7 @@
 			name: 'exfil · dashboard',
 			alt: 'EXFIL dashboard with tray status, OSD preview, game library, and live system telemetry',
 			capTitle: 'Dashboard.',
-			cap: 'Live tray status, a preview of the on-screen overlay, your game library, and a panel pulling real graphics and processor temps and load straight from the hardware.'
+			cap: 'Live tray status, a preview of the on-screen overlay, your game library, and a panel pulling graphics and processor temps and load straight from the hardware.'
 		},
 		{
 			src: 'exfil-presets.png',
@@ -146,7 +146,7 @@
 	<section class="hero reveal">
 		<div class="hero-eyebrow">
 			<span>Case study</span>
-			<span class="pill">My first real project · 2025</span>
+			<span class="pill">My first shipped project · 2025</span>
 		</div>
 
 		<h1>The right app takes focus, the display retunes itself.</h1>

@@ -60,15 +60,14 @@
 			<span class="pill">Open to work</span>
 		</div>
 
-		<h1>I build real software by <em>directing AI, and I ship it.</em></h1>
+		<h1>I build software by <em>directing AI</em>, and I ship it.</h1>
 
 		<p class="hero-sub">
-			Self-taught, no degree. I started out running game servers, then AI came along and changed
-			everything for me. What I'm good at is directing AI to build real software. I decide what to
-			build, set the limits it has to work inside, and check every change before it's kept. Right
-			now I'm building <strong>Rift</strong>, a coding app where the AI does the typing and you
-			approve every change. It's open source, so you can download it and run it today, or read
-			every line of it.
+			What I'm good at is directing AI to build software and shipping it. I decide what to build,
+			set the limits it has to work inside, and check every change before it's kept. Right now I'm
+			building <strong>Rift</strong>, a coding app where the AI does the typing and you stay the
+			reviewer. It's open source, so you can download it and run it today, or read every line of
+			it. I started out running game servers and taught myself the rest.
 		</p>
 
 		<div class="hero-actions stagger">
@@ -116,7 +115,8 @@
 				<p>
 					<strong>You stay the reviewer.</strong> The AI works inside your project. It reads your
 					files and proposes changes, and it can run git for you (that's the tool that saves and
-					tracks every code change). Nothing actually happens until you approve it. You also get
+					tracks every code change). You pick how much rope it gets, from approving every step to
+					letting it run. You also get
 					several chats open at once, a web browser built right in, and a meter showing what each
 					turn is costing you.
 				</p>
@@ -189,22 +189,22 @@
 					<li>
 						<strong>Building Rift</strong>, a desktop app for coding with AI. The AI reads your
 						code and can run git for you, there's a web browser built in, and it updates itself.
-						You stay in control and approve the changes. It's open source, has {RIFT_TESTS} tests, and
+						You set how much it can do on its own. It's open source, has {RIFT_TESTS} tests, and
 						ships as a public download ({vShort}). I designed and directed the whole build myself,
 						setting the overall design and the AI's limits, then reviewing every change it made. I
 						did it nights and weekends around a factory job until January 2026, and full-time since.
 					</li>
 					<li>
-						<strong>Built EXFIL</strong>, my first real project. It's a small Windows app that
+						<strong>Built EXFIL</strong>, my first shipped project. It's a small Windows app that
 						lives in your taskbar tray and retunes your screen's color for each app you open. It
 						also shows your frame rate and PC stats while you game. I shipped the first version in
-						C# and .NET 8, then rebuilt it from scratch in Rust once I knew better. Both versions
-						are public, and the Rust one is free to download and updates itself.
+						C# and .NET 8, then rebuilt it from scratch in Rust once I'd learned enough to do it
+						right. Both versions are public, and the Rust one is free to download and updates itself.
 					</li>
 					<li>
-						I work across the whole stack. The AI writes it and I direct it, from SvelteKit and
-						TypeScript for the part you see to Python, FastAPI, and Rust behind it, and Linux to put
-						it online.
+						I work across the whole stack: SvelteKit and TypeScript for the part you see, Python,
+						FastAPI, and Rust behind it, Linux to put it online. The AI writes the code and I direct
+						it.
 					</li>
 				{/snippet}
 			</ExperienceItem>
@@ -250,7 +250,7 @@
 				{#snippet summary()}
 					<li>
 						<strong>This is where I started.</strong> I built and ran live FiveM and RedM game
-						servers for real player communities. That meant configuring resources, tweaking Lua,
+						servers for live player communities. That meant configuring resources, scripting Lua,
 						running a MySQL database, and admining both Windows and Linux. People noticed the second
 						anything broke, so I learned to fix fast.
 					</li>
@@ -296,7 +296,8 @@
 			<div class="tk">
 				<div class="tk-head">Web &amp; backend</div>
 				<ul>
-					<li>SvelteKit 5</li>
+					<li>SvelteKit 2</li>
+				<li>Svelte 5</li>
 					<li>TypeScript</li>
 					<li>Python</li>
 					<li>FastAPI</li>
@@ -319,10 +320,10 @@
 	<section class="contact reveal" id="contact">
 		<h3>If you're building with AI, let's talk.</h3>
 		<p class="contact-sub">
-			I'm looking for a role building real software, whether that's software engineering, developer
-			tools, or AI-focused product work. Remote is fine, in person around Little Rock, Pine Bluff,
-			and Central Arkansas works, and I'm open to relocating for the right team. If you're trying
-			to figure out how to ship real software with AI, that's the kind of work I'm best at.
+			I'm looking for a role building software, whether that's software engineering, developer
+			tools, or AI-focused product work. Remote works. So does in person around Little Rock, Pine
+			Bluff, and Central Arkansas, and I'm open to relocating for the right team. If you're trying
+			to figure out how to ship with AI, that's the kind of work I'm best at.
 		</p>
 
 		<div class="contact-grid stagger">

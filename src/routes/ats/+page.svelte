@@ -34,30 +34,71 @@
 	<section>
 		<h2>Professional Summary</h2>
 		<p>
-			I design and ship real software end to end. My main work is Rift, an open-source Windows
-			desktop app for AI-assisted coding, built in Rust and TypeScript, now at {vFull} with
-			{RIFT_TESTS} automated tests and a public auto-updating installer. The way I build is
-			AI-native: I decide what gets built, set the limits the AI works inside, and review every
-			change. All of it is public to download or read. Seeking a role in software engineering,
-			developer tools, or AI-focused product.
+			Software developer who designs and ships production desktop and web applications end to end.
+			Creator of Rift, an open-source Windows desktop app for AI-assisted coding built in Rust and
+			TypeScript, currently {vFull} with {RIFT_TESTS} automated tests and a public auto-updating
+			installer. Works AI-native: scopes the build, designs the guardrails the AI operates within,
+			and reviews every change before it ships. All source is public and verifiable. Seeking a role
+			in software engineering, developer tools, or AI-focused product.
 		</p>
 	</section>
 
 	<section>
 		<h2>Skills</h2>
 		<p>
-			<strong>AI and workflow:</strong> Directing AI coding agents, prompt engineering, agent
-			tooling and guardrail design, spec-driven development, reading and reviewing AI-written code
+			<strong>AI-assisted development:</strong> Claude Code, AI coding agents, prompt engineering,
+			agent tooling and guardrail design, spec-driven development, code review of AI-generated code
 		</p>
 		<p>
-			<strong>Technologies I build with:</strong> Rust, C#, TypeScript, JavaScript, Python, Lua, SQL,
-			HTML, CSS, .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI, Node.js, MySQL, Git, GitHub
-			Actions, Playwright
+			<strong>Languages and frameworks:</strong> Rust, C#, TypeScript, JavaScript, Python, Lua, SQL,
+			HTML, CSS, .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI, Node.js, MySQL
 		</p>
 		<p>
-			<strong>Practices:</strong> AI integration, REST APIs, CI/CD, automated testing, application
-			security, Windows and Linux administration
+			<strong>Tools and practices:</strong> Git, GitHub Actions, CI/CD, automated testing (vitest,
+			cargo test, Playwright), REST APIs, application security, Windows and Linux administration
 		</p>
+	</section>
+
+	<section>
+		<h2>Projects</h2>
+
+		<div class="job">
+			<h3>Rift, desktop app for AI-assisted coding</h3>
+			<p class="company">Open source (MIT) · Rust, Tauri 2, Svelte 5, TypeScript</p>
+			<p class="dates">2025 to Present · github.com/Blazzer10200/rift-tauri</p>
+			<ul>
+				<li>
+					Designed and directed the full build: workspace-scoped AI tooling, local git integration,
+					a docked browser, live streaming interface, and on-device voice input.
+				</li>
+				<li>
+					Ships as a public auto-updating Windows installer, currently {vFull}, backed by
+					{RIFT_TESTS} automated tests. Each release is built and published by a single command
+					through GitHub Actions.
+				</li>
+				<li>
+					Threat-modeled and hardened the AI's access before release: confined file operations to
+					the project folder behind two independent path checks, exposed five selectable permission
+					modes with an approval prompt, and defaulted git access to read-only.
+				</li>
+			</ul>
+		</div>
+
+		<div class="job">
+			<h3>EXFIL, Windows display and hardware utility</h3>
+			<p class="company">Open source (MIT) · C# / .NET 8 / WPF (v1), Rust and Tauri 2 (v2)</p>
+			<p class="dates">2025 to 2026 · github.com/Blazzer10200/exfil</p>
+			<ul>
+				<li>
+					Built a Windows tray application that retunes display color per running application,
+					including HDR, and reports live frame rate and hardware statistics.
+				</li>
+				<li>
+					Shipped v1 in C# and .NET 8, then rewrote it in Rust and Tauri 2. Both versions are
+					public and MIT-licensed, and the rewrite ships a signed installer with an update channel.
+				</li>
+			</ul>
+		</div>
 	</section>
 
 	<section>
@@ -65,31 +106,17 @@
 
 		<div class="job">
 			<h3>Independent Software Developer</h3>
-			<p class="company">Self-directed</p>
+			<p class="company">Self-employed</p>
 			<p class="dates">2025 to Present</p>
 			<ul>
 				<li>
-					Designed and directed Rift end to end, an open-source (MIT) desktop app for AI-assisted
-					coding in Rust, Tauri 2, Svelte 5, and TypeScript. I set the design and the AI's limits and
-					reviewed every change; every AI edit needs my approval before it runs.
-					Full case study and demo at blazzer10200.github.io/rift.
+					Design, build, and ship desktop and full-stack applications end to end (see Projects
+					above). Direct AI coding agents against a written spec, design the guardrails they
+					operate within, and review every change before it ships.
 				</li>
 				<li>
-					Shipped it as an auto-updating public Windows installer, now at {vFull}, backed by {RIFT_TESTS}
-					automated tests, each release built and published by one command through GitHub Actions.
-				</li>
-				<li>
-					Planned and tested its security before release: confined the AI to the project folder behind
-					two independent permission checks, then tried to break it myself.
-				</li>
-				<li>
-					Built EXFIL, a Windows tray app for per-app display color (including HDR) plus live frame
-					rate and hardware stats. Shipped v1 in C# and .NET 8, then rewrote it in Rust and Tauri 2;
-					both open source (MIT); the rewrite ships a signed installer.
-				</li>
-				<li>
-					Build and deploy full-stack apps in SvelteKit, TypeScript, Python, FastAPI, and Rust,
-					including this portfolio site.
+					Built the first year of this work nights and weekends around a full-time factory job, and
+					have worked on it full-time since January 2026.
 				</li>
 			</ul>
 		</div>
@@ -100,7 +127,7 @@
 			<p class="dates">July 2025 to January 2026</p>
 			<ul>
 				<li>
-					Promoted from yard and facility work to the assembly line; role ended in a company-wide
+					Promoted from yard and facility work to the assembly line. Role ended in a company-wide
 					workforce reduction in January 2026.
 				</li>
 			</ul>
@@ -113,7 +140,7 @@
 			<ul>
 				<li>
 					Operated heavy equipment and ran landfill operations on a live industrial site (Twin Rivers
-					Paper mill) for about two years, with a clean safety record.
+					Paper Mill) for two years with a clean safety record.
 				</li>
 			</ul>
 		</div>
@@ -124,9 +151,9 @@
 			<p class="dates">High school to early 2025</p>
 			<ul>
 				<li>
-					Built and ran live multiplayer game servers (FiveM and RedM) for active communities:
-					resource configuration, Lua tweaks, a MySQL database, and Windows and Linux
-					administration. My first hands-on tech work, under real user load.
+					Built and operated live multiplayer game servers for active player communities: server
+					resource configuration, Lua scripting, MySQL database administration, and Windows and
+					Linux system administration. First hands-on technical work, under live user load.
 				</li>
 			</ul>
 		</div>
@@ -134,7 +161,7 @@
 
 	<section>
 		<h2>Education</h2>
-		<p>High school diploma, 2023. Self-taught in software development.</p>
+		<p>High school diploma, 2023.</p>
 	</section>
 </main>
 
@@ -264,17 +291,23 @@
 		.ats {
 			max-width: none;
 			padding: 0;
-			font-size: 8.9pt;
-			line-height: 1.3;
+			font-size: 8.4pt;
+			line-height: 1.24;
+		}
+		/* Decorative marker glyph lands in the PDF text layer as a stray character
+		   before every bullet. Native disc keeps list semantics without the noise. */
+		li::marker {
+			content: '• ';
+			color: inherit;
 		}
 		.back {
 			display: none;
 		}
 		header {
-			padding-bottom: 7pt;
+			padding-bottom: 6pt;
 		}
 		h1 {
-			font-size: 21pt;
+			font-size: 19pt;
 		}
 		.contact-row {
 			font-size: 8.5pt;
@@ -285,24 +318,39 @@
 			margin-top: 3pt;
 		}
 		section {
-			margin-top: 6pt;
+			margin-top: 5pt;
 		}
 		h2 {
-			font-size: 11pt;
+			font-size: 10.5pt;
 			margin-top: 0;
-			margin-bottom: 5pt;
+			margin-bottom: 4pt;
 		}
+		/* The `//` mark is on-screen branding only. In the PDF it lands in the text
+		   layer, so an ATS reads "// EXPERIENCE" and can't match the standard
+		   section heading it's looking for. Strip it from print. */
+		h2::before {
+			content: none;
+		}
+		/* Collapse "Company" + "Dates" onto one line — standard resume layout, and
+		   it reclaims a line per entry across six entries to hold one page. */
+		.company,
 		.dates {
+			display: inline;
 			font-size: 8.5pt;
+		}
+		.dates::before {
+			/* NBSP — a plain leading space collapses at the inline boundary and the
+			   PDF text layer renders "TypeScript· 2025". */
+			content: '\00a0·\00a0';
 		}
 		.job {
 			break-inside: avoid;
 		}
 		.job + .job {
-			margin-top: 5pt;
+			margin-top: 4pt;
 		}
 		li + li {
-			margin-top: 2.5pt;
+			margin-top: 2pt;
 		}
 	}
 </style>
