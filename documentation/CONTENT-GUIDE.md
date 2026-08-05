@@ -4,12 +4,22 @@
 
 - `src/lib/content/site.ts` — identity, navigation, proof, audience, and shared positioning
 - `src/lib/content/services.ts` — service categories, outcomes, deliverables, examples, and boundaries
-- `src/lib/content/process.ts` — six-stage delivery process
+- `src/lib/content/process.ts` — eight-stage delivery process
 - `src/lib/content/projects.ts` — project cards, case studies, links, media, product view, and engineering view
 - `src/lib/content/project-fit.ts` — Project Fit questions and deterministic recommendations
 - `src/lib/content/inquiry-options.ts` — inquiry dropdown values
 
 Keep visible labels separate from stable option values. If an option value changes, update validation, prefill links, tests, and any saved analytics mappings together.
+
+## Voice and tone
+
+- Write like Braison is speaking directly to one client. Use clear first-person language and concrete verbs.
+- Keep one main idea per sentence. Prefer a period or comma over an em dash in public copy.
+- Avoid stacked contrasts, slogan fragments, and formulas such as “not X, but Y” unless the distinction is genuinely necessary.
+- Explain what Braison does, what the client can expect, and what happens next. Do not narrate the marketing strategy behind the sentence.
+- Use technical language only when it helps a buyer or reviewer make a decision.
+- Preserve verified facts. Never make the writing sound stronger by inventing outcomes, clients, scale, or certainty.
+- Read new copy aloud. If it sounds like a pitch deck or a generated summary instead of a real conversation, rewrite it more simply.
 
 ## Adding a project
 

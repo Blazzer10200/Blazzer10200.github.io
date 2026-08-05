@@ -30,11 +30,11 @@ export const proofItems = [
 	},
 	{
 		label: 'End-to-end scope',
-		value: 'Product planning through deployment'
+		value: 'Planning, design, development, and launch'
 	},
 	{
-		label: 'Built to hold up',
-		value: 'Tests, review, security boundaries, docs'
+		label: 'Careful delivery',
+		value: 'Testing, review, security, and documentation'
 	}
 ] as const;
 
@@ -46,8 +46,8 @@ export const audiences = [
 	},
 	{
 		title: 'Founders and product owners',
-		body: 'A rough idea, an uncertain MVP, or a process that should become software—turned into a plan people can use and test.',
-		need: 'A path from uncertainty to a working product without pretending the scope is obvious on day one.'
+		body: 'I can help shape a rough idea, an early MVP, or a process that needs to become software.',
+		need: 'A practical first version with clear priorities and room to improve after real use.'
 	},
 	{
 		title: 'Gaming communities',
@@ -94,19 +94,19 @@ export const capabilityGroups = [
 
 export const whyWorkWithMe = [
 	{
-		title: 'One person owns the whole product',
-		body: 'I connect requirements, interface decisions, the underlying system, testing, and deployment instead of handing the gaps to someone else.'
+		title: 'You work directly with me',
+		body: 'I stay involved from the first planning conversation through design, development, testing, and launch.'
 	},
 	{
-		title: 'Unclear ideas become concrete decisions',
-		body: 'I turn notes and rough problems into a scoped first release, working previews, and a record of what was decided and why.'
+		title: 'Rough ideas get a clear first step',
+		body: 'I help organize the problem, decide what belongs in the first release, and turn that plan into something you can review and use.'
 	},
 	{
 		title: 'AI-assisted work still gets reviewed',
 		body: 'I set the constraints, inspect the changes, test behavior, reject weak output, and remain responsible for what ships.'
 	},
 	{
-		title: 'Reliability is not just a software word',
-		body: 'Industrial and equipment-operation work taught me to respect safety, repeatable processes, and finishing a job correctly.'
+		title: 'I take reliability seriously',
+		body: 'My industrial and equipment background taught me the value of careful work, clear communication, and following through.'
 	}
 ] as const;

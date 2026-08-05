@@ -70,9 +70,9 @@ const stageGuidance: Record<StageOption, string> = {
 };
 
 const titleByService: Record<ServiceId, string> = {
-	websites: 'A focused website project looks like the best starting point.',
-	software: 'A scoped custom-software engagement looks like the best starting point.',
-	ai: 'An AI integration may fit—after the task and review boundary are defined.'
+	websites: 'A focused website project is the best place to start.',
+	software: 'A custom software project is the best place to start.',
+	ai: 'An AI integration could fit once the task and review process are clear.'
 };
 
 export function recommendProjectFit(input: ProjectFitInput): ProjectFitRecommendation {
@@ -105,7 +105,7 @@ export function recommendProjectFit(input: ProjectFitInput): ProjectFitRecommend
 		title: titleByService[service],
 		explanation: `${stageGuidance[input.stage]} ${priorityExplanation[input.priority]}`,
 		nextStep:
-			'Share what exists today and what you need to be different. I will confirm fit and identify the next useful decision—not invent an instant price.'
+			'Tell me what exists today and what you want to improve. I will review it, confirm whether the project fits my work, and suggest a practical next step.'
 	};
 }
 

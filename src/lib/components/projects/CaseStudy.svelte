@@ -118,8 +118,8 @@
 	<section class="depth container-wide section" aria-labelledby="depth-title">
 		<header class="depth-header">
 			<div>
-				<p class="eyebrow">Two levels of detail</p>
-				<h2 id="depth-title">Start with the product. Inspect the engineering when it matters.</h2>
+				<p class="eyebrow">Product and engineering</p>
+				<h2 id="depth-title">See how the product works and how it was built.</h2>
 			</div>
 			<nav aria-label="Case study views">
 				<a href="#product-view">Product View</a>
@@ -165,8 +165,8 @@
 	{#if project.gallery.length}
 		<section class="gallery container-wide section-tight" aria-labelledby="gallery-title">
 			<div>
-				<p class="eyebrow">Interface evidence</p>
-				<h2 id="gallery-title">The product, not a placeholder.</h2>
+				<p class="eyebrow">Product screens</p>
+				<h2 id="gallery-title">A closer look at the interface.</h2>
 			</div>
 			<div class="gallery-grid">
 				{#each project.gallery as media}
@@ -191,8 +191,8 @@
 
 	<section class="demonstrates container section" aria-labelledby="demonstrates-title">
 		<div>
-			<p class="eyebrow">What this demonstrates</p>
-			<h2 id="demonstrates-title">The client-relevant proof behind the project.</h2>
+			<p class="eyebrow">What this project shows</p>
+			<h2 id="demonstrates-title">The skills and decisions behind the finished product.</h2>
 		</div>
 		<ul>
 			{#each project.demonstrates as item}<li>{item}</li>{/each}
@@ -201,8 +201,8 @@
 
 	<CtaBand
 		eyebrow="Need something built?"
-		title="Your product will have different constraints. The discipline stays the same."
-		body="Start with the problem, the people affected, and what already exists. I will help turn that into the next useful decision."
+		title="Have a different problem to solve? Let’s talk through it."
+		body="Tell me what is happening now, who it affects, and what you would like the finished product to improve."
 	/>
 </main>
 

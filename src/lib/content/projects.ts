@@ -241,7 +241,7 @@ export const projects: readonly Project[] = [
 			{
 				title: 'Reliability work',
 				body: [
-					'The rewrite addresses configuration evolution, monitor changes, HDR and scaling differences, crash recovery, and the release/update path—problems that only become clear when a utility leaves its developer’s machine.'
+					'The rewrite addresses configuration changes, monitor changes, HDR and scaling differences, crash recovery, and the release and update path. These problems only become clear once a utility is used outside its developer’s machine.'
 				]
 			},
 			{

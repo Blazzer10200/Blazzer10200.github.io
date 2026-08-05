@@ -18,7 +18,7 @@ export const services: readonly Service[] = [
 		number: '01',
 		title: 'Custom Websites',
 		shortTitle: 'Website strategy and development',
-		lead: 'A website planned around the action your customers should take, not a pile of sections assembled around a theme.',
+		lead: 'I plan your website around what customers need to understand and the action you want them to take.',
 		outcomes: [
 			'Present the business clearly and professionally',
 			'Make mobile visits easier to use',
@@ -32,16 +32,16 @@ export const services: readonly Service[] = [
 			'Accessibility, performance, and deployment work'
 		],
 		goodFit:
-			'Best when the business needs a stronger public presence or a clearer path from visitor to inquiry.',
+			'This works well when your business needs a stronger online presence or a simpler path from visit to inquiry.',
 		boundary:
-			'The first release stays focused on the customer journey. A full CMS is added only when the editing workflow truly needs one.'
+			'I keep the first version focused on the customer journey. I add a full CMS only when regular content editing makes it useful.'
 	},
 	{
 		id: 'software',
 		number: '02',
 		title: 'Custom Software',
 		shortTitle: 'Business tools and product development',
-		lead: 'Purpose-built software for a repeated workflow, a new product idea, or a job that has outgrown spreadsheets and scattered tools.',
+		lead: 'I build software for repeated workflows, new product ideas, and jobs that have outgrown spreadsheets or disconnected tools.',
 		outcomes: [
 			'Replace a fragile manual process',
 			'Centralize the information people need',
@@ -55,16 +55,16 @@ export const services: readonly Service[] = [
 			'Windows desktop applications and MVPs'
 		],
 		goodFit:
-			'Best when the problem is specific to the way the business operates and off-the-shelf software keeps forcing a compromise.',
+			'This works well when your process is specific to the business and off-the-shelf software keeps forcing compromises.',
 		boundary:
-			'The first release proves the core workflow. Accounts, billing, and complex administration are added only when they support that workflow.'
+			'I start with the core workflow. Accounts, billing, and complex administration come later when the product actually needs them.'
 	},
 	{
 		id: 'ai',
 		number: '03',
 		title: 'AI Integrations',
 		shortTitle: 'Carefully bounded AI features',
-		lead: 'AI where it improves a real task—with explicit permissions, cost awareness, evaluation, and a person still responsible for the result.',
+		lead: 'I add AI when it improves a specific task. Permissions, cost, evaluation, and human review are part of the design from the start.',
 		outcomes: [
 			'Reduce repetitive review or data-entry work',
 			'Find useful information across documents',
@@ -78,9 +78,9 @@ export const services: readonly Service[] = [
 			'Prompting, evaluation, and human-approval systems'
 		],
 		goodFit:
-			'Best when a defined task benefits from language or reasoning and the business can explain what a good result looks like.',
+			'This works well when the task is clearly defined and your team can explain what a good result looks like.',
 		boundary:
-			'AI is not the default answer. I will recommend a simpler deterministic workflow when it is more reliable or easier to maintain.'
+			'I do not add AI just for the label. If a simpler workflow is more reliable and easier to maintain, I will recommend it.'
 	}
 ] as const;
 

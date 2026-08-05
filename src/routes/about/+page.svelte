@@ -14,12 +14,12 @@
 	<section class="page-hero container-wide about-hero">
 		<div>
 			<p class="eyebrow">About me</p>
-			<h1>I learned software by taking problems all the way to working products.</h1>
+			<h1>I learned software by building products I wanted to use.</h1>
 		</div>
 		<p class="lead">
-			My route into product development was not a straight line through a computer-science program.
-			It ran through game servers, a paper mill, production work, Windows utilities, an AI coding
-			application, and a habit of checking whether the thing actually works.
+			My path into product development started with game servers and continued through industrial
+			work, Windows utilities, and an AI coding application. I learned by solving real problems,
+			shipping the result, and seeing where it needed to improve.
 		</p>
 	</section>
 
@@ -45,8 +45,8 @@
 			<p>
 				At S&amp;L Contracting, I operated heavy equipment and handled landfill operations on a
 				working paper-mill site. Later I worked production and assembly at Strong Manufacturing.
-				Both environments punish careless assumptions. Safety, repeatability, communication, and
-				responsibility are not abstract quality goals when people and equipment depend on them.
+				Those jobs made safety, repeatability, communication, and responsibility part of how I
+				approach any kind of work.
 			</p>
 
 			<h2>EXFIL was the first product I shipped.</h2>
@@ -72,12 +72,11 @@
 				quickly.
 			</p>
 
-			<h2>Now I am focused on custom projects.</h2>
+			<h2>Today, I build custom projects for businesses and founders.</h2>
 			<p>
 				I help businesses and founders turn rough ideas and operational problems into websites,
-				software tools, desktop applications, and carefully bounded AI products. The goal is not to
-				look like a large agency. It is to be a capable product partner who owns the path from
-				uncertainty to delivery.
+				software tools, desktop applications, and carefully scoped AI products. Clients work
+				directly with me from the first conversation through launch.
 			</p>
 		</div>
 	</section>
@@ -113,7 +112,7 @@
 
 	<CtaBand
 		eyebrow="Work together"
-		title="If the problem is real but the product is still rough, that is a workable place to start."
+		title="You can bring me a rough idea, an existing product, or a process that needs improvement."
 	/>
 </main>
 

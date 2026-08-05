@@ -61,7 +61,7 @@
 		</h2>
 		<p>
 			{form.development
-				? 'No email was delivered because production delivery is not configured in this environment. The validation and provider interface are working.'
+				? 'This local preview checked your form successfully. No email was sent.'
 				: 'I will review the details and reply using the email address you provided.'}
 		</p>
 	</div>
@@ -100,7 +100,7 @@
 			<span>01</span>
 			<div>
 				<h2>Contact</h2>
-				<p>How I can address and reply to you.</p>
+				<p>Your name and where I should send my reply.</p>
 			</div>
 		</div>
 		<div class="field-grid two">
@@ -162,7 +162,7 @@
 			<span>02</span>
 			<div>
 				<h2>Project shape</h2>
-				<p>The closest answer is enough. “Not sure yet” is valid.</p>
+				<p>Choose the closest answer. It is okay if you are still deciding.</p>
 			</div>
 		</div>
 		<div class="field-grid two">
@@ -212,7 +212,9 @@
 		</div>
 		<div class="form-field">
 			<label for="desiredFeatures">Desired features</label>
-			<p class="field-help">A short list is useful. It does not become automatic scope.</p>
+			<p class="field-help">
+				List any features already on your mind. We will confirm the scope later.
+			</p>
 			<textarea
 				id="desiredFeatures"
 				name="desiredFeatures"
@@ -246,7 +248,7 @@
 			<span>03</span>
 			<div>
 				<h2>Timing and context</h2>
-				<p>These answers help identify fit. They are not acceptance or a price guarantee.</p>
+				<p>These answers help me understand the size and timing of the project.</p>
 			</div>
 		</div>
 		<div class="field-grid two">
@@ -322,8 +324,8 @@
 			<div class="development-note">
 				<span>Development mode</span>
 				<p>
-					Turnstile credentials are not configured. Production will fail closed until both keys are
-					set.
+					This local preview does not send inquiries. Live delivery stays disabled until the
+					required security keys are configured.
 				</p>
 			</div>
 		{/if}

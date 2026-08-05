@@ -1,8 +1,8 @@
 <script lang="ts">
 	let {
 		eyebrow = 'Have a project in mind?',
-		title = 'Bring the rough version. I will help make it concrete.',
-		body = 'Tell me what is not working, what you have already tried, and what a useful result would change.',
+		title = 'Tell me what you are working on.',
+		body = 'Share what is not working, what you have already tried, and what you would like to improve.',
 		primaryHref = '/start',
 		primaryLabel = 'Start a Project',
 		secondaryHref = '/work',

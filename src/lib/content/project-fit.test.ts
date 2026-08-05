@@ -20,6 +20,6 @@ describe('recommendProjectFit', () => {
 			stage: 'partial-build',
 			priority: 'reliability'
 		});
-		expect(result.nextStep).toContain('not invent an instant price');
+		expect(result.nextStep.toLowerCase()).not.toContain('price');
 	});
 });

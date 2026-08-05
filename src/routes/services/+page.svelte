@@ -16,7 +16,7 @@
 
 <Seo
 	title={`Custom website, software, and AI services · ${site.name}`}
-	description="Custom business websites, internal tools, portals, desktop applications, MVPs, and carefully bounded AI integrations—planned, built, tested, and deployed by one product developer."
+	description="Custom business websites, internal tools, portals, desktop applications, MVPs, and carefully scoped AI integrations planned, built, tested, and deployed by one product developer."
 	path="/services"
 	{schema}
 />
@@ -24,11 +24,10 @@
 <main id="main-content" tabindex="-1">
 	<section class="page-hero container-wide">
 		<p class="eyebrow">Services</p>
-		<h1>Custom products for problems that do not fit a template.</h1>
+		<h1>Websites and software built for your business.</h1>
 		<p class="lead">
-			I work across the whole product: discovery, requirements, interaction design, implementation,
-			testing, deployment, and documentation. The engagement starts by finding the smallest complete
-			result worth shipping.
+			I handle planning, requirements, interface design, development, testing, deployment, and
+			documentation. We start by agreeing on a useful first version and what it needs to accomplish.
 		</p>
 		<div class="page-actions">
 			<a class="button button-primary" href="/start"
@@ -73,7 +72,7 @@
 					</aside>
 				</div>
 				<a class="text-link" href={`/start?service=${service.id}`}
-					>Discuss a {service.title.toLowerCase()} project <span aria-hidden="true">→</span></a
+					>Talk through your project <span aria-hidden="true">→</span></a
 				>
 			</article>
 		{/each}
@@ -82,26 +81,26 @@
 	<section class="scope-note container section">
 		<div>
 			<p class="eyebrow">How scope is handled</p>
-			<h2>No instant price. No mystery process either.</h2>
+			<h2>You will know what is being built before development starts.</h2>
 		</div>
 		<div class="scope-steps">
 			<p>
-				<span>01</span><strong>Fit first.</strong> I confirm whether the project matches the work I do.
+				<span>01</span><strong>Check the fit.</strong> I review the problem, goals, and current situation.
 			</p>
 			<p>
-				<span>02</span><strong>Discovery next.</strong> We identify requirements, risks, existing assets,
-				and the first release.
+				<span>02</span><strong>Define the project.</strong> We identify requirements, risks, existing
+				assets, and the first release.
 			</p>
 			<p>
-				<span>03</span><strong>Proposal after evidence.</strong> You receive scope, milestones, assumptions,
+				<span>03</span><strong>Review the proposal.</strong> You receive scope, milestones, assumptions,
 				and a price tied to the defined work.
 			</p>
 		</div>
 	</section>
 
 	<CtaBand
-		title="Start with the business problem, not a feature shopping list."
-		body="Share the current process, who is affected, what already exists, and what a useful result would change."
+		title="Tell me about the problem you want to solve."
+		body="Share the current process, who it affects, what already exists, and what you would like to improve."
 	/>
 </main>
 

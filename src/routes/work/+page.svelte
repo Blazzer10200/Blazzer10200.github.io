@@ -15,11 +15,11 @@
 <main id="main-content" tabindex="-1">
 	<section class="page-hero container-wide">
 		<p class="eyebrow">Selected work</p>
-		<h1>Real products. Public evidence. Honest status.</h1>
+		<h1>Products you can download, inspect, and use.</h1>
 		<p class="lead">
-			These case studies show both levels of the work: the problem and experience a client cares
-			about, plus the architecture, testing, permissions, and difficult implementation decisions a
-			technical reviewer may want to inspect.
+			Each case study explains the problem, the product experience, and the decisions behind the
+			build. Technical details are included for anyone who wants to inspect the architecture,
+			testing, permissions, and release work.
 		</p>
 	</section>
 
@@ -30,12 +30,12 @@
 	<section class="evidence-note container section">
 		<div>
 			<p class="eyebrow">Evidence policy</p>
-			<h2>If I cannot verify a claim, it does not become marketing copy.</h2>
+			<h2>I only publish claims I can support.</h2>
 		</div>
 		<p>
-			No invented clients, usage numbers, performance wins, testimonials, awards, or production
-			scale. Public repositories and releases support the work shown here. Missing media becomes an
-			asset requirement, not a generated stand-in pretending to be a client product.
+			The projects shown here are backed by public repositories, releases, and real product media. I
+			do not add client names, usage numbers, testimonials, or performance claims without a source I
+			can verify.
 		</p>
 	</section>
 	<CtaBand />

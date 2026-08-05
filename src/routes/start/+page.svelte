@@ -17,10 +17,10 @@
 	<section class="start-hero container-wide">
 		<div>
 			<p class="eyebrow">Start a project</p>
-			<h1>Tell me what needs to be different.</h1>
+			<h1>Tell me about the project.</h1>
 			<p>
-				It is fine if the solution is still unclear. Describe the current problem, who it affects,
-				what exists today, and what a useful result would change.
+				It is fine if you do not have every detail figured out. Describe the problem, who it
+				affects, what exists today, and what you would like to improve.
 			</p>
 		</div>
 		<aside>
@@ -36,10 +36,10 @@
 	<section class="inquiry-layout container-wide section-tight">
 		<div class="inquiry-intro">
 			<p class="eyebrow">Project inquiry</p>
-			<h2>A useful first brief.</h2>
+			<h2>A few details to get started.</h2>
 			<p>
-				Fields marked with an asterisk are required. “Not sure yet” is available where uncertainty
-				is expected.
+				Fields marked with an asterisk are required. Choose “Not sure yet” when you do not have an
+				answer.
 			</p>
 			<a href={`mailto:${site.email}`}>Form trouble? Email {site.email}</a>
 		</div>

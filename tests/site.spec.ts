@@ -5,14 +5,14 @@ async function waitForHydration(page: import('@playwright/test').Page) {
 }
 
 const routes = [
-	['/', 'Software built around the way your business'],
-	['/services', 'Custom products for problems'],
-	['/work', 'Real products. Public evidence. Honest status.'],
+	['/', 'Custom software that fits the way your business works'],
+	['/services', 'Websites and software built for your business'],
+	['/work', 'Products you can download, inspect, and use'],
 	['/work/rift', 'Rift'],
 	['/work/exfil', 'EXFIL'],
-	['/about', 'I learned software by taking problems'],
+	['/about', 'I learned software by building products I wanted to use'],
 	['/privacy', 'A plain-language note about project inquiries'],
-	['/start', 'Tell me what needs to be different']
+	['/start', 'Tell me about the project']
 ] as const;
 
 for (const [path, heading] of routes) {
@@ -56,7 +56,7 @@ test('project fit result carries context into the inquiry', async ({ page }) => 
 	await page.getByLabel('AI-powered feature').check();
 	await page.getByLabel('Only an idea').check();
 	await page.getByLabel('Adding AI responsibly').check();
-	await expect(page.getByRole('heading', { name: /AI integration may fit/i })).toBeVisible();
+	await expect(page.getByRole('heading', { name: /AI integration could fit/i })).toBeVisible();
 	await page.getByRole('link', { name: /Use this starting point/i }).click();
 	await expect(page).toHaveURL(/\/start\?.*goal=responsible-ai/);
 	await expect(page.getByText('Adding AI responsibly', { exact: true })).toBeVisible();

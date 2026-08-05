@@ -66,10 +66,10 @@
 	<section class="home-hero container-wide">
 		<div class="hero-copy">
 			<p class="eyebrow">Independent product developer · Central Arkansas / Remote</p>
-			<h1>Software built around the way your business <em>actually works.</em></h1>
+			<h1>Custom software that fits the way your business works.</h1>
 			<p class="hero-lead">
-				I design and develop custom websites, internal tools, desktop applications, and AI-powered
-				products for businesses and founders—from the first rough idea through deployment.
+				I design and build websites, internal tools, desktop applications, and carefully scoped AI
+				features. I can take a project from an early idea to a tested, deployed product.
 			</p>
 			<div class="page-actions">
 				<a class="button button-primary" href="/start"
@@ -106,8 +106,8 @@
 	<section class="audience-section container-wide section" aria-labelledby="audience-title">
 		<SectionIntro
 			eyebrow="Who I help"
-			title="Different businesses. The same need for a clear path forward."
-			body="You do not need a polished specification before we talk. You need a real problem, a useful outcome, and the willingness to narrow the first release."
+			title="Good projects can start with a rough idea."
+			body="You do not need a finished specification before we talk. Tell me what is happening now, who it affects, and what you want to improve."
 			align="split"
 		/>
 		<div class="audience-list">
@@ -128,8 +128,8 @@
 		<div class="container-wide">
 			<SectionIntro
 				eyebrow="Core services"
-				title="One product discipline across three kinds of work."
-				body="The category changes. The job stays grounded: understand the workflow, choose the right first release, build it carefully, and leave it maintainable."
+				title="Three ways I can help."
+				body="Every project starts with the same basics: understand the problem, agree on the first useful release, build it carefully, and leave it maintainable."
 				align="split"
 			/>
 		</div>
@@ -155,8 +155,8 @@
 	<section class="work-section container-wide section" aria-labelledby="featured-work-title">
 		<SectionIntro
 			eyebrow="Featured work"
-			title="Shipped products you can inspect yourself."
-			body="No invented client list and no concept work filling space. These are public applications with source, releases, real interfaces, and the decisions behind them."
+			title="A closer look at what I have shipped."
+			body="Rift and EXFIL are public applications with real releases, working interfaces, and source code you can inspect."
 			align="split"
 		/>
 		<div class="project-list">
@@ -168,8 +168,8 @@
 		<div class="container-wide">
 			<SectionIntro
 				eyebrow="Project Fit Builder"
-				title="Get a useful starting recommendation—not a fake instant quote."
-				body="Choose the closest answers. The result suggests a service and the next question worth answering, then carries your choices into the inquiry form."
+				title="Not sure where to start? Use the Project Fit tool."
+				body="Choose the answers closest to your situation. You will get a suggested service and a sensible next step, and your choices will carry into the inquiry form."
 				align="split"
 			/>
 			<ProjectFitBuilder />
@@ -179,8 +179,8 @@
 	<section class="process-section container-wide section" aria-labelledby="process-title">
 		<SectionIntro
 			eyebrow="Development process"
-			title="Each stage reduces a different kind of uncertainty."
-			body="I work in visible stages so you can see the product become more certain before the most expensive decisions are locked in."
+			title="A clear process from the first conversation to launch."
+			body="You will see the project take shape in stages, review working progress, and make important decisions before they become expensive to change."
 			align="split"
 		/>
 		<ProcessTimeline />
@@ -190,10 +190,10 @@
 		<div class="container-wide why-grid">
 			<div class="why-heading">
 				<p class="eyebrow">Why work with me</p>
-				<h2>Evidence over agency theater.</h2>
+				<h2>You work directly with the person building it.</h2>
 				<p>
-					I am one developer, and I present the work that way. You deal with the person making the
-					product decisions.
+					I stay involved in the planning, product decisions, development, testing, and launch.
+					There is no handoff to a separate delivery team.
 				</p>
 			</div>
 			<div class="why-list">
@@ -213,8 +213,11 @@
 	<section class="ai-section container-wide section" aria-labelledby="ai-title">
 		<div class="ai-statement">
 			<p class="eyebrow">Responsible AI-assisted development</p>
-			<h2 id="ai-title">AI helps me move. It does not inherit responsibility.</h2>
-			<p>Clients hire me for judgment and delivery—not access to a chatbot.</p>
+			<h2 id="ai-title">I use AI as a tool, and I remain accountable for the work.</h2>
+			<p>
+				It can speed up parts of development. Every decision, code change, and release still gets
+				reviewed by me.
+			</p>
 		</div>
 		<div class="ai-flow" aria-label="How AI-assisted development is controlled">
 			<div>
@@ -242,10 +245,10 @@
 		<div class="container-wide capabilities-grid">
 			<div>
 				<p class="eyebrow">Selected capabilities</p>
-				<h2>Technical depth, translated into product work.</h2>
+				<h2>The tools I use depend on the project.</h2>
 				<p>
-					The technology matters because it makes a reliable result possible. It is not the pitch by
-					itself.
+					I choose technology based on the product, the people who will maintain it, and what it
+					needs to do reliably.
 				</p>
 			</div>
 			<div class="capability-groups">
@@ -263,7 +266,7 @@
 
 	<section class="about-preview container-wide section">
 		<div class="about-stamp">
-			<span>Operator note</span><strong>Practical work changes how you build.</strong>
+			<span>Background</span><strong>My approach is practical and hands-on.</strong>
 		</div>
 		<div>
 			<p class="eyebrow">About me</p>
@@ -271,9 +274,9 @@
 				I came into software through game servers, industrial work, and problems I wanted fixed.
 			</h2>
 			<p>
-				I learned responsibility on live equipment and learned software by building things people
-				could actually run. That mix still shapes the work: understand the system, respect the
-				failure path, and finish what was started.
+				I learned responsibility while working around live equipment, and I learned software by
+				building products people could use. Both experiences taught me to understand the full
+				system, plan for failure, and follow through.
 			</p>
 			<a class="text-link" href="/about">Read my story <span aria-hidden="true">→</span></a>
 		</div>
@@ -295,10 +298,6 @@
 		max-width: 12ch;
 		margin-block: var(--space-4) var(--space-5);
 		font-size: clamp(3.25rem, 5.6vw, 6rem);
-	}
-	.hero-copy h1 em {
-		color: var(--accent);
-		font-style: normal;
 	}
 	.hero-lead {
 		max-width: 46rem;
