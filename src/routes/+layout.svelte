@@ -1,37 +1,17 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { afterNavigate } from '$app/navigation';
+	import { browser } from '$app/environment';
+	import { page } from '$app/state';
 	import { base } from '$app/paths';
+	import SiteFooter from '$lib/components/layout/SiteFooter.svelte';
+	import SiteHeader from '$lib/components/layout/SiteHeader.svelte';
 	import '../app.css';
-	import BgFx from '$lib/components/BgFx.svelte';
 
 	let { children } = $props();
-	let io: IntersectionObserver | undefined;
+	let resumeOnly = $derived(page.url.pathname === '/ats');
 
-	function observeAll() {
-		if (!io) return;
-		document.querySelectorAll('.reveal, .stagger').forEach((el) => {
-			if (!el.classList.contains('in')) io!.observe(el);
-		});
-	}
-
-	onMount(() => {
-		io = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((e) => {
-					if (e.isIntersecting) {
-						e.target.classList.add('in');
-						io?.unobserve(e.target);
-					}
-				});
-			},
-			{ threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-		);
-		observeAll();
-		return () => io?.disconnect();
+	$effect(() => {
+		if (browser) document.documentElement.dataset.hydrated = 'true';
 	});
-
-	afterNavigate(() => observeAll());
 </script>
 
 <svelte:head>
@@ -39,5 +19,8 @@
 </svelte:head>
 
 <a href="#main-content" class="skip-link">Skip to content</a>
-<BgFx />
-{@render children()}
+<div class="site-shell">
+	{#if !resumeOnly}<SiteHeader />{/if}
+	{@render children()}
+	{#if !resumeOnly}<SiteFooter />{/if}
+</div>

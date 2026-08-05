@@ -6,14 +6,14 @@ Add-Type -AssemblyName System.Drawing
 $w = 1200
 $h = 630
 
-$bg     = [System.Drawing.Color]::FromArgb(255, 10, 11, 15)    # #0a0b0f
-$bg2    = [System.Drawing.Color]::FromArgb(255, 13, 15, 20)    # #0d0f14
-$accent = [System.Drawing.Color]::FromArgb(255, 120, 196, 255) # #78c4ff
-$text   = [System.Drawing.Color]::FromArgb(255, 230, 232, 238) # #e6e8ee
-$text2  = [System.Drawing.Color]::FromArgb(255, 166, 170, 184) # #a6aab8
-$dim    = [System.Drawing.Color]::FromArgb(255, 122, 126, 141) # #7a7e8d
-$line   = [System.Drawing.Color]::FromArgb(255, 35, 38, 54)    # #232636
-$accSoft = [System.Drawing.Color]::FromArgb(40, 120, 196, 255) # rgba(120,196,255,0.16)
+$bg     = [System.Drawing.Color]::FromArgb(255, 9, 13, 17)      # #090d11
+$bg2    = [System.Drawing.Color]::FromArgb(255, 15, 22, 27)     # #0f161b
+$accent = [System.Drawing.Color]::FromArgb(255, 103, 212, 255)  # #67d4ff
+$text   = [System.Drawing.Color]::FromArgb(255, 240, 244, 242)  # #f0f4f2
+$text2  = [System.Drawing.Color]::FromArgb(255, 169, 182, 177)  # #a9b6b1
+$dim    = [System.Drawing.Color]::FromArgb(255, 116, 130, 125)  # #74827d
+$line   = [System.Drawing.Color]::FromArgb(255, 43, 57, 52)     # #2b3934
+$accSoft = [System.Drawing.Color]::FromArgb(38, 103, 212, 255)  # rgba(103,212,255,0.15)
 
 $mid = [char]0x00B7  # middle-dot separator (avoid file-encoding pitfalls)
 
@@ -34,7 +34,7 @@ $gradBrush.Dispose()
 $glowPath = New-Object System.Drawing.Drawing2D.GraphicsPath
 $glowPath.AddEllipse(700, -200, 900, 600)
 $glowBrush = New-Object System.Drawing.Drawing2D.PathGradientBrush $glowPath
-$glowBrush.CenterColor = [System.Drawing.Color]::FromArgb(50, 120, 196, 255)
+$glowBrush.CenterColor = [System.Drawing.Color]::FromArgb(46, 103, 212, 255)
 $glowBrush.SurroundColors = @($bg)
 $g.FillPath($glowBrush, $glowPath)
 $glowBrush.Dispose()
@@ -63,10 +63,10 @@ $g.DrawString("B", $markFont, $markBrush, $markRectF, $markFmt)
 $markBrush.Dispose()
 $markFont.Dispose()
 
-# Eyebrow line — "BRAISON SWILLING / SOFTWARE DEVELOPER"
+# Eyebrow line
 $eyebrowFont = New-Object System.Drawing.Font "Consolas", 18, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $eyebrowBrush = New-Object System.Drawing.SolidBrush $accent
-$g.DrawString("SOFTWARE DEVELOPER  $mid  OPEN TO WORK", $eyebrowFont, $eyebrowBrush, ($pad + $markSize + 24), ($markY + 22))
+$g.DrawString("PRODUCT DEVELOPER  $mid  CUSTOM PROJECTS", $eyebrowFont, $eyebrowBrush, ($pad + $markSize + 24), ($markY + 22))
 $eyebrowFont.Dispose()
 $eyebrowBrush.Dispose()
 
@@ -80,8 +80,8 @@ $titleBrush.Dispose()
 # Tagline — multi-line
 $taglineFont = New-Object System.Drawing.Font "Segoe UI", 28, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $taglineBrush = New-Object System.Drawing.SolidBrush $text2
-$g.DrawString("I build real software by directing AI, and I ship it.", $taglineFont, $taglineBrush, $pad, 370)
-$g.DrawString("Right now that's Rift, open source and free to download.", $taglineFont, $taglineBrush, $pad, 410)
+$g.DrawString("Websites, software tools, desktop applications, and", $taglineFont, $taglineBrush, $pad, 370)
+$g.DrawString("AI-powered products - planned through deployment.", $taglineFont, $taglineBrush, $pad, 410)
 $taglineFont.Dispose()
 $taglineBrush.Dispose()
 
@@ -92,14 +92,14 @@ $linePen.Dispose()
 
 $stackFont = New-Object System.Drawing.Font "Consolas", 19, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $stackBrush = New-Object System.Drawing.SolidBrush $text2
-$g.DrawString("Rust  $mid  Tauri 2  $mid  TypeScript  $mid  SvelteKit  $mid  C# / .NET 8", $stackFont, $stackBrush, $pad, 540)
+$g.DrawString("WEBSITES  $mid  CUSTOM SOFTWARE  $mid  DESKTOP APPS  $mid  AI INTEGRATIONS", $stackFont, $stackBrush, $pad, 540)
 $stackFont.Dispose()
 $stackBrush.Dispose()
 
 # URL on the right of bottom strip
 $urlFont = New-Object System.Drawing.Font "Consolas", 17, ([System.Drawing.FontStyle]::Regular), ([System.Drawing.GraphicsUnit]::Pixel)
 $urlBrush = New-Object System.Drawing.SolidBrush $accent
-$urlText = "github.com/Blazzer10200"
+$urlText = "blazzer10200.github.io"
 $urlSize = $g.MeasureString($urlText, $urlFont)
 $g.DrawString($urlText, $urlFont, $urlBrush, ($w - $pad - $urlSize.Width), 543)
 $urlFont.Dispose()

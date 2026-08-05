@@ -1,5 +1,5 @@
 // Last-known-good Rift version — used when the GitHub API is unreachable at build time.
-export const RIFT_VERSION_FALLBACK = '0.148.0';
+export const RIFT_VERSION_FALLBACK = '0.151.1';
 
 // Manual stats — re-derive from the rift-tauri repo before changing
 // (grep #[test]/#[tokio::test] + vitest it()/test() counts). Conservative floor:

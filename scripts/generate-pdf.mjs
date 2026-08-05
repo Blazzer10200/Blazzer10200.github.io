@@ -10,13 +10,14 @@
 // build/ — run `npm run build:pdf` to build first, then generate.
 
 import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
+import { copyFile, readFile, stat } from 'node:fs/promises';
 import { join, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const BUILD_DIR = resolve(__dirname, '..', 'build');
+const STATIC_DIR = resolve(__dirname, '..', 'static');
 
 // One resume PDF for the whole site. Braison-Swilling-Resume.pdf is the
 // single-column /ats view — ATS-safe for job portals (Indeed, Workday, etc.)
@@ -105,7 +106,9 @@ async function main() {
 			const res = await page.goto(new URL(job.route, url).href, { waitUntil: 'networkidle' });
 			if (!res || !res.ok()) {
 				// Fail loud: never render an error/404 page into a shipping PDF.
-				throw new Error(`[pdf] ${job.route} responded ${res ? res.status() : 'nothing'} — aborting ${job.out}`);
+				throw new Error(
+					`[pdf] ${job.route} responded ${res ? res.status() : 'nothing'} — aborting ${job.out}`
+				);
 			}
 			// Use the site's print stylesheet, not the screen one.
 			await page.emulateMedia({ media: 'print' });
@@ -116,8 +119,9 @@ async function main() {
 				// Margins live in the site's `@page` rule; keep Chromium's at 0.
 				margin: { top: '0', right: '0', bottom: '0', left: '0' }
 			});
+			await copyFile(out, join(STATIC_DIR, job.out));
 			await page.close();
-			console.log(`[pdf] wrote ${out}`);
+			console.log(`[pdf] wrote ${out} and refreshed static/${job.out}`);
 		}
 	} finally {
 		await browser.close();

@@ -34,7 +34,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Build
-        run: npm run build
+        run: npm run build:static
         env:
           # Authenticated GitHub API calls (build-time Rift version fetch) — avoids
           # the shared-runner unauthenticated rate limit.
