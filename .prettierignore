@@ -1,0 +1,11 @@
+.svelte-kit
+.wrangler
+build
+node_modules
+test-results
+playwright-report
+static/Braison-Swilling-Resume.pdf
+CLAUDE.md
+HANDOFF.md
+CHANGELOG.md
+docs
