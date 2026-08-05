@@ -6,8 +6,6 @@ export const site = {
 	name: 'Braison Swilling',
 	role: 'Product developer',
 	email: 'braison.swilling@outlook.com',
-	phoneDisplay: '870-267-3299',
-	phoneHref: 'tel:+18702673299',
 	github: 'https://github.com/Blazzer10200',
 	location: 'Central Arkansas · available remotely across the US'
 } as const;

@@ -26,7 +26,6 @@
 			<div>
 				<span>Contact</span>
 				<a href={`mailto:${site.email}`}>{site.email}</a>
-				<a href={site.phoneHref}>{site.phoneDisplay}</a>
 				<a href="/privacy">Privacy</a>
 			</div>
 		</div>

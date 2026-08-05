@@ -23,7 +23,7 @@
 		<h1>Braison Swilling</h1>
 		<p class="role">Software Developer</p>
 		<p class="contact-row">
-			Little Rock / Pine Bluff, AR · Open to relocation or remote (US) · 870-267-3299 ·
+			Little Rock / Pine Bluff, AR · Open to relocation or remote (US)<br />
 			braison.swilling@outlook.com · github.com/Blazzer10200
 		</p>
 		<p class="portfolio-row">
@@ -36,26 +36,26 @@
 		<p>
 			Software developer who designs and ships production desktop and web applications end to end.
 			Creator of Rift, an open-source Windows desktop app for AI-assisted coding, currently {vFull}
-			with {RIFT_TESTS} automated tests and a public auto-updating installer. Works AI-native:
-			scopes the build, designs the guardrails the AI operates within, and reviews every change
-			before it ships. All source is public and verifiable. Seeking a role in software engineering,
-			developer tools, or AI-focused product.
+			with {RIFT_TESTS} automated tests and a public auto-updating installer. Works AI-native: scopes
+			the build, designs the guardrails the AI operates within, and reviews every change before it ships.
+			All source is public and verifiable. Seeking a role in software engineering, developer tools, or
+			AI-focused product.
 		</p>
 	</section>
 
 	<section>
 		<h2>Skills</h2>
 		<p>
-			<strong>AI-assisted development:</strong> Claude Code, AI coding agents, prompt engineering,
-			agent tooling and guardrail design, spec-driven development, code review of AI-generated code
+			<strong>AI-assisted development:</strong> Claude Code, AI coding agents, prompt engineering, agent
+			tooling and guardrail design, spec-driven development, code review of AI-generated code
 		</p>
 		<p>
-			<strong>Technologies in shipped projects:</strong> Rust, C#, TypeScript, JavaScript, Python,
-			Lua, SQL, HTML, CSS, .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI, Node.js, MySQL
+			<strong>Technologies in shipped projects:</strong> Rust, C#, TypeScript, JavaScript, Python, Lua,
+			SQL, HTML, CSS, .NET 8, Tauri 2, SvelteKit, Svelte 5, Vite, FastAPI, Node.js, MySQL
 		</p>
 		<p>
-			<strong>Tools and practices:</strong> Git, GitHub Actions, CI/CD, automated testing (vitest,
-			cargo test, Playwright), REST APIs, application security, Windows and Linux administration
+			<strong>Tools and practices:</strong> Git, GitHub Actions, CI/CD, automated testing (vitest, cargo
+			test, Playwright), REST APIs, application security, Windows and Linux administration
 		</p>
 	</section>
 
@@ -125,8 +125,8 @@
 			<p class="dates">2023 to March 2025</p>
 			<ul>
 				<li>
-					Operated heavy equipment and ran landfill operations on a live industrial site (Twin Rivers
-					Paper Mill) for two years with a clean safety record.
+					Operated heavy equipment and ran landfill operations on a live industrial site (Twin
+					Rivers Paper Mill) for two years with a clean safety record.
 				</li>
 			</ul>
 		</div>
