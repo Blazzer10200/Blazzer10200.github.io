@@ -66,7 +66,7 @@
 			<p>{recommendation.nextStep}</p>
 		</div>
 		<a class="button button-primary" href={startHref}
-			>Use this starting point <span aria-hidden="true">→</span></a
+			>Continue to Contact Form <span aria-hidden="true">→</span></a
 		>
 		<small id="fit-disclaimer">This is guidance, not a price or a final statement of scope.</small>
 	</aside>

@@ -13,10 +13,11 @@ export const site = {
 } as const;
 
 export const navigation = [
+	{ href: '/', label: 'Home', primary: false },
 	{ href: '/services', label: 'Services', primary: false },
-	{ href: '/work', label: 'Work', primary: false },
-	{ href: '/about', label: 'About', primary: false },
-	{ href: '/start', label: 'Start a Project', primary: true }
+	{ href: '/work', label: 'My Work', primary: false },
+	{ href: '/about', label: 'About Me', primary: false },
+	{ href: '/start', label: 'Contact Me', primary: true }
 ] as const;
 
 export const proofItems = [

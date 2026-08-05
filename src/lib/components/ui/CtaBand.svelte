@@ -4,7 +4,7 @@
 		title = 'Tell me what you are working on.',
 		body = 'Share what is not working, what you have already tried, and what you would like to improve.',
 		primaryHref = '/start',
-		primaryLabel = 'Start a Project',
+		primaryLabel = 'Contact Me',
 		secondaryHref = '/work',
 		secondaryLabel = 'View My Work'
 	} = $props();

@@ -73,7 +73,7 @@
 			</p>
 			<div class="page-actions">
 				<a class="button button-primary" href="/start"
-					>Start a Project <span aria-hidden="true">→</span></a
+					>Contact Me <span aria-hidden="true">→</span></a
 				>
 				<a class="button button-secondary" href="/work">View My Work</a>
 			</div>

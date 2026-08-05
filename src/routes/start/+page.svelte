@@ -8,15 +8,15 @@
 </script>
 
 <Seo
-	title={`Start a project · ${site.name}`}
-	description="Share a website, software, desktop application, or AI-product idea. The inquiry form keeps your answers after validation errors and sends production submissions through server-side validation."
+	title={`Contact ${site.name} · Discuss your project`}
+	description="Contact Braison Swilling about a website, software tool, desktop application, or AI product. Share a few details and receive a direct reply."
 	path="/start"
 />
 
 <main id="main-content" tabindex="-1">
 	<section class="start-hero container-wide">
 		<div>
-			<p class="eyebrow">Start a project</p>
+			<p class="eyebrow">Contact me</p>
 			<h1>Tell me about the project.</h1>
 			<p>
 				It is fine if you do not have every detail figured out. Describe the problem, who it
@@ -35,7 +35,7 @@
 	</section>
 	<section class="inquiry-layout container-wide section-tight">
 		<div class="inquiry-intro">
-			<p class="eyebrow">Project inquiry</p>
+			<p class="eyebrow">Project details</p>
 			<h2>A few details to get started.</h2>
 			<p>
 				Fields marked with an asterisk are required. Choose “Not sure yet” when you do not have an

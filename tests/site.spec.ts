@@ -57,7 +57,7 @@ test('project fit result carries context into the inquiry', async ({ page }) => 
 	await page.getByLabel('Only an idea').check();
 	await page.getByLabel('Adding AI responsibly').check();
 	await expect(page.getByRole('heading', { name: /AI integration could fit/i })).toBeVisible();
-	await page.getByRole('link', { name: /Use this starting point/i }).click();
+	await page.getByRole('link', { name: /Continue to Contact Form/i }).click();
 	await expect(page).toHaveURL(/\/start\?.*goal=responsible-ai/);
 	await expect(page.getByText('Adding AI responsibly', { exact: true })).toBeVisible();
 });
@@ -67,7 +67,7 @@ test('inquiry validation preserves entered values and reports errors', async ({ 
 	await waitForHydration(page);
 	await page.getByLabel(/^Name/).fill('Avery Client');
 	await page.getByLabel(/Email/).fill('bad-email');
-	await page.getByRole('button', { name: /Send Project Inquiry/ }).click();
+	await page.getByRole('button', { name: /Send Message/ }).click();
 	await expect(page.getByRole('heading', { name: 'Check the highlighted fields.' })).toBeVisible();
 	await expect(page.getByLabel(/^Name/)).toHaveValue('Avery Client');
 	await expect(page.locator('#email-error')).toHaveText('Enter a valid email address.');

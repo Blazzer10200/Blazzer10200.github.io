@@ -30,9 +30,8 @@
 			documentation. We start by agreeing on a useful first version and what it needs to accomplish.
 		</p>
 		<div class="page-actions">
-			<a class="button button-primary" href="/start"
-				>Start a Project <span aria-hidden="true">→</span></a
-			><a class="button button-secondary" href="/work">See shipped work</a>
+			<a class="button button-primary" href="/start">Contact Me <span aria-hidden="true">→</span></a
+			><a class="button button-secondary" href="/work">View My Work</a>
 		</div>
 	</section>
 

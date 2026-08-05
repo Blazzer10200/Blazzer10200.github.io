@@ -57,7 +57,7 @@
 {#if form?.success}
 	<div class="status-panel success" role="status" tabindex="-1" bind:this={resultPanel}>
 		<h2>
-			{form.development ? 'The form passed its development checks.' : 'Your inquiry was sent.'}
+			{form.development ? 'The form passed its development checks.' : 'Your message was sent.'}
 		</h2>
 		<p>
 			{form.development
@@ -69,7 +69,7 @@
 
 {#if form?.failure && !form.errors}
 	<div class="status-panel failure" role="alert" tabindex="-1" bind:this={resultPanel}>
-		<h2>The inquiry could not be delivered.</h2>
+		<h2>Your message could not be delivered.</h2>
 		<p>Your form values are still here. Try again, or email directly if the problem continues.</p>
 	</div>
 {/if}
@@ -348,7 +348,7 @@
 		{#if errors.consent}<p class="field-error" id="consent-error">{errors.consent}</p>{/if}
 
 		<button class="button button-primary" type="submit" disabled={submitting}
-			>{submitting ? 'Sending…' : 'Send Project Inquiry'} <span aria-hidden="true">→</span></button
+			>{submitting ? 'Sending…' : 'Send Message'} <span aria-hidden="true">→</span></button
 		>
 		<p class="submission-note">
 			Do not include passwords, API keys, private customer data, or confidential files.
