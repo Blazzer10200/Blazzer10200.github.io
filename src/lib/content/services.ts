@@ -2,6 +2,7 @@ export type ServiceId = 'websites' | 'software' | 'ai';
 
 export type Service = {
 	id: ServiceId;
+	inquiryType: string;
 	number: string;
 	title: string;
 	shortTitle: string;
@@ -15,6 +16,7 @@ export type Service = {
 export const services: readonly Service[] = [
 	{
 		id: 'websites',
+		inquiryType: 'business-website',
 		number: '01',
 		title: 'Custom Websites',
 		shortTitle: 'Website strategy and development',
@@ -38,49 +40,54 @@ export const services: readonly Service[] = [
 	},
 	{
 		id: 'software',
+		inquiryType: 'windows-tool-script',
 		number: '02',
-		title: 'Custom Software',
-		shortTitle: 'Business tools and product development',
-		lead: 'I build software for repeated workflows, new product ideas, and jobs that have outgrown spreadsheets or disconnected tools.',
+		title: 'Windows Tools & Custom Software',
+		shortTitle: 'Windows utilities, scripts, and business tools',
+		lead: 'I build focused Windows 10 and 11 tools, scripts, desktop applications, and custom software for work that has outgrown manual steps or disconnected programs.',
 		outcomes: [
 			'Replace a fragile manual process',
 			'Centralize the information people need',
-			'Create a testable first version of an idea',
+			'Automate a repeated Windows task',
 			'Build a foundation that can grow deliberately'
 		],
 		deliverables: [
+			'Windows utilities and workflow scripts',
+			'Desktop applications and focused MVPs',
 			'Web applications and internal tools',
 			'Administrative dashboards and portals',
-			'Database-backed business systems',
-			'Windows desktop applications and MVPs'
+			'Database-backed business systems'
 		],
 		goodFit:
-			'This works well when your process is specific to the business and off-the-shelf software keeps forcing compromises.',
+			'This works well when a repeated Windows task wastes time, a small utility could replace several steps, or off-the-shelf software keeps forcing compromises.',
 		boundary:
 			'I start with the core workflow. Accounts, billing, and complex administration come later when the product actually needs them.'
 	},
 	{
 		id: 'ai',
+		inquiryType: 'systems-integration',
 		number: '03',
-		title: 'AI Integrations',
-		shortTitle: 'Carefully bounded AI features',
-		lead: 'I add AI when it improves a specific task. Permissions, cost, evaluation, and human review are part of the design from the start.',
+		title: 'Integrations & Automation',
+		shortTitle: 'Connect services, data, workflows, and AI',
+		lead: 'I connect websites, software, services, and data around a clear task. When AI is useful, permissions, cost, evaluation, and human review are part of the design.',
 		outcomes: [
-			'Reduce repetitive review or data-entry work',
-			'Find useful information across documents',
-			'Add an assistant to an existing product',
-			'Test an AI workflow before committing to it'
+			'Remove repeated copying between systems',
+			'Keep important information in sync',
+			'Connect a website to the services behind it',
+			'Add AI only where it improves a defined task'
 		],
 		deliverables: [
+			'API and third-party service connections',
+			'Business workflow and data automation',
+			'Discord and tool integrations',
 			'AI assistants and document workflows',
-			'Agent and tool integrations',
 			'Local AI and privacy-conscious prototypes',
-			'Prompting, evaluation, and human-approval systems'
+			'Evaluation and human-review systems'
 		],
 		goodFit:
-			'This works well when the task is clearly defined and your team can explain what a good result looks like.',
+			'This works well when people are moving information by hand, useful systems do not communicate, or a clearly defined task could benefit from careful automation.',
 		boundary:
-			'I do not add AI just for the label. If a simpler workflow is more reliable and easier to maintain, I will recommend it.'
+			'I do not automate a process until the inputs, expected result, failure cases, and person responsible for review are clear.'
 	}
 ] as const;
 

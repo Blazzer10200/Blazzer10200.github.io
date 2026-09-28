@@ -66,10 +66,10 @@ Required production configuration:
 - `PUBLIC_TURNSTILE_SITE_KEY`
 - `TURNSTILE_SECRET_KEY`
 - `TURNSTILE_EXPECTED_HOSTNAME`
-- `INQUIRY_PROVIDER=resend`
-- `INQUIRY_TO_EMAIL`
-- `INQUIRY_FROM_EMAIL`
-- `RESEND_API_KEY`
+- `EMAIL_PROVIDER=resend`
+- `EMAIL_PROVIDER_KEY`
+- `DESTINATION_EMAIL`
+- `SENDER_IDENTITY`
 
 ## Cloudflare and D1 status
 
@@ -108,14 +108,14 @@ Required production configuration:
 - Prettier format: passed
 - ESLint: passed
 - `svelte-check`: 0 errors, 0 warnings
-- Vitest: 3 files, 8 tests passed
+- Vitest: 5 files, 19 tests passed
 - Cloudflare production build: passed
-- Playwright against the actual Wrangler Worker: 13 tests passed
+- Playwright against the actual Wrangler Worker: 18 tests passed
 - GitHub Pages static fallback build: passed
 - Resume PDF generation: passed
 - Dependency audit: 0 vulnerabilities
-- Quick security/bug review: no issues found in 51 changed code files reviewed
-- Visual QA: 8 routes across 6 desktop/tablet/mobile viewports, plus final desktop hero inspection; no horizontal overflow or browser console errors
+- Quick security/bug review: no issues found in 27 changed code files reviewed
+- Visual QA: homepage, services, navigation, and inquiry flows inspected at desktop and mobile sizes; no horizontal overflow or browser console errors
 - Route/media smoke test: public pages, sitemap, robots, PDF, social image, case-study images, and Rift MP4 returned expected successful responses; legacy routes returned 308
 
 ## Known limitations

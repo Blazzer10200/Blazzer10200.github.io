@@ -5,7 +5,7 @@
 </script>
 
 <Seo
-	title={`About ${site.name} · Product developer`}
+	title={`About ${site.name} · ${site.role}`}
 	description="My path from game-server work and industrial equipment into shipped desktop software, AI-assisted product development, and custom client projects."
 	path="/about"
 />
@@ -75,8 +75,9 @@
 			<h2>Today, I build custom projects for businesses and founders.</h2>
 			<p>
 				I help businesses and founders turn rough ideas and operational problems into websites,
-				software tools, desktop applications, and carefully scoped AI products. Clients work
-				directly with me from the first conversation through launch.
+				software tools, desktop applications, and connected workflows. When AI is useful, I add it
+				around a defined task and review process. Clients work directly with me from the first
+				conversation through launch.
 			</p>
 		</div>
 	</section>

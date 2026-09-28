@@ -5,6 +5,9 @@
 	import { navigation, site } from '$lib/content/site';
 
 	let menuOpen = $state(false);
+	let desktopMenu = $state<string | null>(null);
+	let desktopHoverSuppressed = $state(false);
+	let mobileSection = $state<string | null>(null);
 	let menuButton = $state<HTMLButtonElement>();
 	let menuPanel = $state<HTMLDivElement>();
 	let pathname = $derived(page.url.pathname);
@@ -15,17 +18,30 @@
 
 	function closeMenu(returnFocus = true) {
 		menuOpen = false;
+		mobileSection = null;
 		if (returnFocus) void tick().then(() => menuButton?.focus());
 	}
 
+	function closeDesktopMenu(event: FocusEvent) {
+		const group = event.currentTarget as HTMLElement;
+		const next = event.relatedTarget as Node | null;
+		if (!next || !group.contains(next)) desktopMenu = null;
+	}
+
 	function handleKeydown(event: KeyboardEvent) {
-		if (!menuOpen) return;
 		if (event.key === 'Escape') {
-			event.preventDefault();
-			closeMenu();
+			if (menuOpen) {
+				event.preventDefault();
+				closeMenu();
+			} else {
+				event.preventDefault();
+				desktopMenu = null;
+				desktopHoverSuppressed = true;
+			}
 			return;
 		}
 
+		if (!menuOpen) return;
 		if (event.key !== 'Tab' || !menuPanel) return;
 		const focusable = Array.from(
 			menuPanel.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
@@ -68,11 +84,49 @@
 
 		<nav class="desktop-nav" aria-label="Main navigation">
 			{#each navigation as item}
-				<a
-					href={item.href}
-					class:primary={item.primary}
-					aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a
-				>
+				{#if 'children' in item}
+					<div
+						class="nav-group"
+						class:hover-suppressed={desktopHoverSuppressed}
+						role="group"
+						onfocusout={closeDesktopMenu}
+						onpointerleave={() => (desktopHoverSuppressed = false)}
+					>
+						<div class="nav-parent">
+							<a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}
+								>{item.label}</a
+							>
+							<button
+								type="button"
+								aria-label={`Open ${item.label} menu`}
+								aria-expanded={desktopMenu === item.href}
+								aria-controls={`desktop-${item.label.toLowerCase().replaceAll(' ', '-')}`}
+								onclick={() => {
+									desktopHoverSuppressed = false;
+									desktopMenu = desktopMenu === item.href ? null : item.href;
+								}}><span aria-hidden="true">⌄</span></button
+							>
+						</div>
+						<div
+							class="nav-submenu"
+							class:open={desktopMenu === item.href}
+							id={`desktop-${item.label.toLowerCase().replaceAll(' ', '-')}`}
+						>
+							{#each item.children as child}
+								<a href={child.href} onclick={() => (desktopMenu = null)}>
+									<strong>{child.label}</strong>
+									<span>{child.description}</span>
+								</a>
+							{/each}
+						</div>
+					</div>
+				{:else}
+					<a
+						href={item.href}
+						class:primary={item.primary}
+						aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a
+					>
+				{/if}
 			{/each}
 		</nav>
 
@@ -100,14 +154,42 @@
 		>
 			<nav aria-label="Mobile navigation">
 				{#each navigation as item, index}
-					<a
-						href={item.href}
-						class:primary={item.primary}
-						aria-current={isActive(item.href) ? 'page' : undefined}
-						onclick={() => closeMenu(false)}
-					>
-						<span>0{index + 1}</span>{item.label}
-					</a>
+					{#if 'children' in item}
+						<div class="mobile-nav-group">
+							<div class="mobile-nav-row">
+								<a
+									href={item.href}
+									aria-current={isActive(item.href) ? 'page' : undefined}
+									onclick={() => closeMenu(false)}><span>0{index + 1}</span>{item.label}</a
+								>
+								<button
+									type="button"
+									aria-label={`${mobileSection === item.href ? 'Close' : 'Open'} ${item.label} menu`}
+									aria-expanded={mobileSection === item.href}
+									onclick={() => (mobileSection = mobileSection === item.href ? null : item.href)}
+									><span aria-hidden="true">+</span></button
+								>
+							</div>
+							{#if mobileSection === item.href}
+								<div class="mobile-submenu">
+									{#each item.children as child}
+										<a href={child.href} onclick={() => closeMenu(false)}>
+											<strong>{child.label}</strong><span>{child.description}</span>
+										</a>
+									{/each}
+								</div>
+							{/if}
+						</div>
+					{:else}
+						<a
+							href={item.href}
+							class:primary={item.primary}
+							aria-current={isActive(item.href) ? 'page' : undefined}
+							onclick={() => closeMenu(false)}
+						>
+							<span>0{index + 1}</span>{item.label}
+						</a>
+					{/if}
 				{/each}
 			</nav>
 			<div class="mobile-contact">
@@ -128,6 +210,8 @@
 		backdrop-filter: blur(18px) saturate(135%);
 	}
 	.header-inner {
+		position: relative;
+		z-index: 2;
 		display: flex;
 		min-height: 76px;
 		align-items: center;
@@ -181,7 +265,8 @@
 		align-items: center;
 		gap: clamp(1rem, 2.4vw, 2.25rem);
 	}
-	.desktop-nav a {
+	.desktop-nav > a,
+	.nav-parent > a {
 		position: relative;
 		padding-block: 0.55rem;
 		color: var(--text-secondary);
@@ -189,7 +274,8 @@
 		font-weight: 550;
 		text-decoration: none;
 	}
-	.desktop-nav a::after {
+	.desktop-nav > a::after,
+	.nav-parent > a::after {
 		position: absolute;
 		right: 0;
 		bottom: 0;
@@ -201,19 +287,101 @@
 		transform-origin: left;
 		transition: transform var(--motion-standard) var(--ease-out);
 	}
-	.desktop-nav a:hover,
-	.desktop-nav a[aria-current='page'] {
+	.desktop-nav > a:hover,
+	.desktop-nav > a[aria-current='page'],
+	.nav-parent > a:hover,
+	.nav-parent > a[aria-current='page'] {
 		color: var(--text-primary);
 	}
-	.desktop-nav a:hover::after,
-	.desktop-nav a[aria-current='page']::after {
+	.desktop-nav > a:hover::after,
+	.desktop-nav > a[aria-current='page']::after,
+	.nav-parent > a:hover::after,
+	.nav-parent > a[aria-current='page']::after {
 		transform: scaleX(1);
 	}
-	.desktop-nav a.primary {
+	.desktop-nav > a.primary {
 		padding: 0.72rem 1rem;
 		border: 1px solid var(--border-strong);
 		background: var(--surface);
 		color: var(--text-primary);
+	}
+	.nav-group {
+		position: relative;
+	}
+	.nav-parent {
+		display: flex;
+		align-items: center;
+	}
+	.nav-parent button {
+		display: grid;
+		width: 24px;
+		height: 32px;
+		place-items: center;
+		border: 0;
+		background: transparent;
+		color: var(--text-muted);
+	}
+	.nav-parent button span {
+		font-size: 1rem;
+		transition: transform var(--motion-fast) var(--ease-out);
+	}
+	.nav-parent button[aria-expanded='true'] span {
+		transform: rotate(180deg);
+	}
+	.nav-submenu {
+		position: absolute;
+		top: calc(100% + 0.85rem);
+		left: 50%;
+		z-index: 2;
+		display: grid;
+		width: min(330px, 80vw);
+		padding: 0.45rem;
+		border: 1px solid var(--border-strong);
+		background: color-mix(in srgb, var(--background-raised) 97%, transparent);
+		box-shadow: var(--shadow-large);
+		opacity: 0;
+		pointer-events: none;
+		transform: translateX(-50%) translateY(-6px);
+		visibility: hidden;
+		transition:
+			opacity var(--motion-fast) var(--ease-out),
+			transform var(--motion-fast) var(--ease-out),
+			visibility var(--motion-fast) var(--ease-out);
+	}
+	.nav-group:not(.hover-suppressed):hover .nav-submenu,
+	.nav-submenu.open {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateX(-50%) translateY(0);
+		visibility: visible;
+	}
+	.nav-submenu::before {
+		position: absolute;
+		top: -0.9rem;
+		right: 0;
+		left: 0;
+		height: 0.9rem;
+		content: '';
+	}
+	.nav-submenu a {
+		display: grid;
+		gap: 0.15rem;
+		padding: 0.8rem 0.9rem;
+		border: 1px solid transparent;
+		text-decoration: none;
+	}
+	.nav-submenu a:hover,
+	.nav-submenu a:focus-visible {
+		border-color: var(--border);
+		background: var(--surface);
+	}
+	.nav-submenu strong {
+		font-size: 0.86rem;
+		font-weight: 650;
+	}
+	.nav-submenu span {
+		color: var(--text-muted);
+		font-size: 0.73rem;
 	}
 	.menu-button {
 		display: none;
@@ -247,16 +415,20 @@
 	.mobile-panel {
 		position: fixed;
 		inset: 76px 0 0;
-		z-index: -1;
+		z-index: 1;
 		display: grid;
 		align-content: space-between;
+		gap: var(--space-6);
 		padding: 1rem var(--gutter) 2rem;
-		background: color-mix(in srgb, var(--background-raised) 97%, transparent);
+		overflow-y: auto;
+		background: var(--background-raised);
+		animation: mobile-panel-in var(--motion-standard) var(--ease-out);
 	}
 	.mobile-panel nav {
 		display: grid;
 	}
-	.mobile-panel nav a {
+	.mobile-panel nav > a,
+	.mobile-nav-row > a {
 		display: grid;
 		grid-template-columns: 2.4rem 1fr;
 		align-items: center;
@@ -268,7 +440,8 @@
 		letter-spacing: -0.03em;
 		text-decoration: none;
 	}
-	.mobile-panel nav a span,
+	.mobile-panel nav > a span,
+	.mobile-nav-row > a > span,
 	.mobile-contact span {
 		color: var(--text-muted);
 		font-family: var(--font-mono);
@@ -277,8 +450,49 @@
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 	}
-	.mobile-panel nav a.primary {
+	.mobile-panel nav > a.primary {
 		color: var(--accent);
+	}
+	.mobile-nav-row {
+		display: grid;
+		grid-template-columns: 1fr 48px;
+		border-bottom: 1px solid var(--border);
+	}
+	.mobile-nav-row > a {
+		border-bottom: 0;
+	}
+	.mobile-nav-row button {
+		border: 0;
+		border-left: 1px solid var(--border);
+		background: transparent;
+		color: var(--text-secondary);
+	}
+	.mobile-nav-row button span {
+		display: inline-block;
+		font-size: 1.35rem;
+		transition: transform var(--motion-fast) var(--ease-out);
+	}
+	.mobile-nav-row button[aria-expanded='true'] span {
+		transform: rotate(45deg);
+	}
+	.mobile-submenu {
+		display: grid;
+		padding: 0.4rem 0 0.75rem 2.4rem;
+		border-bottom: 1px solid var(--border);
+		animation: submenu-in var(--motion-fast) var(--ease-out);
+	}
+	.mobile-submenu a {
+		display: grid;
+		gap: 0.1rem;
+		padding: 0.55rem 0;
+		text-decoration: none;
+	}
+	.mobile-submenu strong {
+		font-size: 0.95rem;
+	}
+	.mobile-submenu span {
+		color: var(--text-muted);
+		font-size: 0.73rem;
 	}
 	.mobile-contact {
 		display: grid;
@@ -288,7 +502,28 @@
 		color: var(--text-secondary);
 		font-size: 0.88rem;
 	}
+	@keyframes mobile-panel-in {
+		from {
+			opacity: 0;
+			transform: translateY(-8px);
+		}
+	}
 	@media (max-width: 800px) {
+		.mobile-submenu {
+			animation-name: mobile-submenu-in;
+		}
+	}
+	@keyframes mobile-submenu-in {
+		from {
+			opacity: 0;
+			transform: translateY(-6px);
+		}
+	}
+	@media (max-width: 800px) {
+		.site-header {
+			background: var(--background);
+			backdrop-filter: none;
+		}
 		.desktop-nav {
 			display: none;
 		}

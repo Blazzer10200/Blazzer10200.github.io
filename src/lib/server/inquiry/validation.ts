@@ -15,7 +15,6 @@ export const FIELD_LIMITS = {
 	websiteUrl: 500,
 	description: 2500,
 	desiredFeatures: 1500,
-	mainProblem: 1200,
 	referenceLinks: 1500,
 	honeypot: 200,
 	turnstile: 2048
@@ -63,7 +62,6 @@ export function validateInquiry(formData: FormData) {
 		projectGoal: normalize(formData.get('projectGoal')) as PriorityOption | '',
 		description: normalize(formData.get('description')),
 		desiredFeatures: normalize(formData.get('desiredFeatures')),
-		mainProblem: normalize(formData.get('mainProblem')),
 		deadline: normalize(formData.get('deadline')),
 		budget: normalize(formData.get('budget')),
 		referral: normalize(formData.get('referral')),
@@ -122,20 +120,10 @@ export function validateInquiry(formData: FormData) {
 		'Desired features'
 	);
 
-	if (values.mainProblem.length < 15)
-		errors.mainProblem = 'Describe the main problem in at least 15 characters.';
-	validateLength(
-		errors,
-		'mainProblem',
-		values.mainProblem,
-		FIELD_LIMITS.mainProblem,
-		'Main problem'
-	);
-
 	if (!allowed(deadlineOptions, values.deadline)) errors.deadline = 'Choose a desired timeline.';
 	if (!allowed(budgetOptions, values.budget)) errors.budget = 'Choose an approximate budget range.';
-	if (!allowed(referralOptions, values.referral))
-		errors.referral = 'Choose how you found this site.';
+	if (values.referral && !allowed(referralOptions, values.referral))
+		errors.referral = 'Choose a valid referral source.';
 
 	validateLength(
 		errors,

@@ -7,7 +7,7 @@
 		<div class="footer-intro">
 			<a class="footer-brand" href="/">{site.name}</a>
 			<p>
-				Custom websites, software tools, desktop applications, and carefully bounded AI products.
+				Custom websites, Windows tools, and connected systems delivered directly by one developer.
 			</p>
 		</div>
 
@@ -31,7 +31,7 @@
 		</div>
 	</div>
 	<div class="container-wide footer-base">
-		<span>Independent product developer · {site.location}</span>
+		<span>{site.role} · {site.location}</span>
 		<span>© {new Date().getFullYear()} {site.name}</span>
 	</div>
 </footer>

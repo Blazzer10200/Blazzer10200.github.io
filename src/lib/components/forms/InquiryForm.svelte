@@ -129,31 +129,6 @@
 					aria-describedby={errors.email ? 'email-error' : undefined}
 				/>{#if errors.email}<p class="field-error" id="email-error">{errors.email}</p>{/if}
 			</div>
-			<div class="form-field">
-				<label for="businessName">Business or project name</label><input
-					id="businessName"
-					name="businessName"
-					autocomplete="organization"
-					maxlength="160"
-					value={value('businessName')}
-					aria-invalid={errors.businessName ? 'true' : undefined}
-				/>{#if errors.businessName}<p class="field-error">{errors.businessName}</p>{/if}
-			</div>
-			<div class="form-field">
-				<label for="websiteUrl">Existing website or product URL</label><input
-					id="websiteUrl"
-					name="websiteUrl"
-					type="url"
-					inputmode="url"
-					placeholder="https://"
-					maxlength="500"
-					value={value('websiteUrl')}
-					aria-invalid={errors.websiteUrl ? 'true' : undefined}
-					aria-describedby={errors.websiteUrl ? 'websiteUrl-error' : undefined}
-				/>{#if errors.websiteUrl}<p class="field-error" id="websiteUrl-error">
-						{errors.websiteUrl}
-					</p>{/if}
-			</div>
 		</div>
 	</div>
 
@@ -193,9 +168,11 @@
 			</div>
 		</div>
 		<div class="form-field">
-			<label for="description">Short project description <span aria-hidden="true">*</span></label>
+			<label for="description"
+				>What are you trying to improve or build? <span aria-hidden="true">*</span></label
+			>
 			<p class="field-help" id="description-help">
-				What are you trying to create, improve, or replace?
+				Describe what happens today, what is not working, and what a useful result would look like.
 			</p>
 			<textarea
 				id="description"
@@ -210,45 +187,14 @@
 					{errors.description}
 				</p>{/if}
 		</div>
-		<div class="form-field">
-			<label for="desiredFeatures">Desired features</label>
-			<p class="field-help">
-				List any features already on your mind. We will confirm the scope later.
-			</p>
-			<textarea
-				id="desiredFeatures"
-				name="desiredFeatures"
-				maxlength="1500"
-				aria-invalid={errors.desiredFeatures ? 'true' : undefined}
-				>{value('desiredFeatures')}</textarea
-			>{#if errors.desiredFeatures}<p class="field-error">{errors.desiredFeatures}</p>{/if}
-		</div>
-		<div class="form-field">
-			<label for="mainProblem">Main problem being solved <span aria-hidden="true">*</span></label>
-			<p class="field-help" id="mainProblem-help">
-				What is difficult, slow, unreliable, or currently impossible?
-			</p>
-			<textarea
-				id="mainProblem"
-				name="mainProblem"
-				required
-				minlength="15"
-				maxlength="1200"
-				aria-invalid={errors.mainProblem ? 'true' : undefined}
-				aria-describedby={`mainProblem-help${errors.mainProblem ? ' mainProblem-error' : ''}`}
-				>{value('mainProblem')}</textarea
-			>{#if errors.mainProblem}<p class="field-error" id="mainProblem-error">
-					{errors.mainProblem}
-				</p>{/if}
-		</div>
 	</div>
 
 	<div class="form-section">
 		<div class="form-section-heading">
 			<span>03</span>
 			<div>
-				<h2>Timing and context</h2>
-				<p>These answers help me understand the size and timing of the project.</p>
+				<h2>Timing and budget</h2>
+				<p>Rough answers are enough. They help me recommend a realistic next step.</p>
 			</div>
 		</div>
 		<div class="field-grid two">
@@ -277,30 +223,81 @@
 						>{/each}</select
 				>{#if errors.budget}<p class="field-error">{errors.budget}</p>{/if}
 			</div>
-			<div class="form-field">
-				<label for="referral">How did you find me? <span aria-hidden="true">*</span></label><select
-					id="referral"
-					name="referral"
-					required
-					aria-invalid={errors.referral ? 'true' : undefined}
-					><option value="">Choose one</option>{#each referralOptions as option}<option
-							value={option.value}
-							selected={value('referral') === option.value}>{option.label}</option
-						>{/each}</select
-				>{#if errors.referral}<p class="field-error">{errors.referral}</p>{/if}
-			</div>
-			<div class="form-field">
-				<label for="referenceLinks">Optional reference links</label>
-				<p class="field-help">Up to three complete URLs, one per line.</p>
-				<textarea
-					id="referenceLinks"
-					name="referenceLinks"
-					maxlength="1500"
-					aria-invalid={errors.referenceLinks ? 'true' : undefined}
-					>{value('referenceLinks')}</textarea
-				>{#if errors.referenceLinks}<p class="field-error">{errors.referenceLinks}</p>{/if}
-			</div>
 		</div>
+		<details
+			class="optional-details"
+			open={Boolean(
+				errors.businessName ||
+				errors.websiteUrl ||
+				errors.desiredFeatures ||
+				errors.referral ||
+				errors.referenceLinks
+			)}
+		>
+			<summary>
+				<span>Add optional project details</span>
+				<small>Business name, links, features, and referral source</small>
+			</summary>
+			<div class="field-grid two optional-grid">
+				<div class="form-field">
+					<label for="businessName">Business or project name</label><input
+						id="businessName"
+						name="businessName"
+						autocomplete="organization"
+						maxlength="160"
+						value={value('businessName')}
+						aria-invalid={errors.businessName ? 'true' : undefined}
+					/>{#if errors.businessName}<p class="field-error">{errors.businessName}</p>{/if}
+				</div>
+				<div class="form-field">
+					<label for="websiteUrl">Existing website or product URL</label><input
+						id="websiteUrl"
+						name="websiteUrl"
+						type="url"
+						inputmode="url"
+						placeholder="https://"
+						maxlength="500"
+						value={value('websiteUrl')}
+						aria-invalid={errors.websiteUrl ? 'true' : undefined}
+						aria-describedby={errors.websiteUrl ? 'websiteUrl-error' : undefined}
+					/>{#if errors.websiteUrl}<p class="field-error" id="websiteUrl-error">
+							{errors.websiteUrl}
+						</p>{/if}
+				</div>
+				<div class="form-field">
+					<label for="desiredFeatures">Features already on your mind</label>
+					<textarea
+						id="desiredFeatures"
+						name="desiredFeatures"
+						maxlength="1500"
+						aria-invalid={errors.desiredFeatures ? 'true' : undefined}
+						>{value('desiredFeatures')}</textarea
+					>{#if errors.desiredFeatures}<p class="field-error">{errors.desiredFeatures}</p>{/if}
+				</div>
+				<div class="form-field">
+					<label for="referenceLinks">Reference links</label>
+					<p class="field-help">Up to three complete URLs, one per line.</p>
+					<textarea
+						id="referenceLinks"
+						name="referenceLinks"
+						maxlength="1500"
+						aria-invalid={errors.referenceLinks ? 'true' : undefined}
+						>{value('referenceLinks')}</textarea
+					>{#if errors.referenceLinks}<p class="field-error">{errors.referenceLinks}</p>{/if}
+				</div>
+				<div class="form-field">
+					<label for="referral">How did you find me?</label><select
+						id="referral"
+						name="referral"
+						aria-invalid={errors.referral ? 'true' : undefined}
+						><option value="">Prefer not to say</option>{#each referralOptions as option}<option
+								value={option.value}
+								selected={value('referral') === option.value}>{option.label}</option
+							>{/each}</select
+					>{#if errors.referral}<p class="field-error">{errors.referral}</p>{/if}
+				</div>
+			</div>
+		</details>
 	</div>
 
 	<div class="honeypot" aria-hidden="true">
@@ -396,6 +393,49 @@
 	.field-grid.two {
 		grid-template-columns: 1fr 1fr;
 	}
+	.optional-details {
+		border-top: 1px solid var(--border);
+	}
+	.optional-details summary {
+		display: flex;
+		gap: var(--space-3);
+		align-items: center;
+		justify-content: space-between;
+		padding-block: var(--space-4);
+		color: var(--text-primary);
+		font-weight: 650;
+		list-style: none;
+		cursor: pointer;
+	}
+	.optional-details summary::-webkit-details-marker {
+		display: none;
+	}
+	.optional-details summary::after {
+		color: var(--accent);
+		font-size: 1.2rem;
+		content: '+';
+		transition: transform var(--motion-fast) var(--ease-out);
+	}
+	.optional-details[open] summary::after {
+		transform: rotate(45deg);
+	}
+	.optional-details summary small {
+		margin-left: auto;
+		color: var(--text-muted);
+		font-size: var(--text-metadata);
+		font-weight: 500;
+	}
+	.optional-grid {
+		padding-top: var(--space-4);
+		border-top: 1px solid var(--border);
+		animation: optional-details-in var(--motion-standard) var(--ease-out);
+	}
+	@keyframes optional-details-in {
+		from {
+			opacity: 0;
+			transform: translateY(-6px);
+		}
+	}
 	.form-field textarea {
 		min-height: 140px;
 	}
@@ -478,7 +518,13 @@
 		}
 		.form-section,
 		.form-final {
-			padding: var(--space-4);
+			padding: var(--space-5);
+		}
+		.optional-details summary {
+			align-items: flex-start;
+		}
+		.optional-details summary small {
+			display: none;
 		}
 		.form-final .button {
 			width: 100%;

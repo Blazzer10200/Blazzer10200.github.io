@@ -39,10 +39,7 @@
 						setTimeout(() => ln.classList.add('show'), 250 + i * 280);
 					});
 					if (promptEl) {
-						setTimeout(
-							() => promptEl.classList.add('show'),
-							250 + lineEls.length * 280 + 120
-						);
+						setTimeout(() => promptEl.classList.add('show'), 250 + lineEls.length * 280 + 120);
 					}
 				});
 			},
@@ -67,9 +64,7 @@
 	<div class="panel-body">
 		{#each lines as line (line.text)}
 			<div class="log-line {line.variant ?? ''}">
-				<span class="ts" style={line.dimTs ? 'color: inherit; opacity: .55' : ''}
-					>{line.ts}</span
-				>
+				<span class="ts" style={line.dimTs ? 'color: inherit; opacity: .55' : ''}>{line.ts}</span>
 				{line.text}
 			</div>
 		{/each}

@@ -8,8 +8,8 @@ updates:
     groups:
       svelte:
         patterns:
-          - "svelte"
-          - "@sveltejs/*"
+          - 'svelte'
+          - '@sveltejs/*'
       dev-dependencies:
         dependency-type: development
 

@@ -9,7 +9,7 @@
 
 <Seo
 	title={`Contact ${site.name} · Discuss your project`}
-	description="Contact Braison Swilling about a website, software tool, desktop application, or AI product. Share a few details and receive a direct reply."
+	description="Contact Braison Swilling about a custom website, Windows tool or script, connected system, desktop application, or carefully scoped AI feature."
 	path="/start"
 />
 
@@ -36,7 +36,7 @@
 	<section class="inquiry-layout container-wide section-tight">
 		<div class="inquiry-intro">
 			<p class="eyebrow">Project details</p>
-			<h2>A few details to get started.</h2>
+			<h2>Start with the essentials.</h2>
 			<p>
 				Fields marked with an asterisk are required. Choose “Not sure yet” when you do not have an
 				answer.

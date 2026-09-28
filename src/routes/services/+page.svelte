@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CtaBand from '$lib/components/ui/CtaBand.svelte';
+	import ProcessTimeline from '$lib/components/sections/ProcessTimeline.svelte';
 	import Seo from '$lib/components/ui/Seo.svelte';
 	import { services } from '$lib/content/services';
 	import { site, siteUrl } from '$lib/content/site';
@@ -15,8 +16,8 @@
 </script>
 
 <Seo
-	title={`Custom website, software, and AI services · ${site.name}`}
-	description="Custom business websites, internal tools, portals, desktop applications, MVPs, and carefully scoped AI integrations planned, built, tested, and deployed by one product developer."
+	title={`Custom websites, Windows tools, and integrations · ${site.name}`}
+	description="Custom business websites, Windows tools and scripts, desktop applications, connected systems, and carefully scoped AI features planned, built, tested, and deployed by one developer."
 	path="/services"
 	{schema}
 />
@@ -24,10 +25,11 @@
 <main id="main-content" tabindex="-1">
 	<section class="page-hero container-wide">
 		<p class="eyebrow">Services</p>
-		<h1>Websites and software built for your business.</h1>
+		<h1>Websites, Windows tools, and systems that work together.</h1>
 		<p class="lead">
-			I handle planning, requirements, interface design, development, testing, deployment, and
-			documentation. We start by agreeing on a useful first version and what it needs to accomplish.
+			I design the interface, build the useful parts, connect the systems, test the result, and
+			document what is delivered. We start by agreeing on a useful first version and what it needs
+			to accomplish.
 		</p>
 		<div class="page-actions">
 			<a class="button button-primary" href="/start">Contact Me <span aria-hidden="true">→</span></a
@@ -70,31 +72,23 @@
 						</div>
 					</aside>
 				</div>
-				<a class="text-link" href={`/start?service=${service.id}`}
+				<a class="text-link" href={`/start?type=${service.inquiryType}`}
 					>Talk through your project <span aria-hidden="true">→</span></a
 				>
 			</article>
 		{/each}
 	</section>
 
-	<section class="scope-note container section">
-		<div>
-			<p class="eyebrow">How scope is handled</p>
-			<h2>You will know what is being built before development starts.</h2>
-		</div>
-		<div class="scope-steps">
+	<section class="delivery-process container-wide section" aria-labelledby="delivery-title">
+		<div class="delivery-intro">
+			<p class="eyebrow">How delivery works</p>
+			<h2 id="delivery-title">A clear path from the first conversation to support.</h2>
 			<p>
-				<span>01</span><strong>Check the fit.</strong> I review the problem, goals, and current situation.
-			</p>
-			<p>
-				<span>02</span><strong>Define the project.</strong> We identify requirements, risks, existing
-				assets, and the first release.
-			</p>
-			<p>
-				<span>03</span><strong>Review the proposal.</strong> You receive scope, milestones, assumptions,
-				and a price tied to the defined work.
+				You review working progress, receive the decisions and documentation that matter, and know
+				what must be true before the project moves forward.
 			</p>
 		</div>
+		<ProcessTimeline />
 	</section>
 
 	<CtaBand
@@ -180,32 +174,21 @@
 	.service-detail article > .text-link {
 		margin-left: 5rem;
 	}
-	.scope-note {
+	.delivery-intro {
 		display: grid;
 		grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1fr);
 		gap: var(--space-10);
+		align-items: end;
+		margin-bottom: var(--space-7);
 	}
-	.scope-note h2 {
+	.delivery-intro h2 {
+		max-width: 14ch;
 		margin-top: var(--space-3);
 	}
-	.scope-steps {
-		border-top: 1px solid var(--border-strong);
-	}
-	.scope-steps p {
-		display: grid;
-		grid-template-columns: 2rem 10rem 1fr;
-		gap: 1rem;
-		padding-block: var(--space-5);
-		border-bottom: 1px solid var(--border);
+	.delivery-intro > p {
+		max-width: 44rem;
 		color: var(--text-secondary);
-	}
-	.scope-steps span {
-		color: var(--accent);
-		font-family: var(--font-mono);
-		font-size: var(--text-metadata);
-	}
-	.scope-steps strong {
-		color: var(--text-primary);
+		font-size: var(--text-body-large);
 	}
 	@media (max-width: 900px) {
 		.service-body {
@@ -214,7 +197,7 @@
 		.service-body aside {
 			grid-column: 1 / -1;
 		}
-		.scope-note {
+		.delivery-intro {
 			grid-template-columns: 1fr;
 		}
 	}
@@ -231,12 +214,6 @@
 		}
 		.service-detail article > .text-link {
 			margin-left: 0;
-		}
-		.scope-steps p {
-			grid-template-columns: 2rem 1fr;
-		}
-		.scope-steps p:not(span) {
-			grid-column: 2;
 		}
 	}
 </style>

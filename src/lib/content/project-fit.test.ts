@@ -14,6 +14,26 @@ describe('recommendProjectFit', () => {
 		).toMatchObject({ service: 'ai' });
 	});
 
+	it('maps a Windows tool to custom software', () => {
+		expect(
+			recommendProjectFit({
+				build: 'windows-tool-script',
+				stage: 'idea',
+				priority: 'manual-workflow'
+			})
+		).toMatchObject({ service: 'software' });
+	});
+
+	it('maps connected systems to integrations and automation', () => {
+		expect(
+			recommendProjectFit({
+				build: 'systems-integration',
+				stage: 'notes',
+				priority: 'manual-workflow'
+			})
+		).toMatchObject({ service: 'ai' });
+	});
+
 	it('does not invent an instant quote', () => {
 		const result = recommendProjectFit({
 			build: 'not-sure',

@@ -4,7 +4,7 @@ export const siteUrl = (
 
 export const site = {
 	name: 'Braison Swilling',
-	role: 'Product developer',
+	role: 'Website and software developer',
 	email: 'braison.swilling@outlook.com',
 	github: 'https://github.com/Blazzer10200',
 	location: 'Central Arkansas · available remotely across the US'
@@ -12,8 +12,39 @@ export const site = {
 
 export const navigation = [
 	{ href: '/', label: 'Home', primary: false },
-	{ href: '/services', label: 'Services', primary: false },
-	{ href: '/work', label: 'My Work', primary: false },
+	{
+		href: '/services',
+		label: 'Services',
+		primary: false,
+		children: [
+			{ href: '/services', label: 'Services overview', description: 'Compare every service' },
+			{
+				href: '/services#websites',
+				label: 'Custom websites',
+				description: 'Clear, responsive business sites'
+			},
+			{
+				href: '/services#software',
+				label: 'Windows tools',
+				description: 'Utilities, scripts, and desktop software'
+			},
+			{
+				href: '/services#ai',
+				label: 'Integrations',
+				description: 'Connected systems and careful automation'
+			}
+		]
+	},
+	{
+		href: '/work',
+		label: 'My Work',
+		primary: false,
+		children: [
+			{ href: '/work', label: 'All case studies', description: 'See the complete project work' },
+			{ href: '/work/rift', label: 'Rift', description: 'AI-assisted Windows development' },
+			{ href: '/work/exfil', label: 'EXFIL', description: 'Windows display automation' }
+		]
+	},
 	{ href: '/about', label: 'About Me', primary: false },
 	{ href: '/start', label: 'Contact Me', primary: true }
 ] as const;
@@ -34,60 +65,6 @@ export const proofItems = [
 	{
 		label: 'Careful delivery',
 		value: 'Testing, review, security, and documentation'
-	}
-] as const;
-
-export const audiences = [
-	{
-		title: 'Small and local businesses',
-		body: 'Professional websites, better inquiry flows, customer portals, and practical tools that replace scattered manual work.',
-		need: 'Clear communication, reliable delivery, and a result that helps the business run better.'
-	},
-	{
-		title: 'Founders and product owners',
-		body: 'I can help shape a rough idea, an early MVP, or a process that needs to become software.',
-		need: 'A practical first version with clear priorities and room to improve after real use.'
-	},
-	{
-		title: 'Gaming communities',
-		body: 'Community sites, application systems, dashboards, launchers, Discord-connected tools, and Windows utilities.',
-		need: 'Someone who understands the environment but builds for maintainability beyond a single server.'
-	},
-	{
-		title: 'Technical teams',
-		body: 'A product-minded collaborator who can show architecture, code, testing, security decisions, and release discipline.',
-		need: 'Evidence that the interface and the underlying system were considered together.'
-	}
-] as const;
-
-export const capabilityGroups = [
-	{
-		label: 'Products and interfaces',
-		items: [
-			'Responsive websites',
-			'SvelteKit applications',
-			'Desktop software',
-			'Dashboards',
-			'Portals'
-		]
-	},
-	{
-		label: 'Systems and data',
-		items: ['Rust', 'TypeScript', 'Python', 'FastAPI', 'Databases', 'Windows APIs']
-	},
-	{
-		label: 'AI and automation',
-		items: [
-			'AI assistants',
-			'Agent workflows',
-			'Tool integrations',
-			'Local AI',
-			'Evaluation workflows'
-		]
-	},
-	{
-		label: 'Delivery and reliability',
-		items: ['Git', 'Automated tests', 'Security review', 'Deployment', 'Documentation']
 	}
 ] as const;
 

@@ -5,7 +5,14 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
 	{
-		ignores: ['.svelte-kit/**', '.wrangler/**', 'build/**', 'node_modules/**', 'static/**', 'work/**']
+		ignores: [
+			'.svelte-kit/**',
+			'.wrangler/**',
+			'build/**',
+			'node_modules/**',
+			'static/**',
+			'work/**'
+		]
 	},
 	js.configs.recommended,
 	...tseslint.configs.recommended,

@@ -8,7 +8,7 @@
 		description,
 		path = '/',
 		image = '/og-image.png',
-		imageAlt = `${site.name} product-development services`,
+		imageAlt = `${site.name} website and software services`,
 		noindex = false,
 		schema = []
 	}: {

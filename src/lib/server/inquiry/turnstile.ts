@@ -9,7 +9,10 @@ export type TurnstileConfig = {
 	secret: string;
 	expectedHostname?: string;
 	development: boolean;
+	timeoutMs?: number;
 };
+
+const DEFAULT_TIMEOUT_MS = 8_000;
 
 export async function verifyTurnstile(
 	token: string,
@@ -28,6 +31,7 @@ export async function verifyTurnstile(
 	try {
 		const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
 			method: 'POST',
+			signal: AbortSignal.timeout(config.timeoutMs ?? DEFAULT_TIMEOUT_MS),
 			body
 		});
 		if (!response.ok) return { valid: false, skipped: false };

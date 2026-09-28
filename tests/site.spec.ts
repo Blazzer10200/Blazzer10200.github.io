@@ -5,8 +5,8 @@ async function waitForHydration(page: import('@playwright/test').Page) {
 }
 
 const routes = [
-	['/', 'Custom software that fits the way your business works'],
-	['/services', 'Websites and software built for your business'],
+	['/', 'Custom websites, Windows tools, and connected systems'],
+	['/services', 'Websites, Windows tools, and systems that work together'],
 	['/work', 'Products you can download, inspect, and use'],
 	['/work/rift', 'Rift'],
 	['/work/exfil', 'EXFIL'],
@@ -36,6 +36,23 @@ test('legacy project routes return permanent redirects', async ({ request }) => 
 	}
 });
 
+test('service inquiry links preselect the matching project type', async ({ page }) => {
+	await page.goto('/services');
+	const hrefs = await page
+		.locator('.service-detail article > .text-link')
+		.evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+	expect(hrefs).toEqual([
+		'/start?type=business-website',
+		'/start?type=windows-tool-script',
+		'/start?type=systems-integration'
+	]);
+});
+
+test('worker responses include the production security policy', async ({ request }) => {
+	const response = await request.get('/');
+	expect(response.headers()['content-security-policy']).toContain("frame-ancestors 'none'");
+});
+
 test('mobile menu traps focus, closes on Escape, and restores body scrolling', async ({ page }) => {
 	await page.setViewportSize({ width: 390, height: 844 });
 	await page.goto('/');
@@ -44,8 +61,41 @@ test('mobile menu traps focus, closes on Escape, and restores body scrolling', a
 	await trigger.click();
 	await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
 	await expect(page.getByRole('dialog', { name: 'Main navigation' })).toBeVisible();
+	await page.getByRole('button', { name: 'Open Services menu' }).click();
+	await expect(page.getByRole('link', { name: /Custom websites/i })).toBeVisible();
 	await page.keyboard.press('Escape');
 	await expect(page.getByRole('dialog', { name: 'Main navigation' })).toBeHidden();
+	await expect(trigger).toBeFocused();
+	await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
+});
+
+test('desktop navigation submenus open by button and close with Escape', async ({ page }) => {
+	await page.setViewportSize({ width: 1280, height: 800 });
+	await page.goto('/');
+	await waitForHydration(page);
+	const trigger = page.getByRole('button', { name: 'Open Services menu' });
+	await trigger.click();
+	await expect(page.getByRole('link', { name: /Custom websites/i })).toBeVisible();
+	await page.keyboard.press('Escape');
+	await expect(page.getByRole('link', { name: /Custom websites/i })).toBeHidden();
+});
+
+test('guided tour is optional, advances clearly, and restores scrolling on exit', async ({
+	page
+}) => {
+	await page.goto('/');
+	await waitForHydration(page);
+	const trigger = page.getByRole('button', { name: /Take the guided tour/i });
+	await trigger.click();
+	const tour = page.getByRole('dialog', { name: /A custom website should make/i });
+	await expect(tour).toBeVisible();
+	await expect(page.locator('body')).toHaveCSS('overflow', 'hidden');
+	await page.getByRole('button', { name: 'Next' }).click();
+	await expect(
+		page.getByRole('heading', { name: /Small Windows tools can remove/i })
+	).toBeVisible();
+	await page.getByRole('button', { name: 'Exit tour' }).click();
+	await expect(tour).toBeHidden();
 	await expect(trigger).toBeFocused();
 	await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden');
 });
@@ -56,7 +106,9 @@ test('project fit result carries context into the inquiry', async ({ page }) => 
 	await page.getByLabel('AI-powered feature').check();
 	await page.getByLabel('Only an idea').check();
 	await page.getByLabel('Adding AI responsibly').check();
-	await expect(page.getByRole('heading', { name: /AI integration could fit/i })).toBeVisible();
+	await expect(
+		page.getByRole('heading', { name: /integration or automation project could connect/i })
+	).toBeVisible();
 	await page.getByRole('link', { name: /Continue to Contact Form/i }).click();
 	await expect(page).toHaveURL(/\/start\?.*goal=responsible-ai/);
 	await expect(page.getByText('Adding AI responsibly', { exact: true })).toBeVisible();
@@ -71,6 +123,14 @@ test('inquiry validation preserves entered values and reports errors', async ({ 
 	await expect(page.getByRole('heading', { name: 'Check the highlighted fields.' })).toBeVisible();
 	await expect(page.getByLabel(/^Name/)).toHaveValue('Avery Client');
 	await expect(page.locator('#email-error')).toHaveText('Enter a valid email address.');
+});
+
+test('optional inquiry details stay out of the initial path', async ({ page }) => {
+	await page.goto('/start');
+	await waitForHydration(page);
+	await expect(page.getByLabel('Business or project name')).toBeHidden();
+	await page.getByText('Add optional project details', { exact: true }).click();
+	await expect(page.getByLabel('Business or project name')).toBeVisible();
 });
 
 test('reduced-motion preference disables decorative animation', async ({ page }) => {

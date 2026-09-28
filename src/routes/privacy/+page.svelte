@@ -23,7 +23,7 @@
 		<p>
 			The form collects the contact and project information you choose to provide: name, email,
 			business or project name, existing links, project type, current stage, description, desired
-			features, main problem, timeline, budget range, referral source, and optional references.
+			features, timeline, budget range, referral source, and optional references.
 		</p>
 		<h2>Why it is collected</h2>
 		<p>

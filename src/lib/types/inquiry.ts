@@ -10,7 +10,6 @@ export type InquiryValues = {
 	projectGoal: PriorityOption | '';
 	description: string;
 	desiredFeatures: string;
-	mainProblem: string;
 	deadline: string;
 	budget: string;
 	referral: string;

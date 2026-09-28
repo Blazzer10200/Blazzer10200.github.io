@@ -72,7 +72,7 @@
 			radial-gradient(620px 440px at 18% 28%, rgba(120, 196, 255, 0.22), transparent 62%),
 			radial-gradient(540px 400px at 82% 72%, rgba(154, 209, 199, 0.14), transparent 62%),
 			radial-gradient(720px 520px at 62% 14%, rgba(120, 196, 255, 0.12), transparent 66%),
-			radial-gradient(480px 360px at 30% 88%, rgba(120, 196, 255, 0.10), transparent 60%);
+			radial-gradient(480px 360px at 30% 88%, rgba(120, 196, 255, 0.1), transparent 60%);
 		filter: blur(36px);
 		animation: hyAurora 32s ease-in-out infinite alternate;
 		will-change: transform;

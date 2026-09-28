@@ -12,7 +12,6 @@ function validInquiry(overrides: Record<string, string> = {}) {
 		projectGoal: 'manual-workflow',
 		description: 'We need a clear internal tool that replaces a repeated spreadsheet workflow.',
 		desiredFeatures: 'Role-based dashboard and exports',
-		mainProblem: 'The current process creates duplicate work every week.',
 		deadline: 'one-to-three-months',
 		budget: '2500-5000',
 		referral: 'github',
@@ -59,5 +58,18 @@ describe('validateInquiry', () => {
 	it('removes control characters without stripping ordinary content', () => {
 		const result = validateInquiry(validInquiry({ name: 'Avery\u0000 Client' }));
 		expect(result.values.name).toBe('Avery Client');
+	});
+
+	it('accepts optional context fields when they are blank', () => {
+		const result = validateInquiry(
+			validInquiry({
+				businessName: '',
+				websiteUrl: '',
+				desiredFeatures: '',
+				referral: '',
+				referenceLinks: ''
+			})
+		);
+		expect(result.errors).toEqual({});
 	});
 });

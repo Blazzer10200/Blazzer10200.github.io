@@ -1,28 +1,21 @@
 <script lang="ts">
 	import CtaBand from '$lib/components/ui/CtaBand.svelte';
 	import DeliveryRail from '$lib/components/sections/DeliveryRail.svelte';
-	import ProcessTimeline from '$lib/components/sections/ProcessTimeline.svelte';
+	import GuidedTour from '$lib/components/sections/GuidedTour.svelte';
 	import ProjectFitBuilder from '$lib/components/sections/ProjectFitBuilder.svelte';
 	import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
 	import SectionIntro from '$lib/components/ui/SectionIntro.svelte';
 	import Seo from '$lib/components/ui/Seo.svelte';
 	import { projects } from '$lib/content/projects';
 	import { services } from '$lib/content/services';
-	import {
-		audiences,
-		capabilityGroups,
-		proofItems,
-		site,
-		siteUrl,
-		whyWorkWithMe
-	} from '$lib/content/site';
+	import { proofItems, site, siteUrl, whyWorkWithMe } from '$lib/content/site';
 
 	const schema = [
 		{
 			'@context': 'https://schema.org',
 			'@type': 'Person',
 			name: site.name,
-			jobTitle: 'Product Developer',
+			jobTitle: site.role,
 			url: siteUrl,
 			email: `mailto:${site.email}`,
 			sameAs: [site.github],
@@ -43,7 +36,7 @@
 			name: `${site.name} · Product Development`,
 			url: siteUrl,
 			description:
-				'Custom websites, software tools, desktop applications, and AI-powered products for businesses and founders.'
+				'Custom websites, Windows tools, connected systems, and carefully scoped automation for businesses and founders.'
 		},
 		...services.map((service) => ({
 			'@context': 'https://schema.org',
@@ -57,26 +50,27 @@
 </script>
 
 <Seo
-	title="Braison Swilling · Custom websites, software, and AI products"
-	description="I plan, design, build, test, and deploy custom websites, business tools, desktop applications, and carefully bounded AI products for businesses and founders."
+	title="Braison Swilling · Custom websites, Windows tools, and integrations"
+	description="I design custom websites, build practical Windows tools and scripts, and connect software, services, data, and carefully bounded AI features."
 	{schema}
 />
 
 <main id="main-content" tabindex="-1">
 	<section class="home-hero container-wide">
 		<div class="hero-copy">
-			<p class="eyebrow">Independent product developer · Central Arkansas / Remote</p>
-			<h1>Custom software that fits the way your business works.</h1>
+			<p class="eyebrow">Website and software developer · Central Arkansas / Remote</p>
+			<h1>Custom websites, Windows tools, and connected systems.</h1>
 			<p class="hero-lead">
-				I design and build websites, internal tools, desktop applications, and carefully scoped AI
-				features. I can take a project from an early idea to a tested, deployed product.
+				I design websites, build practical tools and scripts for Windows 10 and 11, and connect
+				software and services that need to work together.
 			</p>
 			<div class="page-actions">
-				<a class="button button-primary" href="/start"
-					>Contact Me <span aria-hidden="true">→</span></a
+				<a class="button button-primary" href="#choose-path"
+					>Explore Services <span aria-hidden="true">↓</span></a
 				>
 				<a class="button button-secondary" href="/work">View My Work</a>
 			</div>
+			<div class="hero-tour"><span>Prefer a walkthrough?</span><GuidedTour compact /></div>
 			<div class="hero-note">
 				<span>My responsibility</span>
 				<p>
@@ -95,6 +89,41 @@
 		</div>
 	</section>
 
+	<section
+		class="path-section container-wide section-tight"
+		id="choose-path"
+		aria-labelledby="path-title"
+	>
+		<div class="path-heading">
+			<p class="eyebrow">Choose a direction</p>
+			<h2 id="path-title">What would you like to improve?</h2>
+			<p>
+				Choose the closest starting point. Each service page explains the deliverables, boundaries,
+				and next step in plain language.
+			</p>
+		</div>
+		<nav class="path-grid" aria-label="Choose a project direction">
+			<a href="/services#websites">
+				<span>01</span>
+				<strong>A custom website</strong>
+				<p>Design, content structure, development, forms, and launch.</p>
+				<small>Explore websites →</small>
+			</a>
+			<a href="/services#software">
+				<span>02</span>
+				<strong>A Windows tool or script</strong>
+				<p>Focused utilities, desktop applications, and repeated-task automation.</p>
+				<small>Explore Windows tools →</small>
+			</a>
+			<a href="/services#ai">
+				<span>03</span>
+				<strong>Systems that need connecting</strong>
+				<p>APIs, services, data, Discord, workflows, and useful AI features.</p>
+				<small>Explore integrations →</small>
+			</a>
+		</nav>
+	</section>
+
 	<section class="proof-strip" aria-label="Verified capability proof">
 		<div class="container-wide">
 			{#each proofItems as proof}
@@ -103,28 +132,7 @@
 		</div>
 	</section>
 
-	<section class="audience-section container-wide section" aria-labelledby="audience-title">
-		<SectionIntro
-			eyebrow="Who I help"
-			title="Good projects can start with a rough idea."
-			body="You do not need a finished specification before we talk. Tell me what is happening now, who it affects, and what you want to improve."
-			align="split"
-		/>
-		<div class="audience-list">
-			{#each audiences as audience, index}
-				<article>
-					<span>0{index + 1}</span>
-					<div>
-						<h3>{audience.title}</h3>
-						<p>{audience.body}</p>
-					</div>
-					<p class="audience-need">{audience.need}</p>
-				</article>
-			{/each}
-		</div>
-	</section>
-
-	<section class="services-section section">
+	<section class="services-section section" id="services">
 		<div class="container-wide">
 			<SectionIntro
 				eyebrow="Core services"
@@ -152,7 +160,11 @@
 		</div>
 	</section>
 
-	<section class="work-section container-wide section" aria-labelledby="featured-work-title">
+	<section
+		class="work-section container-wide section"
+		id="featured-work"
+		aria-labelledby="featured-work-title"
+	>
 		<SectionIntro
 			eyebrow="Featured work"
 			title="A closer look at what I have shipped."
@@ -176,16 +188,6 @@
 		</div>
 	</section>
 
-	<section class="process-section container-wide section" aria-labelledby="process-title">
-		<SectionIntro
-			eyebrow="Development process"
-			title="A clear process from the first conversation to launch."
-			body="You will see the project take shape in stages, review working progress, and make important decisions before they become expensive to change."
-			align="split"
-		/>
-		<ProcessTimeline />
-	</section>
-
 	<section class="why-section section">
 		<div class="container-wide why-grid">
 			<div class="why-heading">
@@ -205,60 +207,6 @@
 							<p>{item.body}</p>
 						</div>
 					</article>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<section class="ai-section container-wide section" aria-labelledby="ai-title">
-		<div class="ai-statement">
-			<p class="eyebrow">Responsible AI-assisted development</p>
-			<h2 id="ai-title">I use AI as a tool, and I remain accountable for the work.</h2>
-			<p>
-				It can speed up parts of development. Every decision, code change, and release still gets
-				reviewed by me.
-			</p>
-		</div>
-		<div class="ai-flow" aria-label="How AI-assisted development is controlled">
-			<div>
-				<span>01</span><strong>I set the job</strong>
-				<p>
-					Requirements, constraints, acceptable output, privacy, cost, and permissions come first.
-				</p>
-			</div>
-			<div>
-				<span>02</span><strong>AI accelerates the work</strong>
-				<p>It helps research, draft implementation, test cases, documentation, and alternatives.</p>
-			</div>
-			<div>
-				<span>03</span><strong>I review the result</strong>
-				<p>I read changes, test behavior, reject weak output, and narrow tool access.</p>
-			</div>
-			<div>
-				<span>04</span><strong>I own what ships</strong>
-				<p>Architecture, security boundaries, deployment, and final quality remain mine.</p>
-			</div>
-		</div>
-	</section>
-
-	<section class="capabilities-section section-tight">
-		<div class="container-wide capabilities-grid">
-			<div>
-				<p class="eyebrow">Selected capabilities</p>
-				<h2>The tools I use depend on the project.</h2>
-				<p>
-					I choose technology based on the product, the people who will maintain it, and what it
-					needs to do reliably.
-				</p>
-			</div>
-			<div class="capability-groups">
-				{#each capabilityGroups as group}
-					<div>
-						<h3>{group.label}</h3>
-						<ul>
-							{#each group.items as item}<li>{item}</li>{/each}
-						</ul>
-					</div>
 				{/each}
 			</div>
 		</div>
@@ -294,6 +242,18 @@
 		min-height: calc(100svh - 76px);
 		padding-block: clamp(4rem, 9vw, 8rem);
 	}
+	.home-hero > * {
+		animation: page-enter var(--motion-section) var(--ease-out) both;
+	}
+	.home-hero > :last-child {
+		animation-delay: 90ms;
+	}
+	@keyframes page-enter {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+	}
 	.hero-copy h1 {
 		max-width: 12ch;
 		margin-block: var(--space-4) var(--space-5);
@@ -303,6 +263,14 @@
 		max-width: 46rem;
 		color: var(--text-secondary);
 		font-size: var(--text-body-large);
+	}
+	.hero-tour {
+		display: flex;
+		gap: 0.6rem;
+		align-items: center;
+		margin-top: var(--space-4);
+		color: var(--text-muted);
+		font-size: var(--text-small);
 	}
 	.hero-note {
 		display: grid;
@@ -326,6 +294,71 @@
 	}
 	.hero-visual {
 		position: relative;
+	}
+	.path-section {
+		scroll-margin-top: 90px;
+		border-top: 1px solid var(--border-strong);
+	}
+	.path-heading {
+		display: grid;
+		grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+		gap: var(--space-8);
+		align-items: end;
+		margin-bottom: var(--space-7);
+	}
+	.path-heading h2 {
+		max-width: 12ch;
+		margin-top: var(--space-3);
+	}
+	.path-heading > p:last-child {
+		max-width: 43rem;
+		color: var(--text-secondary);
+		font-size: var(--text-body-large);
+	}
+	.path-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		border-top: 1px solid var(--border-strong);
+		border-left: 1px solid var(--border-strong);
+	}
+	.path-grid a {
+		display: grid;
+		min-height: 300px;
+		align-content: start;
+		padding: var(--space-5);
+		border-right: 1px solid var(--border-strong);
+		border-bottom: 1px solid var(--border-strong);
+		background: var(--background-raised);
+		text-decoration: none;
+		transition:
+			background var(--motion-standard) var(--ease-out),
+			transform var(--motion-standard) var(--ease-out);
+	}
+	.path-grid a:hover {
+		z-index: 1;
+		background: var(--surface);
+		transform: translateY(-4px);
+	}
+	.path-grid span,
+	.path-grid small {
+		color: var(--accent);
+		font-family: var(--font-mono);
+		font-size: var(--text-metadata);
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+	.path-grid strong {
+		margin-block: auto var(--space-3);
+		font-size: clamp(1.25rem, 2vw, 1.75rem);
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+	}
+	.path-grid p {
+		color: var(--text-secondary);
+		font-size: var(--text-small);
+	}
+	.path-grid small {
+		margin-top: var(--space-5);
 	}
 	.hero-receipt {
 		position: relative;
@@ -388,33 +421,10 @@
 		font-size: var(--text-small);
 		font-weight: 520;
 	}
-	.audience-list {
-		border-top: 1px solid var(--border-strong);
-	}
-	.audience-list article {
-		display: grid;
-		grid-template-columns: 3rem minmax(0, 0.9fr) minmax(260px, 0.65fr);
-		gap: var(--space-6);
-		align-items: start;
-		padding-block: var(--space-5);
-		border-bottom: 1px solid var(--border);
-	}
-	.audience-list article > span,
 	.service-number {
 		color: var(--accent);
 		font-family: var(--font-mono);
 		font-size: var(--text-metadata);
-	}
-	.audience-list h3 {
-		margin-bottom: 0.55rem;
-	}
-	.audience-list p {
-		color: var(--text-secondary);
-	}
-	.audience-need {
-		padding-left: var(--space-5);
-		border-left: 1px solid var(--border);
-		font-size: var(--text-small);
 	}
 	.services-section {
 		background: var(--background-raised);
@@ -451,9 +461,6 @@
 	.fit-section {
 		border-block: 1px solid var(--border);
 		background: var(--background-raised);
-	}
-	.process-section {
-		padding-bottom: 0;
 	}
 	.why-section {
 		background: var(--background-raised);
@@ -498,86 +505,6 @@
 	.why-list p {
 		color: var(--text-secondary);
 	}
-	.ai-section {
-		display: grid;
-		grid-template-columns: minmax(300px, 0.75fr) minmax(0, 1.25fr);
-		gap: var(--space-10);
-	}
-	.ai-statement h2 {
-		max-width: 12ch;
-		margin-block: var(--space-3) var(--space-5);
-	}
-	.ai-statement > p:last-child {
-		color: var(--text-secondary);
-		font-size: var(--text-body-large);
-	}
-	.ai-flow {
-		border-top: 1px solid var(--border-strong);
-	}
-	.ai-flow > div {
-		display: grid;
-		grid-template-columns: 2.5rem 12rem 1fr;
-		gap: var(--space-4);
-		padding-block: var(--space-5);
-		border-bottom: 1px solid var(--border);
-	}
-	.ai-flow span {
-		color: var(--accent);
-		font-family: var(--font-mono);
-		font-size: var(--text-metadata);
-	}
-	.ai-flow strong {
-		font-size: 0.95rem;
-	}
-	.ai-flow p {
-		color: var(--text-secondary);
-		font-size: var(--text-small);
-	}
-	.capabilities-section {
-		border-block: 1px solid var(--border);
-		background: var(--background-raised);
-	}
-	.capabilities-grid {
-		display: grid;
-		grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
-		gap: var(--space-10);
-	}
-	.capabilities-grid > div:first-child h2 {
-		margin-block: var(--space-3) var(--space-4);
-	}
-	.capabilities-grid > div:first-child > p:last-child {
-		color: var(--text-secondary);
-	}
-	.capability-groups {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		border-top: 1px solid var(--border);
-		border-left: 1px solid var(--border);
-	}
-	.capability-groups > div {
-		padding: var(--space-5);
-		border-right: 1px solid var(--border);
-		border-bottom: 1px solid var(--border);
-	}
-	.capability-groups h3 {
-		margin-bottom: var(--space-3);
-		font-size: 1rem;
-		letter-spacing: -0.01em;
-	}
-	.capability-groups ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem;
-		padding: 0;
-		list-style: none;
-	}
-	.capability-groups li {
-		padding: 0.3rem 0.5rem;
-		border: 1px solid var(--border);
-		color: var(--text-muted);
-		font-family: var(--font-mono);
-		font-size: var(--text-metadata);
-	}
 	.about-preview {
 		display: grid;
 		grid-template-columns: minmax(260px, 0.6fr) minmax(0, 1fr);
@@ -621,6 +548,9 @@
 		.hero-visual {
 			max-width: 760px;
 		}
+		.path-grid {
+			grid-template-columns: 1fr 1fr;
+		}
 		.service-rows article {
 			grid-template-columns: 3rem 1fr 1fr;
 		}
@@ -632,18 +562,9 @@
 		.proof-strip > div {
 			grid-template-columns: 1fr 1fr;
 		}
-		.audience-list article {
-			grid-template-columns: 2rem 1fr;
-		}
-		.audience-need {
-			grid-column: 2;
-			padding-left: 0;
-			border-left: 0;
-		}
 		.why-grid,
-		.ai-section,
-		.capabilities-grid,
-		.about-preview {
+		.about-preview,
+		.path-heading {
 			grid-template-columns: 1fr;
 		}
 		.why-heading {
@@ -651,6 +572,22 @@
 		}
 	}
 	@media (max-width: 680px) {
+		.home-hero {
+			padding-block: 3.25rem 4.5rem;
+		}
+		.hero-copy h1 {
+			font-size: clamp(2.8rem, 14vw, 4rem);
+		}
+		.hero-tour {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+		.path-grid {
+			grid-template-columns: 1fr;
+		}
+		.path-grid a {
+			min-height: 240px;
+		}
 		.hero-note {
 			grid-template-columns: 1fr;
 		}
@@ -667,15 +604,6 @@
 		.service-rows article ul,
 		.service-rows .text-link {
 			grid-column: 2;
-		}
-		.ai-flow > div {
-			grid-template-columns: 2rem 1fr;
-		}
-		.ai-flow p {
-			grid-column: 2;
-		}
-		.capability-groups {
-			grid-template-columns: 1fr;
 		}
 		.hero-receipt {
 			width: calc(100% - 1rem);

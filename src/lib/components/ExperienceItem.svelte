@@ -28,12 +28,7 @@
 					{@render more()}
 				</ul>
 			</div>
-			<button
-				class="exp-toggle"
-				type="button"
-				aria-expanded={open}
-				onclick={() => (open = !open)}
-			>
+			<button class="exp-toggle" type="button" aria-expanded={open} onclick={() => (open = !open)}>
 				<span class="chev">›</span>
 				{#if open}
 					<span class="lbl-less">Hide details</span>

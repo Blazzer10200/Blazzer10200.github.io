@@ -23,7 +23,10 @@ export type ProviderConfig = {
 	destination: string;
 	sender: string;
 	development: boolean;
+	timeoutMs?: number;
 };
+
+const DEFAULT_TIMEOUT_MS = 8_000;
 
 function label(options: readonly { value: string; label: string }[], value: string) {
 	return options.find((option) => option.value === value)?.label ?? (value || 'Not provided');
@@ -43,9 +46,6 @@ export function formatInquiryText(values: InquiryValues) {
 		`Timeline: ${label(deadlineOptions, values.deadline)}`,
 		`Budget range: ${label(budgetOptions, values.budget)}`,
 		`Found via: ${label(referralOptions, values.referral)}`,
-		'',
-		'Main problem',
-		values.mainProblem,
 		'',
 		'Project description',
 		values.description,
@@ -70,6 +70,7 @@ class ResendProvider implements InquiryDeliveryProvider {
 	async deliver(values: InquiryValues) {
 		const response = await fetch('https://api.resend.com/emails', {
 			method: 'POST',
+			signal: AbortSignal.timeout(this.config.timeoutMs ?? DEFAULT_TIMEOUT_MS),
 			headers: {
 				authorization: `Bearer ${this.config.apiKey}`,
 				'content-type': 'application/json'

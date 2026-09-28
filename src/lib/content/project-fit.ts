@@ -6,6 +6,8 @@ export const buildOptions = [
 	{ value: 'internal-tool', label: 'Internal tool' },
 	{ value: 'dashboard-portal', label: 'Dashboard or portal' },
 	{ value: 'desktop-application', label: 'Desktop application' },
+	{ value: 'windows-tool-script', label: 'Windows tool or script' },
+	{ value: 'systems-integration', label: 'Connect existing systems' },
 	{ value: 'ai-feature', label: 'AI-powered feature' },
 	{ value: 'prototype-mvp', label: 'Working prototype or MVP' },
 	{ value: 'not-sure', label: 'Not sure yet' }
@@ -54,6 +56,8 @@ const serviceByBuild: Record<BuildOption, ServiceId> = {
 	'internal-tool': 'software',
 	'dashboard-portal': 'software',
 	'desktop-application': 'software',
+	'windows-tool-script': 'software',
+	'systems-integration': 'ai',
 	'ai-feature': 'ai',
 	'prototype-mvp': 'software',
 	'not-sure': 'software'
@@ -72,7 +76,7 @@ const stageGuidance: Record<StageOption, string> = {
 const titleByService: Record<ServiceId, string> = {
 	websites: 'A focused website project is the best place to start.',
 	software: 'A custom software project is the best place to start.',
-	ai: 'An AI integration could fit once the task and review process are clear.'
+	ai: 'An integration or automation project could connect the pieces.'
 };
 
 export function recommendProjectFit(input: ProjectFitInput): ProjectFitRecommendation {

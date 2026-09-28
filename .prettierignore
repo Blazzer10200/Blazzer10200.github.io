@@ -7,5 +7,7 @@ playwright-report
 static/Braison-Swilling-Resume.pdf
 CLAUDE.md
 HANDOFF.md
+# Preserve verbatim historical snapshots; they are not release source.
+HANDOFF-ARCHIVE-THROUGH-2026-08-07.md
 CHANGELOG.md
 docs

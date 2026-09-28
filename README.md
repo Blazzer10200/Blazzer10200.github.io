@@ -1,4 +1,4 @@
-# Braison Swilling — product developer site
+# Braison Swilling — website and software services
 
 A client-acquisition portfolio for custom websites, software tools, desktop applications, and responsible AI integrations. Built with SvelteKit 2 and Svelte 5. Cloudflare Workers is the primary deployment target; the existing GitHub Pages workflow remains as a transition-safe static build.
 

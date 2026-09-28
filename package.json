@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
+		"prebuild": "node scripts/prepare-build.mjs",
 		"build": "vite build",
 		"build:static": "node scripts/build-static.mjs",
 		"pdf": "node scripts/generate-pdf.mjs",

@@ -17,7 +17,7 @@
 </svelte:head>
 
 <main class="ats" id="main-content" tabindex="-1">
-	<p class="back"><a href="/">← Back to the full résumé</a></p>
+	<p class="back"><a href="/">← Back to the main site</a></p>
 
 	<header>
 		<h1>Braison Swilling</h1>
